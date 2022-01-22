@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Kanban Desktop - PTBox</title>
+    <link rel="stylesheet" type="text/css" href="includes/waifu.css?v=1.4.2"/>
+</head>
+<style type="text/css">
+	input::-webkit-input-placeholder {
+    /* 修改字体颜色 */
+    color: #CBCBCB;
+	}
+	::-webkit-scrollbar-track{
+    box-shadow: inset 0 0 2px rgba(197,197,197,0.80);
+    border-radius: 5px;
+    }
+</style>
+
+<body style="font-family: 'Microsoft YaHei';background-color: rgba(0,0,0,0);">
+	<div id= "PTBox" class="PTBox" onclick="BoxRemover()"></div >
+	
+	<script type="text/javascript">
+		window.nodeRequire = require;
+		delete window.require;
+		delete window.exports;
+		delete window.module;
+		const { ipcRenderer } = nodeRequire('electron'); //Electron 依赖调入
+		function BoxRemover(){
+		ipcRenderer.send('Mainpage','Show');
+		ipcRenderer.send('PTBox','Close');
+		console.log('OK!');
+		}
+    </script>
+</body>
+</html>
