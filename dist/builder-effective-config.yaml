@@ -1,0 +1,25 @@
+directories:
+  output: dist
+  buildResources: build
+productName: AI-Waifu-Demo
+appId: com.Zerolite.AI-Waifu-Demo
+copyright: 2021 Zerolite Studio All Rights Reserved.
+asar: true
+win:
+  target:
+    - target: nsis
+  icon: ./assets/app.ico
+  asarUnpack:
+    - src/**
+    - README.md
+nsis:
+  oneClick: false
+  allowElevation: true
+  allowToChangeInstallationDirectory: true
+  installerIcon: ./install.ico
+  uninstallerIcon: ./install.ico
+  installerHeaderIcon: ./assets/app.ico
+  createDesktopShortcut: true
+  createStartMenuShortcut: true
+  shortcutName: AI-Waifu-Beta1
+electronVersion: 12.0.9

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" type="text/css" href="assets/waifu.css?v=1.4.2"/>
+	<!--<script src="assets/autoload.js"></script>-->
+</head>
+<style type="text/css">
+input::-webkit-input-placeholder {
+    /* 修改字体颜色 */
+    color: #CBCBCB;
+}
+::-webkit-scrollbar-track{
+    box-shadow: inset 0 0 2px rgba(197,197,197,0.80);
+    border-radius: 5px;
+    }
+</style>
+<body style="font-family: 'Microsoft YaHei';background-color: rgba(0,0,0,0);">
+    <!-- waifu-tips.js 依赖 JQuery 库 -->
+    <script src="assets/jquery.min.js?v=3.3.1"></script>
+    <!-- 实现拖动效果，需引入 JQuery UI -->
+    <script src="assets/jquery-ui.js?v=1.12.1"></script>
+    
+	<canvas id="live2d2" class="live2d" style="display: none"></canvas>
+	<div id= "PTBox" class="PTBox"></div >
+	
+    <div class="waifu" id="NLP0">                   <!--核心层-->
+        <div class="waifu-tips" id="NLP1" ></div>
+		<!--<div class="waifu-tips-PRO" id="" ></div>-->
+        <canvas id="live2d" class="live2d"></canvas><!--Live2D 主画布-->
+		<div id= "NLPInfinite" class="NLPInfinite"> <!--设置页面-->
+			<div id="timesetHeader" align="center" style="font-size: 13px;"></div>
+		    <svg t="1596338443527" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="7582" width="25" height="25" onclick="document.getElementById('NLPInfinite').style.display = 'none';">
+			    <path d="M785.92 361.984H517.12V243.2c0-27.136-36.864-65.536-76.8-30.208-39.936 34.816-220.672 225.28-245.248 249.344-28.672 28.672-21.504 76.288 0 98.304 24.064 24.576 205.312 215.552 245.248 250.368 39.936 35.328 76.8-3.072 76.8-30.208v-118.784h268.8c33.792 0 61.44-27.648 61.44-61.44V423.424c0-33.792-27.136-61.44-61.44-61.44z" fill="#ffffff" p-id="7583" data-spm-anchor-id="a313x.7781069.0.i14" class="selected"></path>
+			</svg>
+			<div align="center" style="top:20px;">
+				<input type="text" id="timeset" name="text" placeholder=" 输入你想提示的时间" class="timeset" align="middle" required><!--定时提醒-->
+			    <div style="margin-top:8px;">
+				<button id="timesetButton" class="timesetButton" style=" background-color: rgba(0,0,0,0.2);
+	            border: 2px solid rgba(128,128,128,0.90);width:48px;height:30px; border-radius: 12px;background-image:url(./assets/IconClock.png);background-size: contain;margin-right:15px;"</button> 
+				<button id="timeresetButton" class="timeresetButton" style=" background-color: rgba(0,0,0,0.2);
+	            border: 2px solid rgba(128,128,128,0.90);width:48px;height:30px; border-radius: 12px;background-image:url(./assets/IconClear.png);background-size: contain;"</button>
+				</div>
+				<div id="TimeDisplay" style="margin-top:5px;color: azure; ">没有定时</div>
+			</div>
+		</div >                                     <!--定时设置辅助层-->
+		<div id="NLPask" class="NLPask">            <!--应答iframe-->
+				<span class="fui-cross" onclick="document.getElementById('NLPask').style.display = 'none';document.getElementById('nlp').value='';" style=" font-size: 13px;z-index: 5px;position: absolute;background-image:url(./assets/bg.jpg);padding:5px;right: 0px; border-radius: 5px;" ></span>
+		        <iframe id="myiframe1" name="myiframe" width="100%" height="100%"  style= "border: medium none;" scrolling="auto"></iframe>
+		</div>
+		<!--改版的NLP对话框-->
+		<div class="NLPAsk" id="NLPx">
+		    <div align= "center" style="top:0px;background-image:url(./assets/box.jpg);color: #fff;">
+		        <form id="AskBox" action="https://www.zerolite.cn/NLP.php" method="post" target="myiframe" name="formphp" align="left" class="AskBox" >
+		            <input type="text" id="nlp" name="text" placeholder="输入你的话(。・∀・)ノ" style="border-radius:14px;background-image:url(./assets/box.jpg);border:0px;outline:none;font-size: 15px;margin-left: 5px;height: 27px;width: 160px;color: azure;" align="left" required>
+					<span class="fui-ask" onclick="NLPChange();" id="toolask" align="right" style="border-radius: 12px;background-image:url(./assets/box.jpg);font-size: 15px;z-index: 5px; " ></span>
+					<input type="submit" name="submit" onclick="document.getElementById('NLPask').style.display = 'block';" >
+				</form>
+		    </div>
+		</div>
+		<!--工具箱按钮及主要功能-->
+		<div class="waifu-tool" id= "WAIFUTOOL ICON" style="text-align:center; display:table-cell;  margin-bottom: 35px;top: 230px;width: 35px;border-radius: 12px; background-image:url(./assets/bg.jpg);opacity:0.9;box-shadow: 0px 0px 15px #2F2F2F;"><!--工具箱按钮及主要功能-->
+		    <span class="fui-toolicon" onclick="toolopen()" id="toolicon"> </span>
+		    <span class="fui-eyeProtInfo"> </span>
+			<span class="fui-cross"> </span>
+		    <!--<span class="fui-settings"></span>-->
+		</div>
+		<!--工具箱功能页-->
+        <div class="waifu-tool" id= "NLP2" style="text-align:center;background-image:url(./assets/bg.jpg);opacity:0.9;display:table-cell;width: 35px;border-radius: 12px;box-shadow: 0px 0px 15px #2F2F2F;"><!--工具箱功能页面-->
+            <!--<span class="fui-home"></span>-->
+            <span class="fui-chat"></span>
+            <span class="fui-eye"></span>
+            <span class="fui-user"></span>
+            <span class="fui-photo"></span>
+			<span class="fui-moon"></span>
+			<span class="fui-Set"></span>
+            <!--<span class="fui-info-circle"></span>-->
+        </div>
+    </div>
+        
+    <script src="assets/waifu-tips.js?v=1.4.2"></script>
+    <script src="assets/live2d.js?v=1.0.5"></script>
+    <script type="text/javascript">
+        /* 在 initModel 前添加 */
+        initModel("assets/waifu-tips.json");
+    </script>
+	<script type="text/javascript">
+		var click=0;
+		var nlp=0;
+		var Change=0;
+		document.getElementById('NLPask').style.display = 'none';
+		document.getElementById('PTBox').style.display = 'none';
+        function toolopen()
+		{
+			if (click%2===0)
+			{
+				document.getElementById('NLP2').style.display = 'block';
+			}
+			else
+				{
+			        document.getElementById('NLP2').style.display = 'none';
+				}
+			click=click+1;
+			/********************展开工具栏***************************/		
+		}
+		function NLPChange()
+		{
+			Change+=1;
+			if (Change%2===0)
+			{
+				
+				document.getElementById("NLPask").style.width="200px";  //操作方法如else
+				document.getElementById("NLPask").style.height="70px";
+				document.getElementById("toolask").className="fui-ask";
+				document.getElementById("AskBox").action="https://www.zerolite.cn/NLP.php"
+				document.getElementById('NLPask').style.display = 'none';  //先把打开的框关掉
+			}
+			else if (Change%2===1)
+			{
+				document.getElementById("AskBox").action="https://m.baidu.com/s?tn=02003390_42_hao_pg&ie=utf-8&wd="+document.getElementById("nlp").value; //更换action地址
+				document.getElementById("toolask").className="fui-home";  //更换图标（改class）
+				document.getElementById("NLPask").style.width="270px";    //更换框大小
+				document.getElementById("NLPask").style.height="400px";
+				document.getElementById('NLPask').style.display = 'none';  //先把打开的框关掉
+			}
+			/*********************切换搜索和NLP**************************/		
+		}
+    </script>
+    <script> function getval(){document.cookie = "status=1"; }</script>
+</body>
+</html>

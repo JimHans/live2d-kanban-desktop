@@ -1,0 +1,53 @@
+{
+  "name": "ai_waifu_demo",
+  "version": "1.0.0",
+  "description": "AI Waifu Electron Based Demo 1",
+  "main": "index.js",
+  "scripts": {
+    "start": "electron .",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
+  },
+  "keywords": [
+    "AI",
+    "Waifu"
+  ],
+  "author": "JimHan",
+  "license": "GPL",
+  "build": {
+    "productName": "AI-Waifu-Demo",
+    "appId": "com.Zerolite.AI-Waifu-Demo",
+    "copyright": "2021 Zerolite Studio All Rights Reserved.",
+    "asar": true,
+    "directories": {
+      "buildResources": "build",
+      "output": "dist"
+    },
+    "win": {
+      "target": [
+        {
+          "target": "nsis"
+        }
+      ],
+      "icon": "./assets/app.ico",
+      "asarUnpack": [
+        "src/**",
+        "README.md"
+      ]
+    },
+    "nsis": {
+      "oneClick": false, 
+      "allowElevation": true, 
+      "allowToChangeInstallationDirectory": true,
+      "installerIcon": "./install.ico",
+      "uninstallerIcon": "./install.ico",
+      "installerHeaderIcon": "./assets/app.ico",
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "AI-Waifu-Beta1"
+    }
+  },
+  "devDependencies": {
+    "electron": "12.0.9"
+  }
+}
