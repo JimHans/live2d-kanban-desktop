@@ -1,6 +1,6 @@
-<h1 align="center"> Kanban-Desktop </h1>
 <p align="center">
 <img src="./assets/app.ico" width=100px height=100px></p>
+<h1 align="center"> Kanban-Desktop </h1>
 <p align="center">
 <img src="https://img.shields.io/badge/Version-1.4.17 Beta-red.svg?style=flat-square">
 <img src="https://img.shields.io/badge/Developer-JimHan-blue.svg?style=flat-square">
