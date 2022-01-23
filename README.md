@@ -1,12 +1,12 @@
 <h1 align="center"> Kanban-Desktop </h1>
-<img src="./assets/app.ico" width=100px height=100px style="text-align:center;">
+<img src="./assets/app.ico" width=100px height=100px align="middle">
 <p align="center">
 <img src="https://img.shields.io/badge/Version-1.4.17 Beta-red.svg?style=flat-square">
 <img src="https://img.shields.io/badge/Developer-JimHan-blue.svg?style=flat-square">
 <img src="https://img.shields.io/badge/License-GPL-purple.svg?style=flat-square">
 </p>
 
-## 可以在你的桌面上随意调教的看板娘！专为桌面设计，模型库丰富，功能多多！
+## 可以在你的桌面上随意调教的看板娘！专为桌面设计，模型库丰富，功能全面，持续更新中
 
 <br/>
 
