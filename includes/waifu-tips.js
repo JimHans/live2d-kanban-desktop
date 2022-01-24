@@ -3,7 +3,7 @@ window.live2d_settings = Array();
     く__,.ヘヽ.　　　　/　,ー､ 〉
     　　　　　＼ ', !-─‐-i　/　/´        ver.    || |
     　　　 　 ／｀ｰ'　　　 L/／｀ヽ､             | | ||         Live2D 看板娘 AI Version 参数设置
-    　　 　 /　 ／,　 /|　 ,　 ,　　　 ',     ||||| |||        Version 1.4.10 (Based on V1.0.7)
+    　　 　 /　 ／,　 /|　 ,　 ,　　　 ',     ||||| |||        Version 1.4.18 (Based on V1.0.7)
     　　　ｲ 　/ /-‐/　ｉ　L_ ﾊ ヽ!　 i      ||   | ||||       Update 2022-01 Modified By JimHan From the FGHRSH Version
     　　　 ﾚ ﾍ 7ｲ｀ﾄ　 ﾚ'ｧ-ﾄ､!ハ|　 |
     　　　　 !,/7 '0'　　 ´0iソ| 　 |
@@ -25,7 +25,7 @@ delete window.module;
 const { ipcRenderer,shell } = nodeRequire('electron'); //Electron 依赖调入
 
 // 后端接口
-live2d_settings.modelAPI             = 'https://waifuapi.zerolite.cn/live2d-api/';   // 自建 API 修改这里
+live2d_settings.modelAPI             = '//waifuapi.zerolite.cn/live2d-api/';   // 自建 API 修改这里
 live2d_settings.tipsMessage          = 'waifu-tips.json';            // 同目录下可省略路径
 live2d_settings.hitokotoAPI          = 'hitokoto.cn';                // 一言 API，可选 'lwl12.com', 'hitokoto.cn', 'jinrishici.com'(古诗词)
 live2d_settings.eyeProtInfo          = true;                         //启用使用时长提醒
@@ -35,6 +35,8 @@ var setTime = 0; //设定的提醒时间(单位分钟)
 var isTimeSet = false; //是否启用？
 var date,TargetTime = 0;//停止时间
 var timer;
+var timercontext;
+var Quality = 2;
 
 
 // 默认模型
@@ -78,7 +80,7 @@ live2d_settings.waifuDraggable       = 'unlimited';    // 拖拽样式，例如 
 live2d_settings.waifuDraggableRevert = true;         // 松开鼠标还原拖拽位置，可选 true(真), false(假)
 
 // 其他杂项设置
-live2d_settings.l2dVersion           = '1.4.16';                              // 当前版本
+live2d_settings.l2dVersion           = '1.4.18';                              // 当前版本
 live2d_settings.l2dVerDate           = '2022-01-21';                          // 版本更新日期
 live2d_settings.homePageUrl          = 'https://www.zerolite.cn/';                                    // 主页地址，已弃用
 live2d_settings.aboutPageUrl         = 'https://www.zerolite.cn/';            // 关于页地址
@@ -155,8 +157,8 @@ function initModel(waifuPath, type) {
     live2d_settings.waifuTipsSize = live2d_settings.waifuTipsSize.split('x');
     live2d_settings.waifuEdgeSide = live2d_settings.waifuEdgeSide.split(':');
     
-    $("#live2d").attr("width",live2d_settings.waifuSize[0]);
-    $("#live2d").attr("height",live2d_settings.waifuSize[1]);
+    $("#live2d").attr("width",live2d_settings.waifuSize[0]*Quality);
+    $("#live2d").attr("height",live2d_settings.waifuSize[1]*Quality); 
     $(".waifu-tips").width(live2d_settings.waifuTipsSize[0]);
     $(".waifu-tips").height(live2d_settings.waifuTipsSize[1]);
     $(".waifu-tips").css("top",live2d_settings.waifuToolTop);
@@ -499,18 +501,18 @@ function loadTipsMessage(result) {
 		else {document.getElementById('TimeDisplay').innerHTML = "没有定时";}
 	});}
 	
-    /*************************护眼提醒函数*************************/
-	function eyeProtfunc()
+    /*************************日程提醒函数*************************/
+	function Schedulefunc()
 	{
 		timer = setInterval(function(){
-            showMessage('你所预定的'+setTime+'分钟提醒时间已经到了!',5000,true);
-            let myNotification = new Notification('时间到！', {
+            showMessage('你所预定的日程'+timercontext+'的提醒时间'+setTime+'已经到了!',5000,true);
+            let myNotification = new Notification(timercontext, {
              // 通知的标题, 将在通知窗口的顶部显示
             title: '日程提醒',
             // 通知的副标题, 显示在标题下面 macOS
             subtitle: 'Kanban-Desktop',
             // 通知的正文文本, 将显示在标题或副标题下面
-            body: '你所预定的提醒时间已经到了，点击此条消息停止响铃',
+            body: '你所预定的日程时间已经到了，点击此条消息停止响铃',
             // false有声音，true没声音
             silent: false,
             icon: './assets/notifi.jpg',
@@ -554,10 +556,11 @@ function loadTipsMessage(result) {
                 document.getElementById('SmallCover').style.display = 'none';
 	});
 	
-    /***********************************定时提醒 设定****************************************/
+    /***********************************日程提醒 设定****************************************/
 	
     $('.timesetButton').click(function(){
-		setTime = document.getElementById('timeset').value;
+		setTime = document.getElementById('timeset').value; //获取日程时间
+        timercontext = document.getElementById('contextset').value; //获取日程内容
 		isTimeSet = true;
 		if(setTime != "" && setTime > 0 && setTime <= 3000)
 		{ date = new Date();
@@ -572,18 +575,18 @@ function loadTipsMessage(result) {
 			if(hours>=24)
 				{hours-=24;}
 			}
-		document.getElementById('TimeDisplay').innerHTML = "定时将在 "+hours.toString().padStart(2, '0')+":"+minutes.toString().padStart(2, '0')+" 时结束";
-		eyeProtfunc();
+		document.getElementById('TimeDisplay').innerHTML = "日程将在 "+hours.toString().padStart(2, '0')+":"+minutes.toString().padStart(2, '0')+" 时提醒";
+		Schedulefunc();
 		}
 		else {document.getElementById('TimeDisplay').innerHTML = "请输入有效的时间，单位分钟";}
 	});
 	
-    /***********************************定时提醒 重置****************************************/
+    /***********************************日程提醒 重置****************************************/
 	
     $('.timeresetButton').click(function(){
 		isTimeSet = false;
 		setTime = 0;
 		timer = window.clearInterval(timer);
-		document.getElementById('TimeDisplay').innerHTML = "没有安排的定时";
+		document.getElementById('TimeDisplay').innerHTML = "没有安排的日程";
 	});
 }

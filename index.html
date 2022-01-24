@@ -28,7 +28,7 @@
 
 <body style="font-family: 'Microsoft YaHei';background-color: rgba(0,0,0,0);">
     
-	<canvas id="live2d2" class="live2d" style="display: none"></canvas>
+	<canvas id="live2d2" class="live2d" style="display: none;"></canvas>
 	<div id= "PTBox" class="PTBox"></div >
 	
     <div class="waifu" id="NLP0"> <!--核心层-->
@@ -40,7 +40,8 @@
 			<path d="M785.92 361.984H517.12V243.2c0-27.136-36.864-65.536-76.8-30.208-39.936 34.816-220.672 225.28-245.248 249.344-28.672 28.672-21.504 76.288 0 98.304 24.064 24.576 205.312 215.552 245.248 250.368 39.936 35.328 76.8-3.072 76.8-30.208v-118.784h268.8c33.792 0 61.44-27.648 61.44-61.44V423.424c0-33.792-27.136-61.44-61.44-61.44z" fill="#ffffff" p-id="7583" data-spm-anchor-id="a313x.7781069.0.i14" class="selected"></path>
 			</svg>
 			<div style="top:20px;text-align: center;">
-				<input type="text" id="timeset" name="text" placeholder=" 输入你想提示的时间" class="timeset" style="text-align: center;" required><!--定时提醒-->
+				<input type="text" id="contextset" name="text" placeholder=" 输入你的日程内容" class="timeset" style="text-align: center;" required><!--日程设定-->
+				<input type="text" id="timeset" name="text" placeholder=" 输入你想提示的时间" class="timeset" style="text-align: center;margin-top: 5px;" required><!--日程提醒-->
 				<div style="margin-top:8px;">
 				<button id="timesetButton" class="timesetButton" style=" background-color: rgba(0,0,0,0.2);
 				border: 2px solid rgba(128,128,128,0.90);width:48px;height:30px; border-radius: 12px;background-image:url(./assets/IconClock.png);background-size: contain;margin-right:15px;"></button> 

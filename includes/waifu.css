@@ -112,7 +112,7 @@
 	background-size: cover;
 	display: none;
 	width: 200px; 
-	height: 120px; 
+	height: 150px; 
 	bottom: 60px;
 	left:36px; 
 	font-size: 13px;
@@ -160,6 +160,8 @@
 
 .waifu #live2d{
     position: relative;
+    width: 300px;
+    height: 360px;
 }
 
 @keyframes shake {

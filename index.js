@@ -25,7 +25,7 @@ function createWindow () {
       nodeIntegration: true,
       enableRemoteModule: true,
       contextIsolation: false,
-      zoomFactor: 1.5,
+      zoomFactor: 1,
     }
   })
 

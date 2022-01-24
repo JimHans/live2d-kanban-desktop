@@ -1,3 +1,4 @@
+//从601行开始根据渲染画质修改了光标坐标的采样比例以修复触摸交互的坐标位移问题
 !
 function(t) {
 	function i(r) {
@@ -700,7 +701,7 @@ function(t) {
 	function u(t) {
 		Y = !0;
 		var i = C.getBoundingClientRect(),
-			e = P(t.clientX - i.left),
+			e = P(t.clientX*2 - i.left),
 			r = S(t.clientY - i.top),
 			o = $({
 				x: i.left + i.width / 2,
@@ -709,8 +710,8 @@ function(t) {
 				x: t.clientX,
 				y: t.clientY
 			}, i),
-			n = m(o.x - i.left),
-			s = T(o.y - i.top);
+			n = m(o.x*2 - i.left),
+			s = T(o.y*2 - i.top);
 		w.
 	default.DEBUG_MOUSE_LOG && console.log("onMouseMove device( x:" + t.clientX + " y:" + t.clientY + " ) view( x:" + n + " y:" + s + ")"), k = e, V = r, N.setPoint(n, s)
 	}
@@ -726,14 +727,15 @@ function(t) {
 				x: t.clientX,
 				y: t.clientY
 			}, i),
-			n = m(o.x - i.left),
-			s = T(o.y - i.top);
+			n = m(o.x*2 - i.left),
+			s = T(o.y*1.2 - i.top/2);
 		w.
 	default.DEBUG_MOUSE_LOG && console.log("onMouseDown device( x:" + t.clientX + " y:" + t.clientY + " ) view( x:" + n + " y:" + s + ")"), k = e, V = r, R.tapEvent(n, s)
+	console.log("onMouseDown device( x:" + t.clientX + " y:" + t.clientY + " ) view( x:" + n + " y:" + s + ")"), k = e, V = r, R.tapEvent(n, s)
 	}
 	function f(t) {
 		var i = C.getBoundingClientRect(),
-			e = P(t.clientX - i.left),
+			e = P(t.clientX*2 - i.left),
 			r = S(t.clientY - i.top),
 			o = $({
 				x: i.left + i.width / 2,
@@ -742,8 +744,8 @@ function(t) {
 				x: t.clientX,
 				y: t.clientY
 			}, i),
-			n = m(o.x - i.left),
-			s = T(o.y - i.top);
+			n = m(o.x*2 - i.left),
+			s = T(o.y*2 - i.top);
 		w.
 	default.DEBUG_MOUSE_LOG && console.log("onMouseMove device( x:" + t.clientX + " y:" + t.clientY + " ) view( x:" + n + " y:" + s + ")"), Y && (k = e, V = r, N.setPoint(n, s))
 	}
@@ -3983,7 +3985,7 @@ default = r;
 	var o = e(2);
 	var requestCache = {};
 	r.prototype.loadBytes = function(t, i) {
-		// Cache 鐩稿悓鐨勮姹傦紝鍑忓皯璇锋眰鏁伴噺
+		// Cache 鐩稿悓鐨勮?锋眰锛屽噺灏戣?锋眰鏁伴噺
 		if (requestCache[t] !== undefined) {
 			i(requestCache[t]);
 			return;

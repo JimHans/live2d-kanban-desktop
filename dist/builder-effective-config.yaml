@@ -22,4 +22,4 @@ nsis:
   createDesktopShortcut: true
   createStartMenuShortcut: true
   shortcutName: Kanban-Desktop
-electronVersion: 12.0.9
+electronVersion: 16.0.7
