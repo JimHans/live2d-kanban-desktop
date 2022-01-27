@@ -9,7 +9,7 @@ let calcrater = 0; var PoinThrough = '点击穿透';
 function createWindow () {
   //获取屏幕分辨率
   var screenElectron = require('electron').screen;
-  // 创建浏览器窗口
+  // 创建主程序浏览器窗口
   const win = new BrowserWindow({
     width:  330,
     height: 490,
@@ -20,6 +20,7 @@ function createWindow () {
     transparent: true,//底部透明
     frame: false,
     resizable: false,//不可调节大小
+    icon: './assets/app.ico',
     webPreferences: {
       devTools: true,
       nodeIntegration: true,
@@ -34,10 +35,49 @@ function createWindow () {
 
   win.webContents.openDevTools()
 
+  win.webContents.on("before-input-event", (event, input) => { //禁用alt+f4
+    if(input.key === "F4" && input.alt){
+          event.preventDefault();
+    }
+    win.webContents.setIgnoreMenuShortcuts(input.key === "F4" && input.alt);
+  })
+
+  //设置窗口打开监听
+  var setwidth = screenElectron.getPrimaryDisplay().workAreaSize.width;
+  var setheight = screenElectron.getPrimaryDisplay().workAreaSize.height;
+  //新建设置窗口
+  const settings = new BrowserWindow({
+    width: parseInt(setwidth/3),
+    height: parseInt(setheight/3),
+    skipTaskbar: true,//显示在任务栏
+    alwaysOnTop: false,//置顶显示
+    transparent: true,//底部透明
+    frame: false,
+    resizable: false,
+    icon: './assets/app.ico',
+    show: false,
+    webPreferences: {
+      devTools: true,
+      nodeIntegration: true,
+      enableRemoteModule: true,
+      contextIsolation: false,
+    }
+  });
+  // 并且为你的应用加载index.html
+  settings.loadFile('Settings.html');
+
+  settings.webContents.on("before-input-event", (event, input) => { //禁用alt+f4
+    if(input.key === "F4" && input.alt){
+          event.preventDefault();
+    }
+    settings.webContents.setIgnoreMenuShortcuts(input.key === "F4" && input.alt);
+  })
+
   //系统托盘右键菜单
   var trayMenuTemplate = [
     {
-      label: 'Kanban-Desktop',
+      label: 'Kanban-Desktop 设置',
+      click: function () {settings.show();} //打开设置
     },
     {
       label: '检查更新',
@@ -91,29 +131,37 @@ function createWindow () {
     }
 ];
 
-//图标的上下文菜单
-trayIcon = path.join(__dirname, 'assets');//选取目录
-tray = new Tray(path.join(trayIcon, 'app.ico'));
-let contextMenu = Menu.buildFromTemplate(trayMenuTemplate);
+  //图标的上下文菜单
+  trayIcon = path.join(__dirname, 'assets');//选取目录
+  tray = new Tray(path.join(trayIcon, 'app.ico'));
+  let contextMenu = Menu.buildFromTemplate(trayMenuTemplate);
 
-//设置此托盘图标的悬停提示内容
-tray.setToolTip('Kanban-Desktop');
+  //设置此托盘图标的悬停提示内容
+  tray.setToolTip('Kanban-Desktop');
 
-app.setAppUserModelId('Kanban-Desktop');
-//设置此图标的上下文菜单
-tray.setContextMenu(contextMenu);
+  app.setAppUserModelId('Kanban-Desktop');
+  //设置此图标的上下文菜单
+  tray.setContextMenu(contextMenu);
 
-//主界面隐藏进程监听
-ipcMain.on("Mainpage",(event,data) => {
-  console.log(data);
-  if(data == 'Hide') {event.preventDefault(); win.hide();}
-  else if(data == 'Show') {win.show();}
-});
+  //主界面隐藏/刷新进程监听
+  ipcMain.on("Mainpage",(event,data) => {
+    console.log(data);
+    if(data == 'Hide') {event.preventDefault(); win.hide();}
+    else if(data == 'Show') {win.show();}
+    else if(data == 'Refresh') {win.reload();}
+  });
 
-ipcMain.on('open-url', (event, url) => {
-  shell.openExternal(url);
-});
+  //外部链接打开进程监听
+  ipcMain.on('open-url', (event, url) => {
+    shell.openExternal(url);
+  });
 
+  //设置窗口打开监听
+  ipcMain.on("Settings",(event,data) => {
+    console.log(data);
+    if(data == 'Open') {settings.show();}
+    if(data == 'Close') {event.preventDefault(); settings.hide();}
+  });
 }
 
 // Electron会在初始化完成并且准备好创建浏览器窗口时调用这个方法
@@ -137,6 +185,7 @@ app.on('activate', () => {
   }
 })
 
+// 悬浮球监听线程
 ipcMain.on("PTBox",(event,data) => {
   console.log(data);
   if(data == 'Open') {
@@ -163,13 +212,14 @@ ipcMain.on("PTBox",(event,data) => {
   });
   // 并且为你的应用加载index.html
   ptbox.loadFile('PTBox.html');
-  ptbox.webContents.openDevTools();
+  //ptbox.webContents.openDevTools();
   ipcMain.on("PTBox",(event,data) => {
     console.log(data);
     if(data == 'Close') {event.preventDefault(); ptbox.hide();}
     });
   }
 });
+
 
 // 您可以把应用程序其他的流程写在在此文件中
 // 代码也可以拆分成几个文件，然后用 require 导入。

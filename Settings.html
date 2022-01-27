@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Kanban Desktop - Settings</title>
+    <link rel="stylesheet" type="text/css" href="includes/waifu.css?v=1.4.2"/>
+</head>
+<script> //右键禁用
+    document.oncontextmenu = function(){
+    alert("当前页面不能使用右键！");
+    return false;
+    }
+</script>
+<style type="text/css">
+	input::-webkit-input-placeholder {
+    /* 修改字体颜色 */
+    color: #CBCBCB;
+	}
+	::-webkit-scrollbar-track{
+    box-shadow: inset 0 0 2px rgba(197,197,197,0.80);
+    border-radius: 5px;
+    }
+    html,body{
+        height:90%;
+        width: 94%;
+        margin: 3%;
+        padding: 0;
+        opacity: 0.98;
+    }
+    .container {
+        width: 100%;
+        height: 100%;
+        margin: 0px;
+        padding: 0;
+        background-color: rgb(255, 255, 255);
+        border-radius:25px;
+        box-shadow: 0px 0px 10px -1px rgba(170, 170, 170, 0.75);
+        -webkit-box-shadow: 0px 0px 10px -1px rgba(170, 170, 170, 0.75);
+        -moz-box-shadow: 0px 0px 10px -1px rgba(170, 170, 170, 0.75);
+        -webkit-app-region: drag;
+    }
+    .setpage {
+        width: 60%;
+        height: auto;
+        position:absolute;
+        background-color: rgb(255, 255, 255);
+        border: 2px 2px 2px 2px solid black; 
+        float:right;
+        margin-top: 5%;
+        left: 30%;
+        -webkit-app-region: no-drag;
+    }
+    .setTab {
+        width: 17%;
+        height: 83%;
+        text-align: center;
+        background-color: rgb(255, 255, 255);
+        border-radius:15px;
+        box-shadow: 0px 0px 10px -1px rgba(0,0,0,0.75);
+        -webkit-box-shadow: 0px 0px 10px -1px rgba(0,0,0,0.75);
+        -moz-box-shadow: 0px 0px 10px -1px rgba(0,0,0,0.75);
+        float:left;
+        margin-top: 4.5%;
+        margin-left: 4%;
+        -webkit-app-region: no-drag;
+    }
+    .setTabBrick {
+        width: 80%;
+        height: 20%;
+        text-align: center;
+        background-color: rgb(223, 223, 223);
+        border-radius:10px;
+        border: 2px solid rgb(190, 190, 190); 
+        float:left;
+        margin-left: 9%;
+        margin-top: 6px;
+        -webkit-app-region: no-drag;
+    }
+    .input {
+        margin: 5px;
+    }
+    .closeset {
+        width: 20px;
+        height: 20px;
+        text-align: center;
+        position:absolute;
+        background-color: rgb(255, 255, 255);
+        border-radius:15px;
+        border: 1px solid rgb(190, 190, 190); 
+        float:right;
+        margin-top: 10px;
+        margin-right: 10px;
+        -webkit-app-region: no-drag;
+    }
+</style>
+
+<body style="overflow: hidden;">
+    <div class="closeset" id="closeset" onclick="closeset();">×</div>
+    <div class="container" id="container">
+        <div class="setTab">
+            <h3 style="margin-top:5px;margin-bottom:3px;">设置</h3>
+            <div class="setTabBrick" id="setTabA" style="color: whitesmoke;background-color: rgb(85, 85, 85);" onclick="setpageA()"><p style="margin-top:5px;font-size: 10px;">工具栏<br/>设置</p></div>
+            <div class="setTabBrick" id="setTabB" onclick="setpageB()"><p style="margin-top:5px;font-size: 10px;">模型<br/>设置</p></div>
+            <div class="setTabBrick" id="setTabC" onclick="setpageC()"><p style="margin-top:5px;font-size: 10px;">高级<br/>设置</p></div>
+        </div>
+        <div class="setpage" id="setpageA">
+            <form>
+                <h3 style="margin-top:5px;margin-bottom:3px;">工具栏设置</h3><HR>
+                <input class="input" type="checkbox" name="checkboxA" value="showToolbar">显示工具栏
+                <input class="input" type="checkbox" name="checkboxA" value="noHideToolbar">不隐藏工具栏<br/>
+                <input class="input" type="checkbox" name="checkboxA" value="showMinimum">显示最小化按钮
+                <input class="input" type="checkbox" name="checkboxA" value="showModelSwitch">显示模型切换<br/>
+                <input class="input" type="checkbox" name="checkboxA" value="showTextureSwitch">显示 材质切换
+                <input class="input" type="checkbox" name="checkboxA" value="showHitokoto">显示 一言切换<br/>
+                <input class="input" type="checkbox" name="checkboxA" value="showScreenShot">显示 看板娘截图
+                <!-- <input class="input" type="checkbox" name="checkboxA" value="showInfo">显示 跳转关于页<br/> -->
+                <input class="input" type="checkbox" name="checkboxA" value="showNightmode">显示 夜间模式
+                <!-- <input class="input" type="checkbox" name="checkboxA" value="showMainpage">显示 返回首页 -->
+                <input type="button" value="保存并应用" onclick="submitA()" style="margin-top:7px;"/>
+            </form>
+        </div>
+        <div class="setpage" id="setpageB" style="display: none;">
+            <form>
+                <h3 style="margin-top:5px;margin-bottom:3px;">模型设置</h3><HR>
+                <label><input class="input" type="checkbox" name="checkboxB" value="modelRandSwitch" />模型随机切换</label>
+                <label><input class="input" type="checkbox" name="checkboxB" value="textureRandSwitch" />材质随机切换</label><br/>
+                <label><input class="input" type="checkbox" name="checkboxB" value="showHitokoto" />显示一言</label>
+                <label><input class="input" type="checkbox" name="checkboxB" value="showWelcome" />显示欢迎词</label>
+                <p style="margin-top:5px;margin-bottom:3px;">自定义模型API</p>
+                <input class="input" type="text" name="checkboxB" placeholder="输入自定义API地址" required>
+                <input type="button" value="保存并应用" onclick="submitB()" style="margin-top:7px;"/>
+            </form>
+        </div>
+        <div class="setpage" id="setpageC" style="display: none;">
+            <form>
+                <h3 style="margin-top:5px;margin-bottom:3px;">实验性</h3><HR>
+                <p style="font-size: 12px;">这里的设置具有实验性</p>
+                <input class="input" type="checkbox" name="checkboxC" value="unlimitedDrag">全屏任意拖拽
+                <input class="input" type="checkbox" name="checkboxC" value="highQualityRender">高清晰度渲染<br/>
+                <input class="input" type="checkbox" name="checkboxC" value="developerMode">开发人员选项
+                <input type="button" value="保存并应用" onclick=";" style="margin-top:7px;margin-left: 5px;"/>
+                <p style="font-size: 12px;">关于Kanban-Desktop</p>
+                <p style="font-size: 10px;">Kanban-Desktop V1.8.22 Beta by Zerolite Studio and JimHan</p>
+            </form>
+        </div>
+    </div>
+</body>
+<script>
+    window.nodeRequire = require;
+    delete window.require;
+    delete window.exports;
+    delete window.module;
+    const { ipcRenderer,shell } = nodeRequire('electron'); //Electron 依赖调入
+
+    // 初始化PageA复选框
+    var checkboxAInit = document.getElementsByName("checkboxA");
+    //循环多选框数组
+    for (var i = 0; i < checkboxAInit.length; i++) {
+        if (localStorage.getItem(checkboxAInit[i].value) == 'true') {
+            checkboxAInit[i].checked = true;}
+        else if (localStorage.getItem(checkboxAInit[i].value) == 'false')
+            {checkboxAInit[i].checked = false;}
+        else {checkboxAInit[i].checked = true;}
+    }
+
+    // 初始化PageB复选框
+    var checkboxBInit = document.getElementsByName("checkboxB");
+    //循环多选框数组
+    for (var i = 0; i < 4; i++) {
+        if (localStorage.getItem(checkboxBInit[i].value) == 'true') {
+            checkboxBInit[i].checked = true;}
+        else if (localStorage.getItem(checkboxBInit[i].value) == 'false')
+            {checkboxBInit[i].checked = false;}
+        else {if(i==0) checkboxBInit[i].checked = false; else checkboxBInit[i].checked = true;}
+    }
+    if (!localStorage.getItem("customAPI")){checkboxBInit[4].value="//waifuapi.zerolite.cn/live2d-api/";}
+    else {checkboxBInit[4].value=localStorage.getItem("customAPI");}
+    
+
+    function setpageA() { //点击显示设置页面A
+        document.getElementById("setpageA").style.display="block";
+        document.getElementById("setpageB").style.display="none";
+        document.getElementById("setpageC").style.display="none";
+        document.getElementById("setTabA").style.backgroundColor="rgb(85, 85, 85)";
+        document.getElementById("setTabB").style.backgroundColor="rgb(223, 223, 223)";
+        document.getElementById("setTabC").style.backgroundColor="rgb(223, 223, 223)";
+        document.getElementById("setTabA").style.color="whitesmoke";
+        document.getElementById("setTabB").style.color="black";
+        document.getElementById("setTabC").style.color="black";
+    }
+    
+    function setpageB() { //点击显示设置页面B
+        document.getElementById("setpageA").style.display="none";
+        document.getElementById("setpageB").style.display="block";
+        document.getElementById("setpageC").style.display="none";
+        document.getElementById("setTabA").style.backgroundColor="rgb(223, 223, 223)";
+        document.getElementById("setTabB").style.backgroundColor="rgb(85, 85, 85)";
+        document.getElementById("setTabC").style.backgroundColor="rgb(223, 223, 223)";
+        document.getElementById("setTabB").style.color="whitesmoke";
+        document.getElementById("setTabA").style.color="black";
+        document.getElementById("setTabC").style.color="black";
+    }
+    
+    function setpageC() { //点击显示设置页面C
+        document.getElementById("setpageA").style.display="none";
+        document.getElementById("setpageB").style.display="none";
+        document.getElementById("setpageC").style.display="block";
+        document.getElementById("setTabA").style.backgroundColor="rgb(223, 223, 223)";
+        document.getElementById("setTabB").style.backgroundColor="rgb(223, 223, 223)";
+        document.getElementById("setTabC").style.backgroundColor="rgb(85, 85, 85)";
+        document.getElementById("setTabC").style.color="whitesmoke";
+        document.getElementById("setTabA").style.color="black";
+        document.getElementById("setTabB").style.color="black";
+    }
+
+    function submitA() { //点击保存A
+        var checkboxA = document.getElementsByName("checkboxA");
+        //循环多选框数组
+        for (var i = 0; i < checkboxA.length; i++) {
+                if (checkboxA[i].checked == true) {
+                    localStorage.setItem(checkboxA[i].value,true);
+                }
+                else {localStorage.setItem(checkboxA[i].value,false);}
+        }
+        ipcRenderer.send('Mainpage','Refresh');
+    }
+
+    function submitB() { //点击保存B
+        var checkboxB = document.getElementsByName("checkboxB");
+        for (var i = 0; i < 4; i++) {
+            if (checkboxB[i].checked == true) {localStorage.setItem(checkboxB[i].value,true);}
+            else {localStorage.setItem(checkboxB[i].value,false);}
+        }
+        localStorage.setItem("customAPI",checkboxB[4].value); //保存自定义API
+        ipcRenderer.send('Mainpage','Refresh');
+    }
+</script>
+</html>

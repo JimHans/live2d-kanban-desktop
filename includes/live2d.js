@@ -711,7 +711,7 @@ function(t) {
 				y: t.clientY
 			}, i),
 			n = m(o.x*2 - i.left),
-			s = T(o.y*2 - i.top);
+			s = T(o.y*1.4 - i.top/2);
 		w.
 	default.DEBUG_MOUSE_LOG && console.log("onMouseMove device( x:" + t.clientX + " y:" + t.clientY + " ) view( x:" + n + " y:" + s + ")"), k = e, V = r, N.setPoint(n, s)
 	}
@@ -745,7 +745,7 @@ function(t) {
 				y: t.clientY
 			}, i),
 			n = m(o.x*2 - i.left),
-			s = T(o.y*2 - i.top);
+			s = T(o.y*1.4 - i.top/2);
 		w.
 	default.DEBUG_MOUSE_LOG && console.log("onMouseMove device( x:" + t.clientX + " y:" + t.clientY + " ) view( x:" + n + " y:" + s + ")"), Y && (k = e, V = r, N.setPoint(n, s))
 	}
