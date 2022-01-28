@@ -41,13 +41,13 @@ Release地址：[Release](https://github.com/JimHans/kanban-desktop/releases)
 - #### 4.由于使用Electron进行构建，所以性能开销略大，耗电量较高，不建议给笔记本使用，建议挂在台式机食用
 
 
-**附录**
+**📝附录**
 
 如果你需要自己申请腾讯NLP自然语言处理服务，可以参考本项目的前身-网页版本AI看板娘的NLP搭建教程，链接如下：[搭建教程](https://github.com/JimHans/AI-waifu)
 
 <br/>
 
-**感谢**
+**🧡感谢**
 
 [live2d_demo / ©fghrsh / GPL v2.0][1]  
 [live2d-widget / ©xiazeyu / GPL v2.0][2]  
