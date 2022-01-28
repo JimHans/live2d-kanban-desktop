@@ -90,7 +90,7 @@ function createWindow () {
         dialog.showMessageBox({
           title  : '关于', 
           type  : 'info', 
-          message : 'Kanban-Desktop Powered By Electron™.'
+          message : 'Kanban-Desktop V2.0.0 Stable Powered By Electron™.'
         })
       } //打开相应页面
     },
@@ -119,7 +119,7 @@ function createWindow () {
         },
         {
           label: '关闭总在最上',
-          click: function () {win.setAlwaysOnTop(false);settings.setAlwaysOnTop(false);}, //设置总在最上
+          click: function () {win.setAlwaysOnTop(false);settings.setAlwaysOnTop(false);}, //取消设置总在最上
           type: 'radio'
         },
       ],
@@ -127,7 +127,20 @@ function createWindow () {
     {
         label: '退出',
         click: function () {
-              app.quit();
+          dialog.showMessageBox({
+            type:"info",
+            buttons:["告辞！","我手滑了"],
+            title:"退出",
+            message:`真的要退出嘛？`
+          }).then((result)=>{
+              if(result.response==0){
+                  console.log("确定");app.quit();
+              }else if(result.response==1){
+                  console.log("取消")
+              }
+          }).catch((error)=>{
+              console.log(error);
+          });
         }
     }
 ];

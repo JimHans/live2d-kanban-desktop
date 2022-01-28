@@ -1,6 +1,6 @@
 {
   "name": "kanban-desktop-preview",
-  "version": "1.9.15",
+  "version": "2.0.0",
   "description": "Kanban Desktop Electron Based Preview",
   "main": "index.js",
   "scripts": {

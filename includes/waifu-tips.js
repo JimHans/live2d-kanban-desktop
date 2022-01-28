@@ -3,7 +3,7 @@ window.live2d_settings = Array();
     く__,.ヘヽ.　　　　/　,ー､ 〉
     　　　　　＼ ', !-─‐-i　/　/´        ver.    || |
     　　　 　 ／｀ｰ'　　　 L/／｀ヽ､             | | ||         Live2D 看板娘 AI Version 参数设置
-    　　 　 /　 ／,　 /|　 ,　 ,　　　 ',     ||||| |||        Version 1.9.15 (Based on waifu-tips.js V1.0.7)
+    　　 　 /　 ／,　 /|　 ,　 ,　　　 ',     ||||| |||        Version 2.0.0 (Based on waifu-tips.js V1.0.7)
     　　　ｲ 　/ /-‐/　ｉ　L_ ﾊ ヽ!　 i      ||   | ||||       Update 2022-01 Modified By JimHan From the FGHRSH Version
     　　　 ﾚ ﾍ 7ｲ｀ﾄ　 ﾚ'ｧ-ﾄ､!ハ|　 |
     　　　　 !,/7 '0'　　 ´0iソ| 　 |
@@ -80,8 +80,8 @@ live2d_settings.waifuDraggable       = 'unlimited';    // 拖拽样式，例如 
 live2d_settings.waifuDraggableRevert = true;         // 松开鼠标还原拖拽位置，可选 true(真), false(假)
 
 // 其他杂项设置
-live2d_settings.l2dVersion           = '1.9.15';                              // 当前版本
-live2d_settings.l2dVerDate           = '2022-01-27';                          // 版本更新日期
+live2d_settings.l2dVersion           = '2.0.0';                               // 当前版本
+live2d_settings.l2dVerDate           = '2022-01-28';                          // 版本更新日期
 live2d_settings.homePageUrl          = 'https://www.zerolite.cn/';            // 主页地址，已弃用
 live2d_settings.aboutPageUrl         = 'https://www.zerolite.cn/';            // 关于页地址
 live2d_settings.screenshotCaptureName= 'kanban.png';                          // 看板娘截图文件名，例如 'live2d.png'
