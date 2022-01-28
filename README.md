@@ -4,16 +4,16 @@
 <h3 align="center"> An AI Based Kanban for Desktop Users </h3>
 <br/>
 <p align="center">
-<img src="https://img.shields.io/badge/Version-1.9.15 Preview-red.svg?style=flat-square">
+<img src="https://img.shields.io/badge/Version-2.0.0 Stable-red.svg?style=flat-square">
 <img src="https://img.shields.io/badge/Electron-16.0.7-blue.svg?style=flat-square">
 <img src="https://img.shields.io/badge/License-GPL-purple.svg?style=flat-square">
 </p>
 
-### 可以在你的桌面上随意调教的看板娘！专为桌面设计，模型库丰富，功能全面，持续更新中
+### 可以在你的桌面上随意调教的看板娘！专为桌面设计，模型库丰富，功能全面，持续不定期更新中（咕咕咕）
 
 <br/>
 
-### 目前拥有的功能有：
+### 🎰目前拥有的功能有：
 
 - 特别为桌面用户优化的伪·高斯模糊UI以及工具箱设计，更方便桌面使用
 - 承接上一代网页版本，接入腾讯NLP，支持文字实时对话
@@ -28,7 +28,13 @@
 
 <br/>
 
-### 注意：
+### 📺安装：
+请移步到本项目Release中，获取最新版本安装包。稳定版Release中默认包含Windows平台下zip绿色版与安装程序，由于设备限制，Linux、Mac用户请自行搭建环境进行编译，感谢理解。
+Release地址：[Release](https://github.com/JimHans/kanban-desktop/releases)
+
+<br/>
+
+### 🔴注意：
 - #### 1.本项目使用Electron开发，支持Windows,Mac OS,Linux跨平台运行。Release中默认只提供Windows安装包，如果需要其他平台使用，你可以使用`git clone` 本仓库后在本地编译打包。
 - #### 2.在使用本项目自带的NLP时，请注意不要发送过多请求导致腾讯云API免费次数到达限制。后期，本项目将在设置中加入NLPAPI手动填写功能，并对公用API设置限制。自行注册腾讯云API的方式，请见下方附录教程
 - #### 3.本项目使用的模型文件版权均归相关版权方所有，后期本项目将在设置中提供自建模型API选项，并可能加入本地模型加载功能来避开这个限制。至于这个功能什么时候上线，我也不知道ㄟ( ▔, ▔ )ㄏ
