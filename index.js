@@ -33,7 +33,7 @@ function createWindow () {
   // 并且为你的应用加载index.html
   win.loadFile('index.html')
 
-  win.webContents.openDevTools()
+  //win.webContents.openDevTools();
 
   win.webContents.on("before-input-event", (event, input) => { //禁用alt+f4
     if(input.key === "F4" && input.alt){
@@ -65,6 +65,7 @@ function createWindow () {
   });
   // 并且为你的应用加载index.html
   settings.loadFile('Settings.html');
+  //settings.webContents.openDevTools();
 
   settings.webContents.on("before-input-event", (event, input) => { //禁用alt+f4
     if(input.key === "F4" && input.alt){
@@ -113,12 +114,12 @@ function createWindow () {
       submenu: [
         {
           label: '开启总在最上',
-          click: function () {win.setAlwaysOnTop(true);}, //设置总在最上
+          click: function () {win.setAlwaysOnTop(true);settings.setAlwaysOnTop(true);}, //设置总在最上
           type: 'radio'
         },
         {
           label: '关闭总在最上',
-          click: function () {win.setAlwaysOnTop(false);}, //设置总在最上
+          click: function () {win.setAlwaysOnTop(false);settings.setAlwaysOnTop(false);}, //设置总在最上
           type: 'radio'
         },
       ],
@@ -143,6 +144,8 @@ function createWindow () {
   //设置此图标的上下文菜单
   tray.setContextMenu(contextMenu);
 
+  /*监听线程*/
+
   //主界面隐藏/刷新进程监听
   ipcMain.on("Mainpage",(event,data) => {
     console.log(data);
@@ -161,6 +164,12 @@ function createWindow () {
     console.log(data);
     if(data == 'Open') {settings.show();}
     if(data == 'Close') {event.preventDefault(); settings.hide();}
+  });
+
+  //开发人员工具打开监听
+  ipcMain.on("dev",(event,data) => {
+    console.log(data); 
+    if(data == 'Open') {settings.webContents.openDevTools();win.webContents.openDevTools();}
   });
 }
 

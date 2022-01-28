@@ -32,7 +32,7 @@
 	<!-- <div id= "PTBox" class="PTBox"></div > -->
 	
     <div class="waifu" id="NLP0"> <!--核心层-->
-        <div class="waifu-tips" id="NLP1" style="-webkit-app-region: drag;"></div>
+        <div class="waifu-tips" id="NLP1"></div>
         <canvas id="live2d" class="live2d"></canvas><!--Live2D 主画布-->
 		<div id= "NLPInfinite" class="NLPInfinite"> <!--日程设置页面-->
 			<div id="timesetHeader" style="font-size: 13px;text-align: center;"></div>
@@ -139,6 +139,10 @@
 		}
 
 		function getval(){document.cookie = "status=1"; }
+
+		if(localStorage.getItem('unlimitedDrag') == 'true') //判定是否开启拖拽
+		{document.getElementById('NLP1').style.webkitAppRegion = 'drag';}
+		else {document.getElementById('NLP1').style.webkitAppRegion = 'no-drag';}
     </script>
 </body>
 </html>

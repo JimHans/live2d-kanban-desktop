@@ -83,20 +83,20 @@
         width: 20px;
         height: 20px;
         text-align: center;
-        position:absolute;
         background-color: rgb(255, 255, 255);
         border-radius:15px;
         border: 1px solid rgb(190, 190, 190); 
         float:right;
-        margin-top: 10px;
-        margin-right: 10px;
+        margin-top: 5px;
+        margin-right: 5px;
+        z-index: 5;
         -webkit-app-region: no-drag;
     }
 </style>
 
 <body style="overflow: hidden;">
-    <div class="closeset" id="closeset" onclick="closeset();">×</div>
     <div class="container" id="container">
+        <div class="closeset"  onclick="closeset()">×</div>
         <div class="setTab">
             <h3 style="margin-top:5px;margin-bottom:3px;">设置</h3>
             <div class="setTabBrick" id="setTabA" style="color: whitesmoke;background-color: rgb(85, 85, 85);" onclick="setpageA()"><p style="margin-top:5px;font-size: 10px;">工具栏<br/>设置</p></div>
@@ -111,7 +111,7 @@
                 <input class="input" type="checkbox" name="checkboxA" value="showMinimum">显示最小化按钮
                 <input class="input" type="checkbox" name="checkboxA" value="showModelSwitch">显示模型切换<br/>
                 <input class="input" type="checkbox" name="checkboxA" value="showTextureSwitch">显示 材质切换
-                <input class="input" type="checkbox" name="checkboxA" value="showHitokoto">显示 一言切换<br/>
+                <input class="input" type="checkbox" name="checkboxA" value="showHitokotoSwitch">显示 一言切换<br/>
                 <input class="input" type="checkbox" name="checkboxA" value="showScreenShot">显示 看板娘截图
                 <!-- <input class="input" type="checkbox" name="checkboxA" value="showInfo">显示 跳转关于页<br/> -->
                 <input class="input" type="checkbox" name="checkboxA" value="showNightmode">显示 夜间模式
@@ -138,9 +138,9 @@
                 <input class="input" type="checkbox" name="checkboxC" value="unlimitedDrag">全屏任意拖拽
                 <input class="input" type="checkbox" name="checkboxC" value="highQualityRender">高清晰度渲染<br/>
                 <input class="input" type="checkbox" name="checkboxC" value="developerMode">开发人员选项
-                <input type="button" value="保存并应用" onclick=";" style="margin-top:7px;margin-left: 5px;"/>
+                <input type="button" value="保存并应用" onclick="submitC();" style="margin-top:7px;margin-left: 5px;"/>
                 <p style="font-size: 12px;">关于Kanban-Desktop</p>
-                <p style="font-size: 10px;">Kanban-Desktop V1.8.22 Beta by Zerolite Studio and JimHan</p>
+                <p style="font-size: 10px;">Kanban-Desktop V1.9.15 Preview by Zerolite Studio and JimHan</p>
             </form>
         </div>
     </div>
@@ -173,9 +173,14 @@
             {checkboxBInit[i].checked = false;}
         else {if(i==0) checkboxBInit[i].checked = false; else checkboxBInit[i].checked = true;}
     }
-    if (!localStorage.getItem("customAPI")){checkboxBInit[4].value="//waifuapi.zerolite.cn/live2d-api/";}
+    if ((!localStorage.getItem("customAPI")) || localStorage.getItem("customAPI") == ""){checkboxBInit[4].value="//waifuapi.zerolite.cn/live2d-api/";}
     else {checkboxBInit[4].value=localStorage.getItem("customAPI");}
+
+    //初始化PageC复选框
+    var checkboxCInit = document.getElementsByName("checkboxC");
+    if (localStorage.getItem(checkboxCInit[0].value) == 'true') {checkboxCInit[0].checked = true;}
     
+    function closeset() {ipcRenderer.send('Settings','Close');} // 关闭
 
     function setpageA() { //点击显示设置页面A
         document.getElementById("setpageA").style.display="block";
@@ -232,6 +237,14 @@
             else {localStorage.setItem(checkboxB[i].value,false);}
         }
         localStorage.setItem("customAPI",checkboxB[4].value); //保存自定义API
+        ipcRenderer.send('Mainpage','Refresh');
+    }
+
+    function submitC() { //点击保存C
+        var checkboxC = document.getElementsByName("checkboxC");
+        if (checkboxC[0].checked == true) {localStorage.setItem(checkboxC[0].value,true);}
+        else {localStorage.setItem(checkboxC[0].value,false);}
+        if (checkboxC[2].checked == true) {ipcRenderer.send('dev','Open');} //Develop Mode 无记忆
         ipcRenderer.send('Mainpage','Refresh');
     }
 </script>
