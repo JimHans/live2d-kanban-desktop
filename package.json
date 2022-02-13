@@ -1,7 +1,7 @@
 {
-  "name": "kanban-desktop-preview",
-  "version": "2.0.0",
-  "description": "Kanban Desktop Electron Based Preview",
+  "name": "kanban-desktop",
+  "version": "2.0.1",
+  "description": "Kanban Desktop Electron Based",
   "main": "index.js",
   "scripts": {
     "start": "electron .",
@@ -48,6 +48,6 @@
     }
   },
   "devDependencies": {
-    "electron": "16.0.7"
+    "electron": "17.0.0"
   }
 }
