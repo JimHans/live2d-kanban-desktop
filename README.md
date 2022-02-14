@@ -10,7 +10,7 @@
 </p>
 
 ### 可以在你的桌面上随意调教的看板娘！专为桌面设计，模型库丰富，功能全面，持续不定期更新中（咕咕咕）
-
+---
 <br/>
 
 ### 🎰目前拥有的功能有：
@@ -25,13 +25,16 @@
 - 加入全局设置，工具箱功能可以自己设定
 - 桌面全局拖拽，放在哪里都合适（实验性功能）
 - 更多功能仍在努力开发中，你可以在本仓库的Projects选项卡内查看相关开发进度
-
 <br/>
 
 ### 📺安装：
 请移步到本项目Release中，获取最新版本安装包。稳定版Release中默认包含Windows平台下zip绿色版与安装程序，由于设备限制，Linux、Mac用户请自行搭建环境进行编译，感谢理解。
 Release地址：[Release](https://github.com/JimHans/kanban-desktop/releases)
+<br/>
 
+### 📚使用指南：
+<p align="center">
+<img src="./demo.png" width=100% height=auto></p>
 <br/>
 
 ### 🔴注意：
@@ -40,12 +43,13 @@ Release地址：[Release](https://github.com/JimHans/kanban-desktop/releases)
 - #### 3.本项目使用的模型文件版权均归相关版权方所有，后期本项目将在设置中提供自建模型API选项，并可能加入本地模型加载功能来避开这个限制。至于这个功能什么时候上线，我也不知道ㄟ( ▔, ▔ )ㄏ
 - #### 4.由于使用Electron进行构建，所以性能开销略大，耗电量较高，不建议给笔记本使用，建议挂在台式机食用
 
-**❓FAQ**
+### ❓FAQ
+---
+<br/>
 
 **📝附录**
 
 如果你需要自己申请腾讯NLP自然语言处理服务，可以参考本项目的前身-网页版本AI看板娘的NLP搭建教程，链接如下：[搭建教程](https://github.com/JimHans/AI-waifu)
-
 <br/>
 
 **🧡感谢**
