@@ -4,8 +4,8 @@
 <h3 align="center"> An AI Based Kanban for Desktop Users </h3>
 <br/>
 <p align="center">
-<img src="https://img.shields.io/badge/Version-2.0.1 Stable-red.svg?style=flat-square">
-<img src="https://img.shields.io/badge/Electron-17.0.0-blue.svg?style=flat-square">
+<img src="https://img.shields.io/badge/Version-2.0.2 Stable-red.svg?style=flat-square">
+<img src="https://img.shields.io/badge/Electron-18.0.4-blue.svg?style=flat-square">
 <img src="https://img.shields.io/badge/License-GPL-purple.svg?style=flat-square">
 </p>
 
