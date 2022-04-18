@@ -48,7 +48,7 @@ function createWindow () {
   //新建设置窗口
   const settings = new BrowserWindow({
     width: parseInt(setwidth/3),
-    height: parseInt((setwidth/3)*(9/16)),
+    height: parseInt((setwidth/3)*(9.5/16)),
     skipTaskbar: true,//显示在任务栏
     alwaysOnTop: false,//置顶显示
     transparent: true,//底部透明
@@ -90,7 +90,7 @@ function createWindow () {
         dialog.showMessageBox({
           title  : '关于', 
           type  : 'info', 
-          message : 'Kanban-Desktop V2.0.1 Stable Powered By Electron™.'
+          message : 'Kanban-Desktop V2.1.2 Stable Powered By Electron™.'
         })
       } //打开相应页面
     },

@@ -1,6 +1,6 @@
 {
   "name": "kanban-desktop",
-  "version": "2.0.2",
+  "version": "2.1.2",
   "description": "Kanban Desktop Electron Based",
   "main": "index.js",
   "scripts": {
