@@ -12,8 +12,6 @@
 ### 可以在你的桌面上随意调教的看板娘！专为Windows与Linux*桌面设计，模型库丰富，功能全面，持续不定期更新中（咕咕咕）
 ---
 ## 🎰目前拥有的功能有：
-<br/>
-
 - 特别为桌面用户优化的伪·高斯模糊UI以及工具箱设计，更方便桌面使用
 - 承接上一代网页版本，接入腾讯NLP，支持文字实时对话
 - 底部输入框一键切换网页搜索，可以方便地随时搜索所需的内容，更可以随时切换搜索引擎（开发中）
@@ -26,9 +24,6 @@
 - 更多功能仍在努力开发中，你可以在本仓库的Projects选项卡内查看相关开发进度
 ---
 ## 📺安装：
-<br/>
-
-
 请移步到本项目Release中，获取最新版本安装包。稳定版Release中默认包含Windows平台下zip绿色版与安装程序，同时也包含在Endeavour OS环境下编译的Linux版本可执行程序。由于设备限制，Mac用户需要自行搭建环境进行编译，感谢理解。
 Release地址：[Release](https://github.com/JimHans/kanban-desktop/releases)
 
@@ -40,8 +35,6 @@ Release地址：[Release](https://github.com/JimHans/kanban-desktop/releases)
 
 ---
 ## 📌注意：
-<br/>
-
 - #### 1.本项目使用Electron开发，支持Windows,Mac OS,Linux跨平台运行。Release中默认只提供Windows安装包，如果需要其他平台使用，你可以使用`git clone` 本仓库后在本地编译打包。
 - #### 2.在使用本项目自带的NLP时，请注意不要发送过多请求导致腾讯云API免费次数到达限制。后期，本项目将在设置中加入NLPAPI手动填写功能，并对公用API设置限制。自行注册腾讯云API的方式，请见下方附录教程
 - #### 3.本项目使用的模型文件版权均归相关版权方所有，后期本项目将在设置中提供自建模型API选项，并可能加入本地模型加载功能来避开这个限制。至于这个功能什么时候上线，我也不知道ㄟ( ▔, ▔ )ㄏ
@@ -49,8 +42,6 @@ Release地址：[Release](https://github.com/JimHans/kanban-desktop/releases)
 
 ---
 ## 🤔FAQ
-<br/>
-
 * Q:为什么我打开后不会显示live2d模型？
 * A:视网络情况而定，初次使用时需要从模型API获取模型数据。由于默认API服务器带宽不够（穷），所以可能需要等待一段时间才能加载完成，请您耐心等待或者在设置界面中填写其他API地址来提升加载速度。未来，本项目将加入本地加载功能来弥补此问题。
 - Q:我要如何才能关闭日程提醒的响铃？
@@ -65,8 +56,6 @@ Release地址：[Release](https://github.com/JimHans/kanban-desktop/releases)
 ---
 
 ## 📝附录
-<br/>
-
 如果你需要自己申请腾讯NLP自然语言处理服务，可以参考本项目的前身-网页版本AI看板娘的NLP搭建教程，链接如下：[搭建教程](https://github.com/JimHans/AI-waifu)
 
 ---
