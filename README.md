@@ -11,7 +11,7 @@
 </p>
 
 语言/Language:
-[中文](https://github.com/JimHans/kanban-desktop/README.md) | [English](https://github.com/JimHans/kanban-desktop/README_EN.md)
+[中文](https://github.com/JimHans/kanban-desktop/blob/master/README.md) | [English](https://github.com/JimHans/kanban-desktop/blob/master/README_EN.md)
 
 ---
 
