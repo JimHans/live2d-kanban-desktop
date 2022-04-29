@@ -10,11 +10,11 @@
 <img src="https://img.shields.io/badge/License-GPL-purple.svg?style=flat-square">
 </p>
 
-### 🎉A kanban girl that can put on your desktop! Designed for Windows and Linux deskrtop users with plenty of cloud models. Supports cloud and local moc2 model loading. Plenty of tools like NLP dialog, web search and schedule reminder. Continuously updating.
+### 🎉A kanban girl that can put on your desktop! Designed for Windows and Linux desktop users with plenty of cloud models. Supports cloud and local moc2 model loading. Plenty of tools like NLP dialog, web search and schedule reminder. Continuously updating.
 ---
 ## 🎰Functions available now:
-- 特别为桌面用户优化的伪·高斯模糊UI以及工具箱设计，更方便桌面使用
-- 承接上一代网页版本，接入腾讯NLP，支持文字实时对话
+- Specially designed UI with fake-blur theme and toolbox design for desktop users make it more elegant to use on the desktop.
+- Carry on the past Web version, the app is connected with Tencent NLP API and is able to start conversations timely with texting.
 - 底部输入框一键切换网页搜索，可以方便地随时搜索所需的内容，更可以随时切换搜索引擎（开发中）
 - 全新的接入原生通知的日程提醒功能，只要输入倒数时间与提醒内容即可到点提醒，同时包括多种取自MIUI的随机通知铃声
 - 全新小窗模式，在需要专心工作/不想暴露自己是个2ch的时候，可以点击叉号进入小窗专注模式，此时，看板娘将最小化为气泡在右下角待命
@@ -26,9 +26,9 @@
 - 更多功能仍在努力开发中，你可以在本仓库的Projects选项卡内查看相关开发进度
 ---
 ## 📺Installation:
-请移步到本项目Release中，获取最新版本安装包。稳定版Release中默认包含Windows平台下zip绿色版与安装程序，同时也包含在Endeavour OS环境下编译的Linux版本可执行程序。由于设备限制，Mac用户需要自行搭建环境进行编译，感谢理解。
-<br/>测试版Prerelease通道将发布提前预览的版本，拥有更新的功能的同时由于未开发完成，可能拥有影响使用的Bug，仅供尝鲜测试。
-Release地址：[Release](https://github.com/JimHans/kanban-desktop/releases)
+Please step to the project's Release and download the latest installation pack. The Stable Release channel defaultly include one .zip package and another .exe package for Windows platform, alone with an .Appimage package packed under Endeavour OS Linux (Arch-based) for Linux users. Sadly Mac OS users need to manually build and pack the project due to device limitations.
+<br/>The Prerelease channel will push out preview versions. They have more unfinished brand NEW functions for you to try, but just as you can see, they're unfinished so they may have many bugs that can affect your using. Thus, please notice that the prerelease versions are only for testing.
+Release URL:[Release](https://github.com/JimHans/kanban-desktop/releases)
 
 ---
 ## 📚User Manual:
