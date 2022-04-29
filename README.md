@@ -10,7 +10,7 @@
 <img src="https://img.shields.io/badge/License-GPL-purple.svg?style=flat-square">
 </p>
 
-### 可以在你的桌面上随意调教的看板娘！专为Windows与Linux* 桌面设计，模型库丰富，支持云端与本地模型加载**，功能全面，持续不定期更新中（咕咕咕）
+### 🎉可以在你的桌面上随意调教的看板娘！专为Windows与Linux* 桌面设计，模型库丰富，支持云端与本地模型加载**，功能全面，持续不定期更新中（咕咕咕）
 ---
 ## 🎰目前拥有的功能有：
 - 特别为桌面用户优化的伪·高斯模糊UI以及工具箱设计，更方便桌面使用
@@ -74,7 +74,7 @@ Live2d Cubism SDK WebGL 2.1 Project & All model authors.
 
 Open sourced under the GPL v3.0 license.
 
-### 注释：
+### 🔗注释：
 *: 对Linux的支持暂不完全。
 **: 本地模式暂时仅在Prerelease通道提供，目前不稳定，仅供测试使用。
 
