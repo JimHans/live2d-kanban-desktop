@@ -3,8 +3,8 @@ window.live2d_settings = Array();
     く__,.ヘヽ.　　　　/　,ー､ 〉
     　　　　　＼ ', !-─‐-i　/　/´        ver.    || |
     　　　 　 ／｀ｰ'　　　 L/／｀ヽ､             | | ||         Live2D 看板娘 AI Version 参数设置
-    　　 　 /　 ／,　 /|　 ,　 ,　　　 ',     ||||| |||        Version 2.0.0 (Based on waifu-tips.js V1.0.7)
-    　　　ｲ 　/ /-‐/　ｉ　L_ ﾊ ヽ!　 i      ||   | ||||       Update 2022-01 Modified By JimHan From the FGHRSH Version
+    　　 　 /　 ／,　 /|　 ,　 ,　　　 ',     ||||| |||        Version 2.0.1 (Based on waifu-tips.js V1.0.7)
+    　　　ｲ 　/ /-‐/　ｉ　L_ ﾊ ヽ!　 i      ||   | ||||       Update 2022-02 Modified By JimHan From the FGHRSH Version
     　　　 ﾚ ﾍ 7ｲ｀ﾄ　 ﾚ'ｧ-ﾄ､!ハ|　 |
     　　　　 !,/7 '0'　　 ´0iソ| 　 |
     　　　　 |.从"　　_　　 ,,,, / |./ 　 |                     网页添加 Live2D 看板娘
@@ -80,8 +80,8 @@ live2d_settings.waifuDraggable       = 'unlimited';    // 拖拽样式，例如 
 live2d_settings.waifuDraggableRevert = true;         // 松开鼠标还原拖拽位置，可选 true(真), false(假)
 
 // 其他杂项设置
-live2d_settings.l2dVersion           = '2.0.0';                               // 当前版本
-live2d_settings.l2dVerDate           = '2022-01-28';                          // 版本更新日期
+live2d_settings.l2dVersion           = '2.0.1';                               // 当前版本
+live2d_settings.l2dVerDate           = '2022-02-13';                          // 版本更新日期
 live2d_settings.homePageUrl          = 'https://www.zerolite.cn/';            // 主页地址，已弃用
 live2d_settings.aboutPageUrl         = 'https://www.zerolite.cn/';            // 关于页地址
 live2d_settings.screenshotCaptureName= 'kanban.png';                          // 看板娘截图文件名，例如 'live2d.png'
@@ -246,14 +246,21 @@ function initModel(waifuPath, type) {
 /*************************************模型加载*************************************/
 
 function loadModel(modelId, modelTexturesId=0) {
-    if (live2d_settings.modelStorage) {
-        localStorage.setItem('modelId', modelId);
-        localStorage.setItem('modelTexturesId', modelTexturesId);
-    } else {
-        sessionStorage.setItem('modelId', modelId);
-        sessionStorage.setItem('modelTexturesId', modelTexturesId);
-    } loadlive2d('live2d', live2d_settings.modelAPI+'get/?id='+modelId+'-'+modelTexturesId, (live2d_settings.showF12Status ? console.log('[Status]','live2d','模型',modelId+'-'+modelTexturesId,'加载完成'):null));
-//输出图片
+    if(localStorage.getItem('localModelLoad') == 'true')
+    {
+        loadlive2d('live2d', localStorage.getItem('localModelPath'), (live2d_settings.showF12Status ? console.log('[Status]','live2d',localStorage.getItem('localModelPath'),'本地模型加载完成'):null));
+    }
+    else
+    {
+        if (live2d_settings.modelStorage) { // ! 本地模式判断块
+            localStorage.setItem('modelId', modelId);
+            localStorage.setItem('modelTexturesId', modelTexturesId);
+        } else {
+            sessionStorage.setItem('modelId', modelId);
+            sessionStorage.setItem('modelTexturesId', modelTexturesId);
+        } loadlive2d('live2d', live2d_settings.modelAPI+'get/?id='+modelId+'-'+modelTexturesId, (live2d_settings.showF12Status ? console.log('[Status]','live2d','模型',modelId+'-'+modelTexturesId,'加载完成'):null));
+    }
+    //输出图片
 }
 
 /*************************************提示消息模块*************************************/

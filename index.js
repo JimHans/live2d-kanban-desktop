@@ -5,6 +5,7 @@ const dialog = require('electron').dialog;
 const path = require('path');
 let tray = null;
 let calcrater = 0; var PoinThrough = '点击穿透';
+var packageGet = require("./package.json");
 
 function createWindow () {
   //获取屏幕分辨率
@@ -53,7 +54,7 @@ function createWindow () {
     alwaysOnTop: false,//置顶显示
     transparent: true,//底部透明
     frame: false,
-    resizable: false,
+    resizable: true,
     icon: './assets/app.ico',
     show: false,
     webPreferences: {
@@ -90,7 +91,7 @@ function createWindow () {
         dialog.showMessageBox({
           title  : '关于', 
           type  : 'info', 
-          message : 'Kanban-Desktop V2.1.2 Stable Powered By Electron™.'
+          message : packageGet.name+" v"+packageGet.version+' Stable Powered By Electron™.'
         })
       } //打开相应页面
     },

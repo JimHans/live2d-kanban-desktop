@@ -4,12 +4,13 @@
 <h3 align="center"> An AI Based Kanban for Windows and Linux* Desktop Users </h3>
 <br/>
 <p align="center">
+<img src="https://img.shields.io/badge/Build-passing-green.svg?style=flat-square">
 <img src="https://img.shields.io/badge/Version-2.1.2 Stable-red.svg?style=flat-square">
 <img src="https://img.shields.io/badge/Electron-18.0.4-blue.svg?style=flat-square">
 <img src="https://img.shields.io/badge/License-GPL-purple.svg?style=flat-square">
 </p>
 
-### 可以在你的桌面上随意调教的看板娘！专为Windows与Linux*桌面设计，模型库丰富，功能全面，持续不定期更新中（咕咕咕）
+### 可以在你的桌面上随意调教的看板娘！专为Windows与Linux* 桌面设计，模型库丰富，支持云端与本地模型加载**，功能全面，持续不定期更新中（咕咕咕）
 ---
 ## 🎰目前拥有的功能有：
 - 特别为桌面用户优化的伪·高斯模糊UI以及工具箱设计，更方便桌面使用
@@ -18,13 +19,15 @@
 - 全新的接入原生通知的日程提醒功能，只要输入倒数时间与提醒内容即可到点提醒，同时包括多种取自MIUI的随机通知铃声
 - 全新小窗模式，在需要专心工作/不想暴露自己是个2ch的时候，可以点击叉号进入小窗专注模式，此时，看板娘将最小化为气泡在右下角待命
 - 云端api加入大量全新模型，设置窗口中可以自行填写自建api地址
+- 本地模型加载，可选择本地模型Json文件（仅Prerelease）或云端API加载模型
 - 2x高清渲染，看板娘画质更清晰，高分屏全面适配
-- 加入全局设置，工具箱功能可以自己设定
-- 桌面全局拖拽，放在哪里都合适（实验性功能）
+- 加入全局设置，工具箱功能可以自己设定，看板娘行为也可以全局设置并保存
+- 桌面全局拖拽，按住一言气泡拖动即可全局拖拽，放在哪里都合适
 - 更多功能仍在努力开发中，你可以在本仓库的Projects选项卡内查看相关开发进度
 ---
 ## 📺安装：
 请移步到本项目Release中，获取最新版本安装包。稳定版Release中默认包含Windows平台下zip绿色版与安装程序，同时也包含在Endeavour OS环境下编译的Linux版本可执行程序。由于设备限制，Mac用户需要自行搭建环境进行编译，感谢理解。
+<br/>测试版Prerelease通道将发布提前预览的版本，拥有更新的功能的同时由于未开发完成，可能拥有影响使用的Bug，仅供尝鲜测试。
 Release地址：[Release](https://github.com/JimHans/kanban-desktop/releases)
 
 ---
@@ -47,7 +50,7 @@ Release地址：[Release](https://github.com/JimHans/kanban-desktop/releases)
 - Q:我要如何才能关闭日程提醒的响铃？
 - A:您可以在设定日程到达时间后，点击弹出的日程通知来关闭响铃。
 * Q:什么时候能加入对moc3与本地模型文件的支持？
-* A:好问题，但我也不知道啥时候能加……本地模式应该会很快开发完成，但moc3支持可能要等等了。
+* A:好问题，本地模型加载模式目前已经基本开发完成（能用级别）并已经在Prerelease通道内开放测试，moc3支持可能要等等了，我也不知道啥时候能加。
 
 <br/>
 
@@ -56,7 +59,8 @@ Release地址：[Release](https://github.com/JimHans/kanban-desktop/releases)
 ---
 
 ## 📝附录
-如果你需要自己申请腾讯NLP自然语言处理服务，可以参考本项目的前身-网页版本AI看板娘的NLP搭建教程，链接如下：[搭建教程](https://github.com/JimHans/AI-waifu)
+- 1.如果你需要自己申请腾讯NLP自然语言处理服务，可以参考本项目的前身-网页版本AI看板娘的NLP搭建教程，链接如下：[搭建教程](https://github.com/JimHans/AI-waifu)
+- 2.新的本地模式目前仍不稳定，其需要在模型配置清单Json文件内加入hit_areas_custom配置才能读取到触摸范围，从而响应触摸行为。其他需要注意的配置我将在未来进行整理。相应的Json可视化配置功能未来也将纳入开发规划中。
 
 ---
 ## 🧡感谢
@@ -70,7 +74,9 @@ Live2d Cubism SDK WebGL 2.1 Project & All model authors.
 
 Open sourced under the GPL v3.0 license.
 
+### 注释：
 *: 对Linux的支持暂不完全。
+**: 本地模式暂时仅在Prerelease通道提供，目前不稳定，仅供测试使用。
 
   [1]: https://github.com/fghrsh/live2d_demo
   [2]: https://github.com/xiazeyu/live2d-widget.js

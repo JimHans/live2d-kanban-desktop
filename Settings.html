@@ -152,7 +152,7 @@
 
 <body style="overflow: hidden;">
     <div class="container" id="container">
-        <div class="closeset"  onclick="closeset()">×</div>
+        <div class="closeset"  onclick="closeset();">×</div>
         <div class="setTab">
             <h3 style="margin-top:5px;margin-bottom:3px;">设置</h3>
             <div class="setTabBrick" id="setTabA" style="color: whitesmoke;background-color: rgb(85, 85, 85);" onclick="setpageA()"><p style="margin-top: 13%;margin-bottom: 14%;font:menu;">工具栏<br/>设置</p></div>
@@ -205,6 +205,10 @@
                 <input class="input" type="checkbox" name="checkboxC" value="unlimitedDrag">全屏任意拖拽
                 <input class="input" type="checkbox" name="checkboxC" value="highQualityRender">高清晰度渲染<br/>
                 <input class="input" type="checkbox" name="checkboxC" value="developerMode">开发人员选项
+                <input class="input" type="checkbox" name="checkboxC" value="localModelLoad">启用本地模型文件加载
+                <input id="localModelSelect" type="file" style="margin: 5% 0% 2% 0%;"> <!-- 获取本地文件路径 -->
+                <div id="localModelCurrentPath" style="margin: 5% 0% 2% 0%;text-align: center;font-size: smaller;"></div>
+                <div style="margin: 5% 0% 2% 0%;color: crimson;font-size: smaller;">*注意，请选择名为model.json的JSON清单文件！</div>
                 <div class="box">
                     <button type="button" value="保存并应用" onclick="submitC();" class="btn">保存并应用</button>
                 </div>
@@ -224,7 +228,7 @@
     delete window.exports;
     delete window.module;
     const { ipcRenderer,shell } = nodeRequire('electron'); //Electron 依赖调入
-    window.onload = function () {
+    window.onload = function () { //获取软件版本号
         var package = nodeRequire("./package.json");
         document.getElementById("App_Ver").innerHTML=package.name+" v"+package.version; // Get Version
     }
@@ -256,9 +260,11 @@
     //初始化PageC复选框
     var checkboxCInit = document.getElementsByName("checkboxC");
     if (localStorage.getItem(checkboxCInit[0].value) == 'true') {checkboxCInit[0].checked = true;}
+    if (localStorage.getItem(checkboxCInit[3].value) == 'true') {checkboxCInit[3].checked = true;
+        document.getElementById("localModelCurrentPath").innerHTML="当前文件为"+localStorage.getItem('localModelPath');}
     
     function closeset() {ipcRenderer.send('Settings','Close');} // 关闭
-
+    
     function setpageA() { //点击显示设置页面A
         document.getElementById("setpageA").style.display="block";
         document.getElementById("setpageB").style.display="none";
@@ -322,6 +328,19 @@
         if (checkboxC[0].checked == true) {localStorage.setItem(checkboxC[0].value,true);}
         else {localStorage.setItem(checkboxC[0].value,false);}
         if (checkboxC[2].checked == true) {ipcRenderer.send('dev','Open');} //Develop Mode 无记忆
+        if (checkboxC[3].checked == true) {localStorage.setItem(checkboxC[3].value,true);} //本地模式
+        else {localStorage.setItem(checkboxC[3].value,false);}
+
+        if(document.getElementById('localModelSelect').files[0])
+        {
+            //获取读取文件的File对象
+            var selectedModel = document.getElementById('localModelSelect').files[0];
+            var Filename = selectedModel.name;//读取选中文件的文件名
+            var ModelUrl = selectedModel.path;
+            localStorage.setItem("localModelPath",ModelUrl); //保存ModelPath
+            document.getElementById("localModelCurrentPath").innerHTML="当前文件为"+localStorage.getItem('localModelPath');
+            console.log(Filename,ModelUrl);
+        }
         ipcRenderer.send('Mainpage','Refresh');
     }
 </script>

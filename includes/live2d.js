@@ -1,4 +1,5 @@
-//¥”701––ø™ º∏˘æ›‰÷»æª≠÷ –ﬁ∏ƒ¡Àπ‚±Í◊¯±Íµƒ≤…—˘±»¿˝“‘–ﬁ∏¥¥•√˛Ωªª•µƒ◊¯±ÍŒª“∆Œ Ã‚
+Ôªø// In Line 4185 we added Local Model Path Judger System.
+//‰ªé701Ë°åÂºÄÂßãÊ†πÊçÆÊ∏≤ÊüìÁîªË¥®‰øÆÊîπ‰∫ÜÂÖâÊ†áÂùêÊ†áÁöÑÈááÊ†∑ÊØî‰æã‰ª•‰øÆÂ§çËß¶Êë∏‰∫§‰∫íÁöÑÂùêÊ†á‰ΩçÁßªÈóÆÈ¢ò
 !
 function(t) {
 	function i(r) {
@@ -3985,7 +3986,7 @@ default = r;
 	var o = e(2);
 	var requestCache = {};
 	r.prototype.loadBytes = function(t, i) {
-		// Cache Áõ∏ÂêåÁöÑË?∑Ê±ÇÔºåÂáèÂ∞ëË?∑Ê±ÇÊï∞Èáè
+		// Cache Èê©Á®øÊÇìÈê®ÂãÆ?ÈîãÁú∞ÈîõÂ±ΩÂô∫ÁÅèÊà£?ÈîãÁú∞ÈèÅ‰º¥Âô∫
 		if (requestCache[t] !== undefined) {
 			i(requestCache[t]);
 			return;
@@ -4181,6 +4182,68 @@ default = o;
 	}), i.
 default = r;
 	var o = e(0);
+
+	var localModelPather = ""; // Get Local Path
+	if(localStorage.getItem('localModelLoad') == 'true') {
+		localModelPather = localStorage.getItem('localModelPath').slice(0,-10);
+		r.prototype.loadModelSetting = function(t, i) {
+			var e = this;
+			o.Live2DFramework.getPlatformManager().loadBytes(t, function(t) {
+				var r = String.fromCharCode.apply(null, new Uint8Array(t));
+				e.json = JSON.parse(r), i()
+			})
+		}, r.prototype.getTextureFile = function(t) {
+			return null == this.json[this.TEXTURES] || null == this.json[this.TEXTURES][t] ? null : localModelPather+this.json[this.TEXTURES][t]
+		}, r.prototype.getModelFile = function() {
+			return localModelPather+this.json[this.MODEL]
+		}, r.prototype.getTextureNum = function() {
+			return null == this.json[this.TEXTURES] ? 0 : this.json[this.TEXTURES].length
+		}, r.prototype.getHitAreaNum = function() {
+			return null == this.json[this.HIT_AREAS] ? 0 : this.json[this.HIT_AREAS].length
+		}, r.prototype.getHitAreaID = function(t) {
+			return null == this.json[this.HIT_AREAS] || null == this.json[this.HIT_AREAS][t] ? null : this.json[this.HIT_AREAS][t][this.ID]
+		}, r.prototype.getHitAreaName = function(t) {
+			return null == this.json[this.HIT_AREAS] || null == this.json[this.HIT_AREAS][t] ? null : this.json[this.HIT_AREAS][t][this.NAME]
+		}, r.prototype.getPhysicsFile = function() {
+			return null == this.json[this.PHYSICS] ? this.json[this.PHYSICS] : localModelPather+this.json[this.PHYSICS]
+		}, r.prototype.getPoseFile = function() {
+			return null == this.json[this.POSE] ? this.json[this.POSE] : localModelPather+this.json[this.POSE]
+		}, r.prototype.getExpressionNum = function() {
+			return null == this.json[this.EXPRESSIONS] ? 0 : this.json[this.EXPRESSIONS].length
+		}, r.prototype.getExpressionFile = function(t) {
+			return null == this.json[this.EXPRESSIONS] ? null : localModelPather+this.json[this.EXPRESSIONS][t][this.FILE]
+		}, r.prototype.getExpressionName = function(t) {
+			return null == this.json[this.EXPRESSIONS] ? null : this.json[this.EXPRESSIONS][t][this.NAME]
+		}, r.prototype.getLayout = function() {
+			return this.json[this.LAYOUT]
+		}, r.prototype.getHitAreasCustom = function() {
+			return this.json[this.HIT_AREAS_CUSTOM]
+		}, r.prototype.getInitParamNum = function() {
+			return null == this.json[this.INIT_PARAM] ? 0 : this.json[this.INIT_PARAM].length
+		}, r.prototype.getMotionNum = function(t) {
+			return null == this.json[this.MOTION_GROUPS] || null == this.json[this.MOTION_GROUPS][t] ? 0 : this.json[this.MOTION_GROUPS][t].length
+		}, r.prototype.getMotionFile = function(t, i) {
+			return null == this.json[this.MOTION_GROUPS] || null == this.json[this.MOTION_GROUPS][t] || null == this.json[this.MOTION_GROUPS][t][i] ? null : localModelPather+this.json[this.MOTION_GROUPS][t][i][this.FILE]
+		}, r.prototype.getMotionSound = function(t, i) {
+			return null == this.json[this.MOTION_GROUPS] || null == this.json[this.MOTION_GROUPS][t] || null == this.json[this.MOTION_GROUPS][t][i] || null == this.json[this.MOTION_GROUPS][t][i][this.SOUND] ? null : localModelPather+this.json[this.MOTION_GROUPS][t][i][this.SOUND]
+		}, r.prototype.getMotionFadeIn = function(t, i) {
+			return null == this.json[this.MOTION_GROUPS] || null == this.json[this.MOTION_GROUPS][t] || null == this.json[this.MOTION_GROUPS][t][i] || null == this.json[this.MOTION_GROUPS][t][i][this.FADE_IN] ? 1e3 : this.json[this.MOTION_GROUPS][t][i][this.FADE_IN]
+		}, r.prototype.getMotionFadeOut = function(t, i) {
+			return null == this.json[this.MOTION_GROUPS] || null == this.json[this.MOTION_GROUPS][t] || null == this.json[this.MOTION_GROUPS][t][i] || null == this.json[this.MOTION_GROUPS][t][i][this.FADE_OUT] ? 1e3 : this.json[this.MOTION_GROUPS][t][i][this.FADE_OUT]
+		}, r.prototype.getInitParamID = function(t) {
+			return null == this.json[this.INIT_PARAM] || null == this.json[this.INIT_PARAM][t] ? null : this.json[this.INIT_PARAM][t][this.ID]
+		}, r.prototype.getInitParamValue = function(t) {
+			return null == this.json[this.INIT_PARAM] || null == this.json[this.INIT_PARAM][t] ? NaN : this.json[this.INIT_PARAM][t][this.VALUE]
+		}, r.prototype.getInitPartsVisibleNum = function() {
+			return null == this.json[this.INIT_PARTS_VISIBLE] ? 0 : this.json[this.INIT_PARTS_VISIBLE].length
+		}, r.prototype.getInitPartsVisibleID = function(t) {
+			return null == this.json[this.INIT_PARTS_VISIBLE] || null == this.json[this.INIT_PARTS_VISIBLE][t] ? null : this.json[this.INIT_PARTS_VISIBLE][t][this.ID]
+		}, r.prototype.getInitPartsVisibleValue = function(t) {
+			return null == this.json[this.INIT_PARTS_VISIBLE] || null == this.json[this.INIT_PARTS_VISIBLE][t] ? NaN : this.json[this.INIT_PARTS_VISIBLE][t][this.VALUE]
+		}
+	}
+
+	else {
 	r.prototype.loadModelSetting = function(t, i) {
 		var e = this;
 		o.Live2DFramework.getPlatformManager().loadBytes(t, function(t) {
@@ -4236,5 +4299,6 @@ default = r;
 	}, r.prototype.getInitPartsVisibleValue = function(t) {
 		return null == this.json[this.INIT_PARTS_VISIBLE] || null == this.json[this.INIT_PARTS_VISIBLE][t] ? NaN : this.json[this.INIT_PARTS_VISIBLE][t][this.VALUE]
 	}
+	} //End Else
 }]);
 //# sourceMappingURL=live2d.js.map
