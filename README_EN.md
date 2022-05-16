@@ -10,20 +10,20 @@
 <img src="https://img.shields.io/badge/License-GPL-purple.svg?style=flat-square">
 </p>
 
-### 🎉A kanban girl that can put on your desktop! Designed for Windows and Linux desktop users with plenty of cloud models. Supports cloud and local moc2 model loading. Plenty of tools like NLP dialog, web search and schedule reminder. Continuously updating.
+### 🎉A kanban girl plugin that can put on your desktop! Designed for Windows and Linux desktop users with plenty of cloud models. Supports cloud and local moc2 model loading. Plenty of tools like NLP dialog, web search and schedule reminder. Continuously updating.
 ---
 ## 🎰Functions available now:
 - Specially designed UI with fake-blur theme and toolbox design for desktop users make it more elegant to use on the desktop.
 - Carry on the past Web version, the app is connected with Tencent NLP API and is able to start conversations timely with texting.
-- 底部输入框一键切换网页搜索，可以方便地随时搜索所需的内容，更可以随时切换搜索引擎（开发中）
+- You can conveniently switch the input box at the bottom of the app to web-searching mode and search whatever you want at any time with your customized search engines.(Now only supports Baidu.)
 - 全新的接入原生通知的日程提醒功能，只要输入倒数时间与提醒内容即可到点提醒，同时包括多种取自MIUI的随机通知铃声
 - 全新小窗模式，在需要专心工作/不想暴露自己是个2ch的时候，可以点击叉号进入小窗专注模式，此时，看板娘将最小化为气泡在右下角待命
-- 云端api加入大量全新模型，设置窗口中可以自行填写自建api地址
-- 本地模型加载，可选择本地模型Json文件（仅Prerelease）或云端API加载模型
-- 2x高清渲染，看板娘画质更清晰，高分屏全面适配
+- We added many new models for our original cloud API. Meanwhile we also allow you to build your own web-API and fill your API's URL in the app's Settings page.
+- Our project supports local live2d moc2 model file loading. You can select your local moc2 model's JSON manifest file and load your own model offline. If you don't have a local moc2 model, you can also select to still use the web API mode.
+- We added the brand new 2x HD rendering system, which makes the kanban girl more suitable for high-resolution screens.
 - 加入全局设置，工具箱功能可以自己设定，看板娘行为也可以全局设置并保存
-- 桌面全局拖拽，按住一言气泡拖动即可全局拖拽，放在哪里都合适
-- 更多功能仍在努力开发中，你可以在本仓库的Projects选项卡内查看相关开发进度
+- Our kanban girl plugin supports global dragging. You can drag the plugin to any place on your desktop by using your mouse to press and drag the plugin's dialog box.
+- Many new functions are now under development. You can check for the project's developing process in the repository's Project Tab.
 ---
 ## 📺Installation:
 Please step to the project's Release and download the latest installation pack. The Stable Release channel defaultly include one .zip package and another .exe package for Windows platform, alone with an .Appimage package packed under Endeavour OS Linux (Arch-based) for Linux users. Sadly Mac OS users need to manually build and pack the project due to device limitations.
