@@ -11,6 +11,8 @@
 </p>
 
 ### 🎉A kanban girl plugin that can put on your desktop! Designed for Windows and Linux desktop users with plenty of cloud models. Supports cloud and local moc2 model loading. Plenty of tools like NLP dialog, web search and schedule reminder. Continuously updating.
+
+**Notice: This Readme(English Ver) is still under translation.We'll do our best to finish the translation work.**
 ---
 ## 🎰Functions available now:
 - Specially designed UI with fake-blur theme and toolbox design for desktop users make it more elegant to use on the desktop.
