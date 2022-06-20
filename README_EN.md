@@ -23,7 +23,7 @@
 - We added many new models for our original cloud API. Meanwhile we also allow you to build your own web-API and fill your API's URL in the app's Settings page.
 - Our project supports local live2d moc2 model file loading. You can select your local moc2 model's JSON manifest file and load your own model offline. If you don't have a local moc2 model, you can also select to still use the web API mode.
 - We added the brand new 2x HD rendering system, which makes the kanban girl more suitable for high-resolution screens.
-- 加入全局设置，工具箱功能可以自己设定，看板娘行为也可以全局设置并保存
+- The new version added the global settings function. In settings you can easily modify settings like toolbox showing functions,live2d api url,kanban behaviors and even try the experimental functions! Also, we'll add more setting selections in future versions.
 - Our kanban girl plugin supports global dragging. You can drag the plugin to any place on your desktop by using your mouse to press and drag the plugin's dialog box.
 - Many new functions are now under development. You can check for the project's developing process in the repository's Project Tab.
 ---
