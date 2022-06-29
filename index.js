@@ -3,6 +3,7 @@
 const { app, BrowserWindow , Menu , Tray, shell, ipcMain} = require('electron')
 const dialog = require('electron').dialog;
 const path = require('path');
+const internal = require('stream');
 let tray = null;
 let calcrater = 0; var PoinThrough = '点击穿透';
 var packageGet = require("./package.json");

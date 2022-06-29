@@ -36,6 +36,7 @@
         height: 100%;
         margin: 0px;
         padding: 0;
+        border:1px solid rgb(165, 165, 165);
         background-color: rgb(255, 255, 255);
         border-radius:15px;
         box-shadow: 0px 0px 10px -1px rgba(170, 170, 170, 0.75);
@@ -105,6 +106,13 @@
         margin-right: 5px;
         z-index: 5;
         -webkit-app-region: no-drag;
+        transition: background-color .25s;
+    }
+    .closeset:hover {
+    background-color: #fdcbcb;
+    }
+    .closeset:active::after {
+    background-color: #ff4848;
     }
     .box {
     height: auto;
@@ -148,21 +156,57 @@
     opacity: .5;
     transition: 0s;
     }
+    .btnred {
+    position: relative;
+    width: 45%;
+    height: 30px;
+    border-radius: 4px;
+    background-color: #d21919;
+    color: #fff;
+    box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.15), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+    font-size: 14px;
+    outline: 0;
+    border: 0;
+    cursor: pointer;
+    overflow: hidden;
+    margin-right: 8%;
+    transition: background-color .25s;
+    }
+    .btnred:hover {
+    background-color: #ac2727;
+    }
+    .btnred::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: radial-gradient(circle, #ccc 10%, transparent 10.1%);
+    transform: scale(10);
+    opacity: 0;
+    transition: all .6s;
+    }
+    .btnred:active::after {
+    transform: scale(0);
+    opacity: .5;
+    transition: 0s;
+    }
 </style>
 
 <body style="overflow: hidden;">
     <div class="container" id="container">
-        <div class="closeset"  onclick="closeset();">×</div>
+        <div class="closeset"  onclick="closeset();"><image src="./assets/Cross.png"></image></div>
         <div class="setTab">
             <h3 style="margin-top:5px;margin-bottom:3px;">设置</h3>
             <div class="setTabBrick" id="setTabA" style="color: whitesmoke;background-color: rgb(85, 85, 85);" onclick="setpageA()"><p style="margin-top: 13%;margin-bottom: 14%;font:menu;">工具栏<br/>设置</p></div>
-            <div class="setTabBrick" id="setTabB" onclick="setpageB()"><p style="margin-top: 20%;margin-bottom: 20%;font:menu;">模型设置</p></div>
-            <div class="setTabBrick" id="setTabC" onclick="setpageC()"><p style="margin-top: 20%;margin-bottom: 20%;font:menu;">高级设置</p></div>
+            <div class="setTabBrick" id="setTabB" onclick="setpageB()"><p style="margin-top: 13%;margin-bottom: 20%;font:menu;">模型与<br/>高级设置</p></div>
+            <div class="setTabBrick" id="setTabC" onclick="setpageC()"><p style="margin-top: 13%;margin-bottom: 20%;font:menu;">实验室与<br/>关于</p></div>
         </div>
         <div class="setpage" id="setpageA">
             <div class="setpageINNER">
             <form>
-                <h3 style="margin-top:5px;margin-bottom:3px;">工具栏设置</h3><HR>
+                <h3 style="margin-top:5px;margin-bottom:3px;">📱 工具栏设置</h3><HR>
                 <input class="input" type="checkbox" name="checkboxA" value="showToolbar">显示工具栏
                 <input class="input" type="checkbox" name="checkboxA" value="noHideToolbar">不隐藏工具栏<br/>
                 <input class="input" type="checkbox" name="checkboxA" value="showMinimum">显示最小化按钮
@@ -173,6 +217,7 @@
                 <input class="input" type="checkbox" name="checkboxA" value="showInfo">显示 跳转关于页<br/>
                 <input class="input" type="checkbox" name="checkboxA" value="showNightmode">显示 夜间模式
                 <input class="input" type="checkbox" name="checkboxA" value="showMainpage">显示 返回首页
+                <HR>
                 <div class="box">
                     <button type="button" value="保存并应用" onclick="submitA();" class="btn">保存并应用</button>
                 </div>
@@ -183,13 +228,21 @@
         <div class="setpage" id="setpageB" style="display: none;">
             <div class="setpageINNER">
             <form>
-                <h3 style="margin-top:5px;margin-bottom:3px;">模型设置</h3><HR>
+                <h3 style="margin-top:5px;margin-bottom:3px;">🧱 模型设置</h3><HR>
                 <label><input class="input" type="checkbox" name="checkboxB" value="modelRandSwitch" />模型随机切换</label>
                 <label><input class="input" type="checkbox" name="checkboxB" value="textureRandSwitch" />材质随机切换</label><br/>
                 <label><input class="input" type="checkbox" name="checkboxB" value="showHitokoto" />显示一言</label>
                 <label><input class="input" type="checkbox" name="checkboxB" value="showWelcome" />显示欢迎词</label>
-                <h4 style="margin-top:5px;margin-bottom:3px;">自定义模型API</h4><HR>
+                <li style="margin-top:10px;margin-bottom:3px;">自定义模型API</li>
                 <input class="input" type="text" name="checkboxB" placeholder="输入自定义API地址" style="border-radius: 15px;font-size: medium;width: 90%;text-align: center;height: 6%;color: #809FC8;" required>
+                <h3 style="margin-top:5px;margin-bottom:3px;">📚 高级设置<a style="font-size: 13px;"> 自定义更多高级设置项</a></h3><HR>
+                <li style="margin-top:10px;margin-bottom:3px;">自定义搜索引擎<a style="font-size: 13px;"> 输入搜索引擎URL</a></li>
+                <input class="input" type="text" name="checkboxB" placeholder="默认为Google" style="border-radius: 15px;font-size: medium;width: 90%;text-align: center;height: 6%;color: #809FC8;" required>
+                <li style="margin-top:10px;margin-bottom:3px; color: #ff4848;">清除数据<a style="font-size: 13px;"> 清除所有用户数据（谨慎操作！）</a></li>
+                <div class="box">
+                    <button type="button" value="清除数据" onclick="localStorage.clear();" class="btnred">清除所有数据</button>
+                </div>
+                <HR>
                 <div class="box">
                     <button type="button" value="保存并应用" onclick="submitB();" class="btn">保存并应用</button>
                 </div>
@@ -200,22 +253,24 @@
         <div class="setpage" id="setpageC" style="display: none;">
             <div class="setpageINNER">
             <form>
-                <h3 style="margin-top:5px;margin-bottom:3px;">实验性</h3><HR>
+                <h3 style="margin-top:5px;margin-bottom:3px;">🧪 实验性</h3><HR>
                 <p style="font-size: 15px;font-weight: bold;">这里的设置具有实验性</p>
                 <input class="input" type="checkbox" name="checkboxC" value="unlimitedDrag">全屏任意拖拽
                 <input class="input" type="checkbox" name="checkboxC" value="highQualityRender">高清晰度渲染<br/>
                 <input class="input" type="checkbox" name="checkboxC" value="developerMode">开发人员选项
                 <input class="input" type="checkbox" name="checkboxC" value="localModelLoad">启用本地模型文件加载
+                <li style="margin-top:10px;margin-bottom:3px;">选择本地模型文件</li>
                 <input id="localModelSelect" type="file" style="margin: 5% 0% 2% 0%;"> <!-- 获取本地文件路径 -->
                 <div id="localModelCurrentPath" style="margin: 5% 0% 2% 0%;text-align: center;font-size: smaller;"></div>
                 <div style="margin: 5% 0% 2% 0%;color: crimson;font-size: smaller;">*注意，请选择名为model.json的JSON清单文件！</div>
+                <HR>
                 <div class="box">
                     <button type="button" value="保存并应用" onclick="submitC();" class="btn">保存并应用</button>
                 </div>
-                <h3 style="margin-top:10px;margin-bottom:3px;">关于Kanban-Desktop</h3><HR>
+                <h3 style="margin-top:10px;margin-bottom:3px;">🚀 关于Kanban-Desktop</h3><HR>
                 <div style="text-align: center;"><img src="./assets/app.png" alt="App Info" width="64" height="64">
                 <h4 id="App_Ver" style="font-size: 14px;margin-top:5px;margin-bottom:-5px;">Kanban-Desktop</h4>
-                <p style="font-size: 14px;margin-bottom:-5px;">Stable Build 2022-04-18</p>
+                <p id="App_Build" style="font-size: 14px;margin-bottom:-5px;">Stable Build 2022-04-18</p>
                 <p style="font-size: 14px;margin-bottom:-5px;">Written By Zerolite Studio and JimHan</p></div>
             </form>
             </div>
@@ -231,6 +286,7 @@
     window.onload = function () { //获取软件版本号
         var package = nodeRequire("./package.json");
         document.getElementById("App_Ver").innerHTML=package.name+" v"+package.version; // Get Version
+        document.getElementById("App_Build").innerHTML=package.buildinf; // Get Build
     }
 
     // 初始化PageA复选框
@@ -255,7 +311,9 @@
         else {if(i==0) checkboxBInit[i].checked = false; else checkboxBInit[i].checked = true;}
     }
     if ((!localStorage.getItem("customAPI")) || localStorage.getItem("customAPI") == ""){checkboxBInit[4].value="//waifuapi.zerolite.cn/live2d-api/";}
-    else {checkboxBInit[4].value=localStorage.getItem("customAPI");}
+    else {checkboxBInit[4].value=localStorage.getItem("customAPI");} //自定义API获取
+    if ((!localStorage.getItem("customSearch")) || localStorage.getItem("customSearch") == ""){checkboxBInit[5].value="https://www.google.com/search?q=";}
+    else {checkboxBInit[5].value=localStorage.getItem("customSearch");} //自定义搜索引擎获取
 
     //初始化PageC复选框
     var checkboxCInit = document.getElementsByName("checkboxC");
@@ -320,6 +378,7 @@
             else {localStorage.setItem(checkboxB[i].value,false);}
         }
         localStorage.setItem("customAPI",checkboxB[4].value); //保存自定义API
+        localStorage.setItem("customSearch",checkboxB[5].value); //保存自定义搜索引擎
         ipcRenderer.send('Mainpage','Refresh');
     }
 

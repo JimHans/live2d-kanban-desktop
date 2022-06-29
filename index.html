@@ -110,9 +110,13 @@
 		
 		function Search_Engine() /****搜索拉起****/
 		{
+			var SearchURL = 0;
 			if(Change%2===1) 
-			{console.log("Search!");
-			ipcRenderer.send('open-url', "https://www.baidu.com/s?wd="+document.getElementById("nlp").value);
+			{
+				console.log("Search!");
+				if (localStorage.getItem("customSearch")) {SearchURL=localStorage.getItem("customSearch");}
+				else {SearchURL="https://www.google.com/search?q=";} //百度:https://www.baidu.com/s?wd=
+				ipcRenderer.send('open-url', SearchURL+document.getElementById("nlp").value);
 			}
 		}
 
