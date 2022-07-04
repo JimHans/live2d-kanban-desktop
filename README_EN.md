@@ -41,7 +41,7 @@ Release URL:[Release](https://github.com/JimHans/kanban-desktop/releases)
 ---
 ## 📌Notice When Using:
 - #### 1.This APP is developed with Electron framework. Thus, the APP supports cross-platform and can run on Windows, MacOS and Linux. We only provide Windows and Linux installation pack in our Release. If you want to run the APP on MacOS, pls clone the repository using `git clone` and pack locally by yourself.
-- #### 2.在使用本项目自带的NLP时，请注意不要发送过多请求导致腾讯云API免费次数到达限制。后期，本项目将在设置中加入NLPAPI手动填写功能，并对公用API设置限制。自行注册腾讯云API的方式，请见下方附录教程
+- #### 2.When using the default NLP service, please notice that do not post TOO many request to reach our free API limit. We suggest you to register your own TCloud API by yourself, and fill your own API URL into the custom API blank in Settings. Knowing how to register your API, Please view the Appendix below.
 - #### 3.本项目使用的模型文件版权均归相关版权方所有，后期本项目将在设置中提供自建模型API选项，并可能加入本地模型加载功能来避开这个限制。至于这个功能什么时候上线，我也不知道ㄟ( ▔, ▔ )ㄏ
 - #### 4.由于使用Electron进行构建，所以性能开销略大，耗电量较高，不建议给笔记本使用，建议挂在台式机食用
 
