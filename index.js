@@ -51,6 +51,8 @@ function createWindow () {
   const settings = new BrowserWindow({
     width: parseInt(setwidth/3),
     height: parseInt((setwidth/3)*(9.5/16)),
+    minWidth: 400,
+    minHeight: 200,
     skipTaskbar: true,//显示在任务栏
     alwaysOnTop: false,//置顶显示
     transparent: true,//底部透明

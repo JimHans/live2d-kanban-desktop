@@ -80,8 +80,8 @@ live2d_settings.waifuDraggable       = 'unlimited';    // 拖拽样式，例如 
 live2d_settings.waifuDraggableRevert = true;         // 松开鼠标还原拖拽位置，可选 true(真), false(假)
 
 // 其他杂项设置
-live2d_settings.l2dVersion           = '2.0.1';                               // 当前版本
-live2d_settings.l2dVerDate           = '2022-02-13';                          // 版本更新日期
+live2d_settings.l2dVersion           = '2.3.0';                               // 当前版本
+live2d_settings.l2dVerDate           = '2022-07-22';                          // 版本更新日期
 live2d_settings.homePageUrl          = 'https://www.zerolite.cn/';            // 主页地址，已弃用
 live2d_settings.aboutPageUrl         = 'https://www.zerolite.cn/';            // 关于页地址
 live2d_settings.screenshotCaptureName= 'kanban.png';                          // 看板娘截图文件名，例如 'live2d.png'

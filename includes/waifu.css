@@ -126,7 +126,8 @@
 	animation: fade-in;/*淡入动画*/ 
 	animation-duration: 0.5s;/*动画持续时间*/ 
 	-webkit-animation:fade-in 0.5s;/*针对webkit内核*/ 
-	opacity:0.99;
+	opacity:0.98;
+    /* backdrop-filter: blur(30px); */
 }
 .timeset {
 	border-radius:14px;color: azure;background-color: rgba(0,0,0,0.20);

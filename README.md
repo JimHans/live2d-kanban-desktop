@@ -5,7 +5,7 @@
 <br/>
 <p align="center">
 <img src="https://img.shields.io/badge/Build-passing-green.svg?style=flat-square">
-<img src="https://img.shields.io/badge/Version-2.2.3 Stable-red.svg?style=flat-square">
+<img src="https://img.shields.io/badge/Version-2.3.0 Stable-red.svg?style=flat-square">
 <img src="https://img.shields.io/badge/Electron-18.0.4-blue.svg?style=flat-square">
 <img src="https://img.shields.io/badge/License-GPL-purple.svg?style=flat-square">
 </p>

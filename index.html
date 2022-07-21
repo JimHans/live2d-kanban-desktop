@@ -93,7 +93,16 @@
 		var nlp=0;
 		var Change=0;
 		document.getElementById('NLPask').style.display = 'none';
-		// document.getElementById('PTBox').style.display = 'none';
+		if(localStorage.getItem("NLPChange")=="Search") //恢复记忆NLP栏状态
+		{	
+			Change+=1;
+			document.getElementById("AskBox").action= 'none';  //更换action地址
+			document.getElementById("toolask").className="fui-home";  //更换图标（改class）
+			document.getElementById("NLPask").style.width="0px";      //更换框大小
+			document.getElementById("NLPask").style.height="0px";
+			document.getElementById('NLPask').style.display = 'none';  //先把打开的框关掉
+		}
+
 
         function toolopen() /****展开工具栏****/	
 		{
@@ -131,6 +140,7 @@
 				document.getElementById("toolask").className="fui-ask";
 				document.getElementById("AskBox").action="https://www.zerolite.cn/NLP.php"
 				document.getElementById('NLPask').style.display = 'none';  //先把打开的框关掉
+				localStorage.setItem("NLPChange","NLP");
 			}
 			else if (Change%2===1)
 			{
@@ -139,6 +149,7 @@
 				document.getElementById("NLPask").style.width="0px";      //更换框大小
 				document.getElementById("NLPask").style.height="0px";
 				document.getElementById('NLPask').style.display = 'none';  //先把打开的框关掉
+				localStorage.setItem("NLPChange","Search");
 			}
 		}
 
