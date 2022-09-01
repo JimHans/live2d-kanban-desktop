@@ -4185,7 +4185,10 @@ default = r;
 
 	var localModelPather = ""; // Get Local Path
 	if(localStorage.getItem('localModelLoad') == 'true') {
-		localModelPather = localStorage.getItem('localModelPath').slice(0,-10);
+		var URLSlicer = -1; var URLGet = localStorage.getItem('localModelPath');
+		for(URLSlicer = -1;URLSlicer!=URLGet.length;URLSlicer--)
+		{if(URLGet[URLGet.length+URLSlicer]=='\\') break;}
+		localModelPather = localStorage.getItem('localModelPath').slice(0,URLSlicer+1);
 		r.prototype.loadModelSetting = function(t, i) {
 			var e = this;
 			o.Live2DFramework.getPlatformManager().loadBytes(t, function(t) {

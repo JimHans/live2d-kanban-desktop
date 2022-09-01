@@ -1,8 +1,8 @@
 {
   "name": "kanban-desktop",
-  "version": "2.3.0",
+  "version": "2.4.0",
   "description": "Kanban Desktop Electron Based",
-  "buildinf": "Stable Build 2022-07-22",
+  "buildinf": "Stable Build 2022-09-02",
   "main": "index.js",
   "scripts": {
     "start": "electron .",

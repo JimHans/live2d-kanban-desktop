@@ -108,6 +108,19 @@
     .input {
         margin: 5% 3% 2% 0%;
     }
+    .inputText {
+        margin: 3% 3% 2% 2%;
+        width: 90%;
+        /* text-align: center; */
+        height: 4.3vw;
+        color: #809FC8;
+        /* position:absolute; */
+        border-radius:5px;
+        font-size: 2.5vw;
+        border: 0px;
+        box-shadow: 0px 0px 5px 0px rgba(45, 45, 45, 0.75);
+        backdrop-filter: blur(10px);
+    }
     .closeset {
         width: 20px;
         height: 20px;
@@ -215,10 +228,10 @@
             <h3 style="margin-top:5px;margin-bottom:3px;">设置</h3>
             <div class="setTabBrick" id="setTabA" style="color: whitesmoke;background-color: rgb(85, 85, 85);top:15%" onclick="setpageA()">
                 <svg t="1658426400568" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="15439" style="position:absolute;top:10%;bottom:40%;left:35%;right:35%;"><path d="M682.666667 170.666667l21.333333 42.666666v320h128V213.333333l23.04-42.666666L832 64h-128l-21.333333 106.666667z" fill="#90A4AE" p-id="15440"></path><path d="M768 192c62.506667 0 64-128 64-128h-128s1.706667 128 64 128z" fill="#B0BEC5" p-id="15441"></path><path d="M680.746667 533.333333h174.506666l38.826667 183.253334a81.92 81.92 0 0 1 1.92 17.706666V874.666667a85.333333 85.333333 0 0 1-85.333333 85.333333h-85.333334a85.333333 85.333333 0 0 1-85.333333-85.333333v-140.373334a81.92 81.92 0 0 1 1.92-17.706666z" fill="#40A9FF" p-id="15442"></path><path d="M661.333333 448m21.333334 0l170.666666 0q21.333333 0 21.333334 21.333333l0 42.666667q0 21.333333-21.333334 21.333333l-170.666666 0q-21.333333 0-21.333334-21.333333l0-42.666667q0-21.333333 21.333334-21.333333Z" fill="#5C6BC0" p-id="15443"></path><path d="M234.666667 359.04V832a128 128 0 0 0 256 0V359.04zM362.666667 896a64 64 0 1 1 64-64 64 64 0 0 1-64 64z" fill="#FF9800" p-id="15444"></path><path d="M490.666667 410.666667H234.666667v45.44l256 87.893333v-133.333333z" fill="#EF6C00" p-id="15445"></path><path d="M466.986667 85.333333v209.92h-208.64V85.333333A234.666667 234.666667 0 0 0 128 294.186667 177.92 177.92 0 0 0 277.333333 469.333333a528 528 0 0 0 85.333334 7.253334 528 528 0 0 0 85.333333-7.253334 177.92 177.92 0 0 0 149.333333-175.36A234.666667 234.666667 0 0 0 466.986667 85.333333z" fill="#FF9800" p-id="15446"></path></svg>
-                <div style="position:absolute;left: 8%;right: 8%;top:60%;font-size:1.8vw;">工具栏设置</div></div>
+                <div style="position:absolute;left: 8%;right: 8%;top:60%;font-size:1.8vw;">功能设置</div></div>
             <div class="setTabBrick" id="setTabB" onclick="setpageB()" style="top:43%">
                 <svg t="1658426137514" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="3578" style="position:absolute;top:10%;bottom:40%;left:35%;right:35%;"><path d="M114.0736 307.2l-1.4336 0.73728v418.33472L512 942.08V511.20128z" fill="#FFFFFF" p-id="3579"></path><path d="M930.73408 302.72512L521.3184 92.16 128.50176 294.07232l-15.86176 8.2944L521.3184 501.76l4.79232-2.16064L931.84 303.45216v-0.3584l-1.10592-0.36864zM526.11072 499.6096L521.3184 501.76l4.79232-2.16064z" fill="#91D5FF" p-id="3580"></path><path d="M1006.40768 264.31488a68.21888 68.21888 0 0 0-29.04064-30.39232L548.00384 7.68a67.51232 67.51232 0 0 0-62.49472 0L56.50432 232.448a66.44736 66.44736 0 0 0-17.64352 15.74912 73.25696 73.25696 0 0 0-11.02848 14.27456A67.87072 67.87072 0 0 0 20.48 291.76832v439.33696a67.33824 67.33824 0 0 0 36.7616 59.31008l428.99456 224.79872c9.32864 5.29408 19.79392 8.31488 30.5152 8.78592h5.15072a64.53248 64.53248 0 0 0 26.10176-6.9632L976.9984 792.25856A67.33824 67.33824 0 0 0 1013.76 732.93824V291.76832a64.23552 64.23552 0 0 0-7.35232-27.45344z m-80.50688 39.90528l-404.3776 199.168-4.77184 2.56v427.25376L107.60192 719.02208V303.85152l15.81056-8.41728L516.75136 89.67168l408.04352 213.8112 1.10592 0.73728z" fill="#40A9FF" p-id="3581"></path></svg>
-                <div style="position:absolute;left: 1%;right: 1%;top:60%;font-size:1.7vw;">模型与高级设置</div></div>
+                <div style="position:absolute;left: 1%;right: 1%;top:60%;font-size:1.8vw;">个性化设置</div></div>
             <div class="setTabBrick" id="setTabC" onclick="setpageC()"style="bottom:8%">
                 <svg class="icon" style="position:absolute;top:10%;bottom:40%;left:35%;right:35%;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="856"><path d="M926.48448 781.15328l-272.97792-423.71072V160.03072h25.40544V92.16H350.1824v67.87072h25.43104v197.41184L102.62016 781.1584A97.792 97.792 0 0 0 184.9344 931.84h659.2512a97.76128 97.76128 0 0 0 82.29888-150.68672zM870.46656 848.384a29.33248 29.33248 0 0 1-26.28096 15.58528H184.9344a29.91104 29.91104 0 0 1-25.18016-46.08l283.8016-440.49408V160.03072h142.00832V377.3952l283.81184 440.48896a29.27104 29.27104 0 0 1 1.09056 30.49984z" fill="#5288F5" p-id="857"></path><path d="M652.288 572.63104H376.832v-68.4544h275.456v68.4544z" fill="#F79C42" p-id="858"></path></svg>
                 <div style="position:absolute;left: 8%;right: 8%;top:60%;font-size:1.7vw;">实验室与关于</div></div>
@@ -254,10 +267,14 @@
                 <label><input class="input" type="checkbox" name="checkboxB" value="showHitokoto" />显示一言</label>
                 <label><input class="input" type="checkbox" name="checkboxB" value="showWelcome" />显示欢迎词</label>
                 <li style="margin-top:10px;margin-bottom:3px;">自定义模型API</li>
-                <input class="input" type="text" name="checkboxB" placeholder="输入自定义API地址" style="border-radius: 15px;font-size: medium;width: 90%;text-align: center;height: 6%;color: #809FC8;" required>
+                <input class="inputText" type="text" name="checkboxB" placeholder="输入自定义API地址" required>
+                <h3 style="margin-top:5px;margin-bottom:3px;">🧭 悬浮球设置</h3><HR>
+                <div id="localBubbleCurrentPath" style="margin:0 auto;text-align: center;height:14vw;width:14vw;background-size:cover;border-radius:5px;
+                box-shadow: 0px 0px 5px 0px rgba(45, 45, 45, 0.75);"></div>
+                <input id="localBubbleSelect" type="file" style="margin: 5% 0% 2% 0%;"> <!-- 获取Bubble本地背景文件路径 -->
                 <h3 style="margin-top:5px;margin-bottom:3px;">📚 高级设置<a style="font-size: 13px;"> 自定义更多高级设置项</a></h3><HR>
                 <li style="margin-top:10px;margin-bottom:3px;">自定义搜索引擎<a style="font-size: 13px;"> 输入搜索引擎URL</a></li>
-                <input class="input" type="text" name="checkboxB" placeholder="默认为Google" style="border-radius: 15px;font-size: medium;width: 90%;text-align: center;height: 6%;color: #809FC8;" required>
+                <input class="inputText" type="text" name="checkboxB" placeholder="默认为Google" required>
                 <li style="margin-top:10px;margin-bottom:3px; color: #ff4848;">清除数据<a style="font-size: 13px;"> 清除所有用户数据（谨慎操作！）</a></li>
                 <div class="box">
                     <button type="button" value="清除数据" onclick="localStorage.clear();" class="btnred">清除所有数据</button>
@@ -282,7 +299,7 @@
                 <li style="margin-top:10px;margin-bottom:3px;">选择本地模型文件</li>
                 <input id="localModelSelect" type="file" style="margin: 5% 0% 2% 0%;"> <!-- 获取本地文件路径 -->
                 <div id="localModelCurrentPath" style="margin: 5% 0% 2% 0%;text-align: center;font-size: smaller;"></div>
-                <div style="margin: 5% 0% 2% 0%;color: crimson;font-size: smaller;">*注意，请选择名为model.json的JSON清单文件！</div>
+                <div style="margin: 5% 0% 2% 0%;color: crimson;font-size: smaller;">*注意，请选择模型的JSON清单文件！</div>
                 <HR>
                 <div class="box">
                     <button type="button" value="保存并应用" onclick="submitC();" class="btn">保存并应用</button>
@@ -290,8 +307,8 @@
                 <h3 style="margin-top:10px;margin-bottom:3px;">🚀 关于Kanban-Desktop</h3><HR>
                 <div style="text-align: center;"><img src="./assets/app.png" alt="App Info" width="64" height="64">
                 <h4 id="App_Ver" style="font-size: 14px;margin-top:5px;margin-bottom:-5px;">Kanban-Desktop</h4>
-                <p id="App_Build" style="font-size: 14px;margin-bottom:-5px;">Stable Build 2022-04-18</p>
-                <p style="font-size: 14px;margin-bottom:-5px;">Written By Zerolite Studio and JimHan</p></div>
+                <p id="App_Build" style="font-size: 14px;margin-bottom:-5px;">Stable Build</p>
+                <p style="font-size: 14px;margin-bottom:-5px;">Designed By Zerolite Studio and JimHan</p></div>
             </form>
             </div>
         </div>
@@ -330,6 +347,9 @@
             {checkboxBInit[i].checked = false;}
         else {if(i==0) checkboxBInit[i].checked = false; else checkboxBInit[i].checked = true;}
     }
+    if ((!localStorage.getItem("localBubblePath")) || localStorage.getItem("localBubblePath") == ""){document.getElementById("localBubbleCurrentPath").style.backgroundImage='url(./assets/box.png)';}
+    else {document.getElementById("localBubbleCurrentPath").style.background="url("+localStorage.getItem("localBubblePath")+") no-repeat";
+    document.getElementById("localBubbleCurrentPath").style.backgroundSize="cover";} //自定义气泡背景获取
     if ((!localStorage.getItem("customAPI")) || localStorage.getItem("customAPI") == ""){checkboxBInit[4].value="//waifuapi.zerolite.cn/live2d-api/";}
     else {checkboxBInit[4].value=localStorage.getItem("customAPI");} //自定义API获取
     if ((!localStorage.getItem("customSearch")) || localStorage.getItem("customSearch") == ""){checkboxBInit[5].value="https://www.google.com/search?q=";}
@@ -399,6 +419,28 @@
         }
         localStorage.setItem("customAPI",checkboxB[4].value); //保存自定义API
         localStorage.setItem("customSearch",checkboxB[5].value); //保存自定义搜索引擎
+        if(document.getElementById('localBubbleSelect').files[0]) //保存自定义气泡
+        {
+            //获取读取文件的File对象
+            var selectedBubble = document.getElementById('localBubbleSelect').files[0];
+            var Filename = selectedBubble.name;//读取选中文件的文件名
+            var BubbleUrl = selectedBubble.path;
+            var BubblePic = 0;
+            if(!/image\/\w+/.test(selectedBubble.type))           //判断获取的是否为图片文件
+            {
+                alert("请确保文件为图像文件");
+                return false;
+            }
+            var reader=new FileReader();
+            reader.readAsDataURL(selectedBubble);
+            reader.onload=function(e)
+            {localStorage.setItem("localBubblePath",this.result);localStorage.setItem("localBubblePath",this.result);}//保存BubblePath
+            setTimeout(function() {
+                document.getElementById("localBubbleCurrentPath").style.background="url("+localStorage.getItem("localBubblePath")+") no-repeat";
+                document.getElementById("localBubbleCurrentPath").style.backgroundSize="cover";
+            }, 500);//延时等待数据库存入
+            console.log(Filename,BubbleUrl);
+        }
         ipcRenderer.send('Mainpage','Refresh');
     }
 

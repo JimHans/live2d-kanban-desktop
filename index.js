@@ -44,11 +44,12 @@ function createWindow () {
     win.webContents.setIgnoreMenuShortcuts(input.key === "F4" && input.alt);
   })
 
+  // let settings = null;
   //设置窗口打开监听
   var setwidth = screenElectron.getPrimaryDisplay().workAreaSize.width;
   var setheight = screenElectron.getPrimaryDisplay().workAreaSize.height;
   //新建设置窗口
-  const settings = new BrowserWindow({
+  let settings = new BrowserWindow({
     width: parseInt(setwidth/3),
     height: parseInt((setwidth/3)*(9.5/16)),
     minWidth: 400,
@@ -82,7 +83,44 @@ function createWindow () {
   var trayMenuTemplate = [
     {
       label: 'Kanban-Desktop 设置',
-      click: function () {settings.show();} //打开设置
+      click: function () {
+        if(settings)settings.show();
+        else {
+            //设置窗口打开监听
+            var setwidth = screenElectron.getPrimaryDisplay().workAreaSize.width;
+            var setheight = screenElectron.getPrimaryDisplay().workAreaSize.height;
+            //新建设置窗口
+            let settings = new BrowserWindow({
+              width: parseInt(setwidth/3),
+              height: parseInt((setwidth/3)*(9.5/16)),
+              minWidth: 400,
+              minHeight: 200,
+              skipTaskbar: false,//显示在任务栏
+              alwaysOnTop: false,//置顶显示
+              transparent: true,//底部透明
+              frame: false,
+              resizable: true,
+              icon: './assets/app.ico',
+              show: false,
+              webPreferences: {
+                devTools: true,
+                nodeIntegration: true,
+                enableRemoteModule: true,
+                contextIsolation: false,
+              }
+            });
+            // 并且为你的应用加载index.html
+            settings.loadFile('Settings.html');
+            //settings.webContents.openDevTools();
+  
+            settings.webContents.on("before-input-event", (event, input) => { //禁用alt+f4
+              if(input.key === "F4" && input.alt){
+                    event.preventDefault();
+              }
+              settings.webContents.setIgnoreMenuShortcuts(input.key === "F4" && input.alt);
+            })
+        }  
+      } //打开设置
     },
     {
       label: '检查更新',
@@ -179,7 +217,44 @@ function createWindow () {
   //设置窗口打开监听
   ipcMain.on("Settings",(event,data) => {
     console.log(data);
-    if(data == 'Open') {settings.show();}
+    if(data == 'Open') {
+      if(settings)settings.show();
+      else {
+          //设置窗口打开监听
+          var setwidth = screenElectron.getPrimaryDisplay().workAreaSize.width;
+          var setheight = screenElectron.getPrimaryDisplay().workAreaSize.height;
+          //新建设置窗口
+          let settings = new BrowserWindow({
+            width: parseInt(setwidth/3),
+            height: parseInt((setwidth/3)*(9.5/16)),
+            minWidth: 400,
+            minHeight: 200,
+            skipTaskbar: false,//显示在任务栏
+            alwaysOnTop: false,//置顶显示
+            transparent: true,//底部透明
+            frame: false,
+            resizable: true,
+            icon: './assets/app.ico',
+            show: false,
+            webPreferences: {
+              devTools: true,
+              nodeIntegration: true,
+              enableRemoteModule: true,
+              contextIsolation: false,
+            }
+          });
+          // 并且为你的应用加载index.html
+          settings.loadFile('Settings.html');
+          //settings.webContents.openDevTools();
+
+          settings.webContents.on("before-input-event", (event, input) => { //禁用alt+f4
+            if(input.key === "F4" && input.alt){
+                  event.preventDefault();
+            }
+            settings.webContents.setIgnoreMenuShortcuts(input.key === "F4" && input.alt);
+          })
+      }
+    }
     if(data == 'Close') {event.preventDefault(); settings.hide();}
   });
 

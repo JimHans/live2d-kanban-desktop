@@ -30,6 +30,10 @@
 		ipcRenderer.send('PTBox','Close');
 		console.log('OK!');
 		}
+		//自定义气泡
+		if (localStorage.getItem("localBubblePath")) 
+		{document.getElementById("PTBox").style.background="url("+localStorage.getItem("localBubblePath")+") no-repeat";
+		document.getElementById("PTBox").style.backgroundSize="cover";}
     </script>
 </body>
 </html>
