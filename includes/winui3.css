@@ -1,0 +1,489 @@
+@font-face { /*winUIfont*/
+    font-family: winUIfont;
+    src: url(../assets/SourceHanSans.otf)
+}
+
+html,body{
+    height:100%;
+    width: 100%;
+    padding: 0;
+    opacity: 1;
+    /* margin: 3%; */
+}
+/* 标题栏 */
+.TitleBar { 
+    align-items:center;
+    position: absolute;
+    font-size: 15px;
+    font-weight: lighter;
+    color:azure;
+    height:30px;
+    z-index: 90;
+    text-align: center;
+    width: 100%;
+    background-color: #202020;
+    font-family: bgmUI;
+    -webkit-app-region: drag;
+    user-select: none;
+}
+/* 主框架容器约束 */
+.container {
+    margin: 0px;
+    padding: 0;
+    position:absolute;
+    color: aliceblue;
+    background-color: #202020;
+    top:0px;
+    bottom:0px;
+    left:0px;
+    right:0px;
+    z-index: 50;
+    box-shadow: 0px 0px 10px -1px rgba(170, 170, 170, 0.75);
+    -webkit-box-shadow: 0px 0px 10px -1px rgba(170, 170, 170, 0.75);
+    -moz-box-shadow: 0px 0px 10px -1px rgba(170, 170, 170, 0.75);
+    -webkit-app-region: no-drag;
+    /* width: 98%;
+    height: 98%; 
+    border:1px solid rgb(0, 0, 0);
+    border-radius:10px; */
+}
+/*滚动条样式*/
+.container::-webkit-scrollbar {
+    width: 4px;    
+}
+.container::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    box-shadow: inset 0 0 5px rgba(141, 140, 140, 0.2);
+    background: rgba(255, 255, 255, 0.505);
+}
+.container::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+    border-radius: 3px;
+    background: rgba(160, 160, 160, 0.231);
+}
+
+input::-webkit-input-placeholder {
+    /* 修改字体颜色 */
+    border-radius: 15px;
+    font-family: 'Roboto',arial,sans-serif;
+    color: #809FC8;
+    padding-left: 10px; 
+    color: #CBCBCB;
+}
+
+/*!焦点页面样式*/
+.setpage {
+    position:absolute;
+    background-color: #272727;
+    z-index: 0;
+    /* border: 2px 2px 2px 2px solid black;  */
+    border-radius: 7px;
+    top:   120px;
+    left:  16px;
+    right: 16px;
+    bottom:15px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+.setpageINNER {
+    width: 100%;
+    height: 100%;
+    border-radius: 7px;
+    z-index: 0;
+    overflow-y:scroll;
+    position:absolute;
+    background-color: #272727;
+    /* border: 2px 2px 2px 2px solid black;  */
+}
+.setpageINNER::-webkit-scrollbar {
+    width: 4px;    
+}
+.setpageINNER::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    box-shadow: inset 0 0 5px rgba(141, 140, 140, 0.2);
+    background: rgba(255, 255, 255, 0.505);
+}
+.setpageINNER::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+    border-radius: 3px;
+    background: rgba(160, 160, 160, 0.231);
+}
+
+/*!选项卡样式*/
+.setTab {
+    height: 60px;
+    text-align: center;
+    position:absolute;
+    background-color: #272727;
+    border-radius: 7px;
+    top:  45px;
+    left: 16px;
+    right:16px;
+    z-index: 0;
+    user-select: none;
+}
+/*选项卡按钮样式*/
+.setTabBrick {
+    width: 95px;
+    height: 60%;
+    top: 20%;
+    z-index: 0;
+    text-align: right;
+    position:absolute;
+    border-radius:7px;
+    background-color: #272727;
+    font-family: winUIfont;
+    /* border: 2px solid rgb(190, 190, 190);  */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size:15px;
+    transition: all .3s;
+}
+.setTabBrick:hover {
+    background-color: #393939 !important;
+    /* border: 2px solid rgb(190, 190, 190); */
+}
+.setTabBrickSmall {
+    width: 30px;
+    height: 50%;
+    top: 25%;
+    z-index: 0;
+    text-align: right;
+    position:absolute;
+    border-radius:7px;
+    background-color: #272727;
+    border:1px solid #3f3f3f;
+    font-family: winUIfont;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size:15px;
+    transition: all .3s;
+}
+.setTabBrickSmall:hover {
+    background-color: #393939 !important;
+    /* border: 2px solid rgb(190, 190, 190); */
+}
+/*选项卡高亮边框样式*/
+.setTabBrickHighlight {
+    width: 70px;
+    height: 3%;
+    top: 82%;
+    z-index: 0;
+    text-align: right;
+    position:absolute;
+    border-radius:7px;
+    background-color: #4299b1;
+    box-shadow: 0px 0px 1px 1px #4299b1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all .5s ease;
+}
+
+/*!页面元素栏样式*/
+.brickContainer {
+    width:auto;
+    height: 45px;
+    z-index: 0;
+    text-align: left;
+    position: relative;
+    margin: 8px 13px 8px 13px;
+    padding: 10px;
+    background-color: #313131;
+    border-radius: 7px;
+    box-shadow: 0px 0px 0px 1px #202020;
+    font-family: winUIfont;
+    line-height: 17px;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    font-size:16px;
+    user-select: none;
+}
+.brickSubtitle{
+    z-index: 0;font-size: 13px;color: #b9b9b9;
+}
+
+/*!页面元素选择开关*/
+.switch {
+    position: absolute;
+    display: inline-block;
+    right:20px;
+    width: 45px;
+    height: 20px;
+    z-index: 0;
+}
+.switch input {display:none;}
+.slider { /*关闭状态开关背景*/
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #272727;
+    box-shadow: 0px 0px 0px 1px #ccc;
+    border-radius: 34px;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+.slider:before { /*关闭状态开关按钮*/
+    position: absolute;
+    content: "";
+    height: 15px;
+    width: 15px;
+    left: 4px;
+    bottom: 2.5px;
+    background-color: #ccc;
+    border-radius: 50%;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+input:checked + .slider {  /*打开状态开关背景*/
+    background-color: #4299b1;
+    box-shadow: 0px 0px 0px 1px #4299b1;
+}
+input:checked + .slider:before { /*打开状态开关按钮*/
+    box-shadow: 0px 0px 0px 1px #4299b1;
+    background-color: #272727;
+}
+input:focus + .slider {  /*悬停状态开关背景*/
+    box-shadow: 0 0 1px #467b8a;
+}
+.slider:hover {  background-color: #444;}  /*悬停状态开关背景*/
+input:checked + .slider:hover {  background-color: #4dadc7;}  /*悬停状态开关背景*/
+
+input:checked + .slider:before { /*开关动效*/
+    -webkit-transform: translateX(22px);
+    -ms-transform: translateX(22px);
+    transform: translateX(22px);
+}
+
+/*!页面元素输入框样式*/
+.inputText {
+    position:absolute;
+    width: 40%;
+    height: 30px;
+    z-index: 0;
+    color: #ccc;
+    right:20px;
+    border-radius:7px;
+    font-size: 15px;
+    font-family: winUIfont;
+    background-color: #393939;
+    border: 1px solid #464646;
+    outline: none;
+    border-bottom: 2px solid #464646;
+    transition: all ease .3s;
+    /* margin: 3% 3% 2% 2%; */
+    /* text-align: center; */
+    /* backdrop-filter: blur(10px); */
+}
+.inputText:hover {
+    background-color: #414141;
+}
+.inputText:focus {
+    background-color: #2a2a2a;
+    border: 1px solid #393939;
+    border-bottom: 2px solid #4299b1;
+}
+
+/*!页面元素按钮样式*/
+.button{
+    position:absolute;
+    width:95px;
+    height:30px;
+    border:1px solid #3f3f3f;
+    right:20px;
+    border-radius:7px;
+    z-index: 0;
+    color: #ccc;
+    transition: all ease .3s;
+    background-color: #373737;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.button:hover {
+    background-color: #3c3c3c !important;
+}
+.button:active {
+    background-color: #313131 !important;
+}
+.button_red{
+    position:absolute;
+    width:95px;
+    height:30px;
+    border:1px solid #442726;
+    right:20px;
+    border-radius:7px;
+    z-index: 0;
+    color: #ccc;
+    transition: all ease .3s;
+    background-color: #681512;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.button_red:hover {
+    background-color: #7a1916;
+}
+.button_red:active {
+    background-color: #6f1613;
+}
+
+/*!页面元素文件选择表单样式*/
+.inputFile{
+    position: absolute;
+    overflow: hidden;
+    right: 0;
+    top: 0;
+    opacity: 0;
+}
+.fileInfo{
+    position:absolute;
+    width:60%;
+    height:30px;
+    right:20px;
+    line-height: 27px;
+    text-overflow: unset; 
+    white-space:nowrap; 
+    text-align: right;
+    overflow-y: auto;
+    border-radius:7px;
+    border: 1px solid #464646;
+    border-bottom: 2px solid #464646;
+    /* -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;   */
+}
+.fileInfo::-webkit-scrollbar {
+    height: 3px;    
+}
+.fileInfo::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    box-shadow: inset 0 0 5px rgba(141, 140, 140, 0.2);
+    background: rgba(255, 255, 255, 0.505);
+}
+.fileInfo::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+    border-radius: 3px;
+    background: rgba(160, 160, 160, 0.231);
+}
+
+/*!页面元素右侧文本样式*/
+.brickRightText {
+    position:absolute;
+    width: 40%;
+    z-index: 0;
+    color: #ccc;
+    right:20px;
+    font-size: 15px;
+    font-family: winUIfont;
+    outline: none;
+    text-align: right;
+    transition: all ease .3s;
+}
+
+/*!旧 按键样式*/
+.box {
+height: auto;
+text-align: center;
+position: relative;
+margin: 6% 5% 5% 5%;
+}
+
+.btn {
+position: relative;
+width: 45%;
+height: 30px;
+border-radius: 4px;
+background-color: #1976d2;
+color: #fff;
+box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.15), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+font-size: 14px;
+outline: 0;
+border: 0;
+cursor: pointer;
+overflow: hidden;
+/* margin-right: 8%; */
+transition: background-color .25s;
+}
+.btn:hover {
+background-color: #276aac;
+}
+.btn::after {
+content: '';
+position: absolute;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+background-image: radial-gradient(circle, #ccc 10%, transparent 10.1%);
+transform: scale(10);
+opacity: 0;
+transition: all .6s;
+}
+.btn:active::after {
+transform: scale(0);
+opacity: .5;
+transition: 0s;
+}
+.btnred {
+position: relative;
+width: 45%;
+height: 30px;
+border-radius: 4px;
+background-color: #d21919;
+color: #fff;
+box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.15), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+font-size: 14px;
+outline: 0;
+border: 0;
+cursor: pointer;
+overflow: hidden;
+/* margin-right: 8%; */
+transition: background-color .25s;
+}
+.btnred:hover {
+background-color: #ac2727;
+}
+.btnred::after {
+content: '';
+position: absolute;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+background-image: radial-gradient(circle, #ccc 10%, transparent 10.1%);
+transform: scale(10);
+opacity: 0;
+transition: all .6s;
+}
+.btnred:active::after {
+transform: scale(0);
+opacity: .5;
+transition: 0s;
+}
+
+/* .closeset { 原关闭按钮，现使用系统标题栏
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    background-color: rgb(255, 255, 255);
+    border-radius:15px;
+    // border: 1px solid rgb(190, 190, 190); 
+    float:right;
+    margin-top: 5px;
+    margin-right: 5px;
+    z-index: 5;
+    -webkit-app-region: no-drag;
+    transition: background-color .25s;
+}
+.closeset:hover {
+background-color: #fdcbcb;
+}
+.closeset:active::after {
+background-color: #ff4848;
+} */
