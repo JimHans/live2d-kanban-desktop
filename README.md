@@ -5,8 +5,8 @@
 <br/>
 <p align="center">
 <img src="https://img.shields.io/badge/Build-passing-green.svg?style=flat-square">
-<img src="https://img.shields.io/badge/Version-2.4.0 Stable-red.svg?style=flat-square">
-<img src="https://img.shields.io/badge/Electron-18.0.4-blue.svg?style=flat-square">
+<img src="https://img.shields.io/badge/Version-2.5.0 Stable-red.svg?style=flat-square">
+<img src="https://img.shields.io/badge/Electron-22.0.0-blue.svg?style=flat-square">
 <img src="https://img.shields.io/badge/License-GPL-purple.svg?style=flat-square">
 </p>
 
@@ -19,15 +19,15 @@
 ---
 ## 🎰目前拥有的功能有：
 - 特别为桌面用户优化的伪·高斯模糊UI以及工具箱设计，更方便桌面使用
-- 承接上一代网页版本，接入腾讯NLP，支持文字实时对话
+- 承接上一代网页版本，接入腾讯NLP，支持文字实时对话，支持自己部署NLP服务
 - 底部输入框一键切换网页搜索，可以方便地随时搜索所需的内容，更可以随时切换自定义搜索引擎
 - 全新的接入原生通知的日程提醒功能，只要输入倒数时间与提醒内容即可到点提醒，同时包括多种取自MIUI的随机通知铃声
 - 全新小窗模式，在需要专心工作/不想暴露自己是个2ch的时候，可以点击叉号进入小窗专注模式，此时，看板娘将最小化为气泡在右下角待命
 - 小窗气泡新增自定义背景功能，更加个性化
 - 云端api加入大量全新模型，设置窗口中可以自行填写自建api地址
-- 本地模型加载，可选择本地模型Json文件（仅Prerelease）或云端API加载模型
+- 本地模型加载，可选择本地模型Json文件（实验性）或云端API加载模型
 - 2x高清渲染，看板娘画质更清晰，高分屏全面适配
-- 加入全局设置，工具箱功能可以自己设定，看板娘行为也可以全局设置并保存
+- 加入全局设置，基于WinUI3的全新设置窗口，工具箱功能可以自己设定，看板娘行为也可以全局设置并保存
 - 桌面全局拖拽，按住一言气泡拖动即可全局拖拽，放在哪里都合适
 - 更多功能仍在努力开发中，你可以在本仓库的Projects选项卡内查看相关开发进度
 ---
