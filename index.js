@@ -66,7 +66,7 @@ function createWindow () {
           color: "#202020",
           symbolColor: "white", },
       resizable: true,
-      icon: './assets/app.ico',
+      icon: path.join(__dirname, './assets/app.ico'),
       show: true,
       webPreferences: {
         devTools: true,
