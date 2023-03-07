@@ -5,9 +5,9 @@
 <br/>
 <p align="center">
 <img src="https://img.shields.io/badge/Build-passing-green.svg?style=flat-square">
-<img src="https://img.shields.io/badge/Version-2.5.1 Stable-red.svg?style=flat-square">
+<img src="https://img.shields.io/github/package-json/v/JimHans/live2d-kanban-desktop?color=red&style=flat-square">
 <img src="https://img.shields.io/badge/Electron-22.0.0-blue.svg?style=flat-square">
-<img src="https://img.shields.io/badge/License-GPL-purple.svg?style=flat-square">
+<img src="https://img.shields.io/badge/License-GPL v3.0-purple.svg?style=flat-square">
 </p>
 
 ### 🎉A kanban girl plugin that can put on your desktop! Designed for Windows and Linux desktop users with plenty of cloud models. Supports cloud and local moc2 model loading. Plenty of tools like NLP dialog, web search and schedule reminder. Continuously updating.
