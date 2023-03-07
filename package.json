@@ -1,8 +1,9 @@
 {
   "name": "kanban-desktop",
-  "version": "2.5.1",
+  "title": "kanban-desktop",
+  "version": "2.5.2",
   "description": "Kanban Desktop Electron Based",
-  "buildinf": "Stable Build 2022-12-26",
+  "buildinf": "Stable Build 2023-03-07",
   "main": "index.js",
   "scripts": {
     "start": "electron .",
@@ -18,7 +19,7 @@
   "build": {
     "productName": "Kanban-Desktop",
     "appId": "com.Zerolite.Kanban-Desktop",
-    "copyright": "2022 Zerolite Studio All Rights Reserved.",
+    "copyright": "2023 Zerolite Studio All Rights Reserved.",
     "asar": true,
     "directories": {
       "buildResources": "build",
