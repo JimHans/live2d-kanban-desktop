@@ -3,7 +3,7 @@ directories:
   buildResources: build
 productName: Kanban-Desktop
 appId: com.Zerolite.Kanban-Desktop
-copyright: 2022 Zerolite Studio All Rights Reserved.
+copyright: 2023 Zerolite Studio All Rights Reserved.
 asar: true
 win:
   target:
@@ -23,4 +23,4 @@ nsis:
   createStartMenuShortcut: true
   shortcutName: Kanban-Desktop
 files: []
-electronVersion: 18.0.4
+electronVersion: 22.0.0

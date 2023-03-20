@@ -34,9 +34,9 @@ live2d_settings.eyeProtInfo          = true;                         //启用使
 var setTime = 0; //设定的提醒时间(单位分钟)
 var isTimeSet = false; //是否启用？
 var date,TargetTime = 0;//停止时间
-var timer;
-var timercontext;
-var Quality = 2;
+var timer; var timercontext; //日程定时变量
+var Quality = 2; //渲染精度变量
+var ShowMessageLocker = 0; //对话泡进程锁
 
 
 // 默认模型
@@ -80,8 +80,8 @@ live2d_settings.waifuDraggable       = 'unlimited';    // 拖拽样式，例如 
 live2d_settings.waifuDraggableRevert = true;         // 松开鼠标还原拖拽位置，可选 true(真), false(假)
 
 // 其他杂项设置
-live2d_settings.l2dVersion           = '2.4.0';                               // 当前版本
-live2d_settings.l2dVerDate           = '2022-09-02';                          // 版本更新日期
+live2d_settings.l2dVersion           = '2.6.0';                               // 当前版本
+live2d_settings.l2dVerDate           = '2023-03-15';                          // 版本更新日期
 live2d_settings.homePageUrl          = 'https://www.zerolite.cn/';            // 主页地址，已弃用
 live2d_settings.aboutPageUrl         = 'https://www.zerolite.cn/';            // 关于页地址
 live2d_settings.screenshotCaptureName= 'kanban.png';                          // 看板娘截图文件名，例如 'live2d.png'
@@ -133,9 +133,9 @@ console.log(re);
 function empty(obj) {'use strict';return typeof obj==="undefined"||obj===null||obj===""?true:false;}
 function getRandText(text) {'use strict';return Array.isArray(text) ? text[Math.floor(Math.random() * text.length + 1)-1] : text;}
 
-/*************************************自带的核心消息显示函数*************************************/
 
-function showMessage(text, timeout, flag) {
+/*****************************独立通知提醒框(包含进程锁)***********************************/
+function showMessageLocked(text,timeout,flag) {
 	'use strict';
     if (flag || sessionStorage.getItem('waifu-text') === '' || sessionStorage.getItem('waifu-text') === null){
         if (Array.isArray(text)) {text = text[Math.floor(Math.random() * text.length + 1)-1];}
@@ -145,8 +145,35 @@ function showMessage(text, timeout, flag) {
         
         $('.waifu-tips').stop();
         $('.waifu-tips').html(text).fadeTo(200, 1);
-        if (timeout === undefined) {timeout = 5000;}
-        hideMessage(timeout);
+        ShowMessageLocker = 1; //对话内容加锁
+        if (timeout != undefined) {hideMessage(timeout);}
+    }
+} 
+function hideMessageLocked(timeout) {
+	'use strict';
+    $('.waifu-tips').stop().css('opacity',1);
+    if (timeout === undefined) {timeout = 5000;}
+    window.setTimeout(function() {sessionStorage.removeItem('waifu-text');}, timeout);
+    window.setTimeout(function() {ShowMessageLocker = 0;}, timeout);
+    $('.waifu-tips').delay(timeout).fadeTo(200, 0);
+}
+
+/*************************************自带的核心消息显示函数*************************************/
+
+function showMessage(text, timeout, flag) {
+	'use strict';
+    if(ShowMessageLocker == 0){ //若锁定则不运行消息显示
+        if (flag || sessionStorage.getItem('waifu-text') === '' || sessionStorage.getItem('waifu-text') === null){
+            if (Array.isArray(text)) {text = text[Math.floor(Math.random() * text.length + 1)-1];}
+            if (live2d_settings.showF12Message) {console.log('[Message]', text.replace(/<[^<>]+>/g,''));}
+            
+            if (flag) {sessionStorage.setItem('waifu-text', text);}
+            
+            $('.waifu-tips').stop();
+            $('.waifu-tips').html(text).fadeTo(200, 1);
+            if (timeout === undefined) {timeout = 5000;}
+            hideMessage(timeout);
+        }
     }
 }
 
@@ -181,12 +208,6 @@ function initModel(waifuPath, type) {
     $(".waifu-tips").css("font-size",live2d_settings.waifuFontSize);
     $(".waifu-tool").css("font-size",live2d_settings.waifuToolFont);
     $(".waifu-tool span").css("line-height",live2d_settings.waifuToolLine);
-//ShowMessage-PRO的样式表，暂时与原版相同
-	// {$(".waifu-tips-PRO").width(live2d_settings.waifuTipsSize[0]);}
-	// {$(".waifu-tips-PRO").height(live2d_settings.waifuTipsSize[1]);}
-	// {$(".waifu-tips-PRO").css("top",live2d_settings.waifuToolTop);}
-    // {$(".waifu-tips-PRO").css("font-size",live2d_settings.waifuFontSize);}
-//ShowMessage-PRO的样式表结束定义   
     if (live2d_settings.waifuEdgeSide[0] === 'left') $(".waifu").css("left",live2d_settings.waifuEdgeSide[1]+'px');
     else if (live2d_settings.waifuEdgeSide[0] === 'right') $(".waifu").css("right",live2d_settings.waifuEdgeSide[1]+'px');
     
@@ -550,21 +571,6 @@ function loadTipsMessage(result) {
             audio.pause();//暂停
             };date = new Date();},setTime*60000);
 	}
-
-    /*****************************独立的通知提醒框已停用***********************************/
-    /* 	function showMessagePRO(text,timeout) {
-	'use strict';
-        if(Array.isArray(text)) text = text[Math.floor(Math.random() * text.length + 1)-1];
-        if (live2d_settings.showF12Message) console.log('[显示信息]', text.replace(/<[^<>]+>/g,''));
-        
-        $('.waifu-tips-PRO').stop();
-        $('.waifu-tips-PRO').html(text).fadeTo(200, 1);
-        if (timeout !== undefined)
-        {$('.waifu-tips-PRO').stop().css('opacity',1);
-        window.setTimeout(function() {sessionStorage.removeItem('waifu-text');}, timeout);
-        $('.waifu-tips-PRO').delay(timeout).fadeTo(200, 0);
-		}
-    } */
 
 	//工具栏默认隐藏
 	document.getElementById('NLP2').style.display = 'none';

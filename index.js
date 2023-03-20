@@ -54,7 +54,7 @@ function createWindow () {
     //新建设置窗口
     /*let*/ settings = new BrowserWindow({
       width: parseInt(setwidth/3),
-      height: parseInt((setwidth/3)*(12/16)),
+      height: parseInt((setwidth/3)*(14/16)),
       minWidth: 470,
       minHeight: 320,
       skipTaskbar: false,//显示在任务栏

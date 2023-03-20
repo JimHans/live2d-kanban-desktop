@@ -48,6 +48,7 @@
             <div class="setpageINNER">
             <!-- <form> -->
                 <h3 style="margin-top:15px;margin-bottom:15px;margin-left:13px;">📱 工具栏设置</h3>
+                <div href="javascript:;" class="button" value="保存并应用" onclick="submitA();" style="top: 10px;user-select: none;width:auto" >&nbsp;&nbsp;保存并应用&nbsp;&nbsp;</div>
                 <div class="brickContainer">显示工具栏<label class="switch"><input class="input" type="checkbox" name="checkboxA" value="showToolbar"><div class="slider"></div></label></div>
                 <div class="brickContainer">不隐藏看板娘工具栏<label class="switch"><input class="input" type="checkbox" name="checkboxA" value="noHideToolbar"><div class="slider"></div></label></div>
                 <div class="brickContainer">显示 最小化按钮<label class="switch"><input class="input" type="checkbox" name="checkboxA" value="showMinimum"><div class="slider"></div></label></div>
@@ -58,9 +59,9 @@
                 <div class="brickContainer">显示 跳转关于页按钮<label class="switch"><input class="input" type="checkbox" name="checkboxA" value="showInfo"><div class="slider"></div></label></div>
                 <div class="brickContainer">显示 夜间模式按钮<label class="switch"><input class="input" type="checkbox" name="checkboxA" value="showNightmode"><div class="slider"></div></label></div>
                 <div class="brickContainer">显示 返回首页按钮<label class="switch"><input class="input" type="checkbox" name="checkboxA" value="showMainpage"><div class="slider"></div></label></div>
-                <div class="box">
+                <!-- <div class="box">
                     <button type="button" value="保存并应用" onclick="submitA();" class="btn">保存并应用</button>
-                </div>
+                </div> -->
                 <!-- <input type="button" value="保存并应用" onclick="submitA()" style="margin-top:7px;"/> -->
             <!-- </form> -->
             </div>
@@ -78,9 +79,10 @@
                 <h3 style="margin-top:15px;margin-bottom:15px;margin-left:13px;">🧭 悬浮球设置</h3>
                 <div class="brickContainer" style="height: 100px;">
                     <div id="localBubbleCurrentPath" style="margin:auto 10px;text-align: center;height:80px;width:80px;background-size:cover;border-radius:7px;box-shadow: 0px 0px 5px 0px rgba(45, 45, 45, 0.75);"></div>
-                    <div href="javascript:;" class="button">选择文件<input id="localBubbleSelect" type="file" class="inputFile" accept="image/*" onchange="javascript:{document.getElementById('fileInfoBubble').innerHTML = document.getElementById('localBubbleSelect').value;}"></div>
+                    <div href="javascript:;" class="button">选择文件<input id="localBubbleSelect" type="file" class="inputFile" accept="image/*" onchange="javascript:{document.getElementById('fileInfoBubble').innerHTML = document.getElementById('localBubbleSelect').files[0].path.replaceAll('\\','/')
+                document.getElementById('localBubbleCurrentPath').style.background = 'url('+document.getElementById('localBubbleSelect').files[0].path.replaceAll('\\','/')+') no-repeat center';document.getElementById('localBubbleCurrentPath').style.backgroundSize='cover'}"></div>
                 </div> <!-- 获取Bubble本地背景文件路径 -->
-                <div class="brickContainer">当前选定背景<div id="fileInfoBubble" class="fileInfo" style="border: none;text-overflow:ellipsis">未选定</div></div>
+                <div class="brickContainer">当前选定背景<div id="fileInfoBubble" class="fileInfo" style="border: none;">未选定</div></div>
                 
                 <h3 style="margin-top:15px;margin-bottom:15px;margin-left:13px;">📚 高级设置<a style="font-size: 13px;"> 自定义更多高级设置项</a></h3>
                 <div class="brickContainer"><div>自定义搜索引擎<br><!--<li style="margin-top:10px;margin-bottom:3px;">自定义搜索引擎</li>--><a class="brickSubtitle">输入搜索引擎URL</a></div>
@@ -101,20 +103,25 @@
             <div class="setpageINNER">
             <!-- <form> -->
                 <h3 style="margin-top:15px;margin-bottom:15px;margin-left:13px;">🧪 实验室</h3>
+                <div href="javascript:;" class="button" value="保存并应用" onclick="submitC();" style="top: 10px;user-select: none;width:auto" >&nbsp;&nbsp;保存并应用&nbsp;&nbsp;</div>
                 <div class="brickContainer" style="background-color:#433519"><svg t="1669908006524" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1391" data-darkreader-inline-fill="" width="20" height="20"><path d="M510.032 93.09c-229.9 0-416.94 187.924-416.94 418.91 0 230.986 187.92 418.91 418.908 418.91 230.986 0 418.91-187.924 418.91-418.91 0-230.986-188.804-418.91-420.88-418.91z" fill="#fce100" p-id="1392" style="--darkreader-inline-fill: #fce100;" data-darkreader-inline-fill=""></path><path d="M558.546 723.78h-93.092v-93.09h93.092zM558.546 539.928h-93.092V302.546h93.092z" fill="#000" p-id="1393" style="--darkreader-inline-fill: #181a1b;" data-darkreader-inline-fill=""></path></svg><p style="margin-left:13px;font-size: 15px;font-weight: bold;">这里的设置具有实验性</p></div>
                 <div class="brickContainer">全屏任意拖拽<label class="switch"><input class="input" type="checkbox" name="checkboxC" value="unlimitedDrag"><div class="slider"></div></label></div>
-                <div class="brickContainer">高清晰度渲染<label class="switch"><input class="input" type="checkbox" name="checkboxC" value="highQualityRender"><div class="slider"></div></label></div>
+                <div class="brickContainer">高清晰度渲染<label class="switch"><input class="input" type="checkbox" name="checkboxC" value="highQualityRender" checked="true" disabled><div class="slider"></div></label></div>
                 <div class="brickContainer">开发人员选项<label class="switch"><input class="input" type="checkbox" name="checkboxC" value="developerMode"><div class="slider"></div></label></div>
                 <div class="brickContainer">启用本地模型文件加载<label class="switch"><input class="input" type="checkbox" name="checkboxC" value="localModelLoad"><div class="slider"></div></label></div>
                 <div class="brickContainer">
                     <div>选择本地模型文件<br><a class="brickSubtitle" style="color: crimson;">*注意，请选择模型的JSON清单文件！</a></div>
                     <div href="javascript:;" class="button" style="width:140px">选择模型文件<input id="localModelSelect" type="file" class="inputFile" onchange="javascript:{document.getElementById('localModelCurrentPath').innerHTML = document.getElementById('localModelSelect').value;$('#localModelCurrentPath').scrollLeft( $('#localModelCurrentPath')[0].scrollWidth);}"></div><!--获取本地文件路径 -->
                     <!-- <input id="localModelSelect" type="file" style="opacity: 0;"> 获取本地文件路径 --></div>
-                <div class="brickContainer">当前选定模型<div id="localModelCurrentPath" class="fileInfo"></div></div>
+                <div class="brickContainer">当前选定模型<div id="localModelCurrentPath" class="fileInfo" style="border: none;"></div></div>
+
+                <h3 style="margin-top:15px;margin-bottom:15px;margin-left:13px;">🧪 语言模型设置</h3>
+                <div class="brickContainer">ChatGPT对话支持<label class="switch"><input class="input" type="checkbox" name="checkboxC" value="ChatGPTFunc"><div class="slider"></div></label></div>
+                <div class="brickContainer">ChatGPT API Key<input class="inputText" type="text" name="checkboxC" placeholder="输入API Key" required></div>
                 
-                <div class="box">
+                <!-- <div class="box">
                     <button type="button" value="保存并应用" onclick="submitC();" class="btn">保存并应用</button>
-                </div>
+                </div> -->
             <!-- </form> -->
             </div>
         </div>
@@ -178,7 +185,7 @@
         else {if(i==0) checkboxBInit[i].checked = false; else checkboxBInit[i].checked = true;}
     }
     if ((!localStorage.getItem("localBubblePath")) || localStorage.getItem("localBubblePath") == ""){document.getElementById("localBubbleCurrentPath").style.backgroundImage='url(./assets/box.png)';}
-    else {document.getElementById("localBubbleCurrentPath").style.background="url("+localStorage.getItem("localBubblePath")+") no-repeat";
+    else {document.getElementById("localBubbleCurrentPath").style.backgroundImage="url("+localStorage.getItem("localBubblePath")+")";
     document.getElementById("localBubbleCurrentPath").style.backgroundSize="cover";} //自定义气泡背景获取
     if ((!localStorage.getItem("customAPI")) || localStorage.getItem("customAPI") == ""){checkboxBInit[4].value="//waifuapi.zerolite.cn/live2d-api/";}
     else {checkboxBInit[4].value=localStorage.getItem("customAPI");} //自定义API获取
@@ -190,6 +197,9 @@
     if (localStorage.getItem(checkboxCInit[0].value) == 'true') {checkboxCInit[0].checked = true;}
     if (localStorage.getItem(checkboxCInit[3].value) == 'true') {checkboxCInit[3].checked = true;
         document.getElementById("localModelCurrentPath").innerHTML="当前文件为"+localStorage.getItem('localModelPath');}
+    if (localStorage.getItem(checkboxCInit[4].value) == 'true') {checkboxCInit[4].checked = true;}
+    if ((!localStorage.getItem("ChatgptKey")) || localStorage.getItem("ChatgptKey") == ""){checkboxCInit[5].value="";}
+    else {checkboxCInit[5].value=localStorage.getItem("ChatgptKey");} //自定义API获取
     
     // function closeset() {ipcRenderer.send('Settings','Close');} // 关闭
     
@@ -294,11 +304,12 @@
             var reader=new FileReader();
             reader.readAsDataURL(selectedBubble);
             reader.onload=function(e)
-            {localStorage.setItem("localBubblePath",this.result);localStorage.setItem("localBubblePath",this.result);}//保存BubblePath
-            setTimeout(function() {
-                document.getElementById("localBubbleCurrentPath").style.background="url("+localStorage.getItem("localBubblePath")+") no-repeat";
-                document.getElementById("localBubbleCurrentPath").style.backgroundSize="cover";
-            }, 500);//延时等待数据库存入
+            {localStorage.setItem("localBubblePath",this.result);}//保存BubblePath
+            // localStorage.setItem("localBubblePath",BubbleUrl);
+            // setTimeout(function() {
+            //     document.getElementById("localBubbleCurrentPath").style.background="url("+localStorage.getItem("localBubblePath")+") no-repeat";
+            //     document.getElementById("localBubbleCurrentPath").style.backgroundSize="cover";
+            // }, 500);//延时等待数据库存入
             console.log(Filename,BubbleUrl);
         }
         ipcRenderer.send('Mainpage','Refresh');
@@ -311,6 +322,9 @@
         if (checkboxC[2].checked == true) {ipcRenderer.send('dev','Open');} //Develop Mode 无记忆
         if (checkboxC[3].checked == true) {localStorage.setItem(checkboxC[3].value,true);} //本地模式
         else {localStorage.setItem(checkboxC[3].value,false);}
+        if (checkboxC[4].checked == true) {localStorage.setItem(checkboxC[4].value,true);} //chatgpt开关
+        else {localStorage.setItem(checkboxC[4].value,false);}
+        localStorage.setItem("ChatgptKey",checkboxC[5].value); //保存chatgptKey
 
         if(document.getElementById('localModelSelect').files[0])
         {

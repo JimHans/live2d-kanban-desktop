@@ -14,6 +14,8 @@
 	<script src="includes/live2d.js?v=1.0.5"></script>
 	<!-- autoload 异步加载库 -->
 	<!--<script src="includes/autoload.js"></script>-->
+	<!-- chatgpt 库函数 -->
+	<script src="./includes/gpt.js"></script>
 </head>
 <style type="text/css">
 	input::-webkit-input-placeholder {
@@ -27,12 +29,14 @@
 </style>
 
 <body style="font-family: 'Microsoft YaHei';background-color: rgba(0,0,0,0);">
-    
+	
+    <div id="GlobalDragLine" style="position: absolute;height: 20px;left: 0%;right: 0%;top: 2%;opacity:0;transition: .3s;" onmouseenter="document.getElementById('GlobalDragLine').style.opacity='0.6';window.setTimeout(function(){document.getElementById('GlobalDragLine').style.opacity='0'},3000)">
+		<div class="GlobalDragLine"></div></div>
 	<canvas id="live2d2" class="live2d" style="display: none;"></canvas>
 	<!-- <div id= "PTBox" class="PTBox"></div > -->
 	
     <div class="waifu" id="NLP0"> <!--核心层-->
-        <div class="waifu-tips" id="NLP1"></div>
+        <div class="waifu-tips" id="NLPAnswerBox"></div>
         <canvas id="live2d" class="live2d"></canvas><!--Live2D 主画布-->
 		<div id= "NLPInfinite" class="NLPInfinite"> <!--日程设置页面-->
 			<div id="timesetHeader" style="font-size: 13px;text-align: center;"></div>
@@ -61,7 +65,7 @@
 				<form id="AskBox" action="https://www.zerolite.cn/NLP.php" method="post" target="myiframe" name="formphp" align="left" class="AskBox" >
 					<input type="text" id="nlp" name="text" placeholder="输入你的话(。・∀・)ノ" style="border-radius:14px;background-image:url(./assets/box.jpg);border:0px;outline:none;font-size: 15px;margin-left: 5px;height: 27px;width: 160px;color: azure;" align="left" required>
 					<span class="fui-ask" onclick="NLPChange();" id="toolask"  style="text-align: right;border-radius: 12px;background-image:url(./assets/box.jpg);font-size: 15px;z-index: 5px; " ></span>
-					<input type="submit" id="nlpsubmit" name="submit" οnkeypress= "none" onclick="document.getElementById('NLPask').style.display = 'block';Search_Engine();" >
+					<input type="submit" id="nlpsubmit" name="submit" onkeypress= "none" onclick="document.getElementById('NLPask').style.display = 'block';Search_Engine();" >
 				</form>
 			</div>
 		</div>
@@ -89,18 +93,22 @@
 		/* 在 initModel 前添加 */
         initModel("includes/waifu-tips.json");
 
-		var click=0;
-		var nlp=0;
-		var Change=0;
+		var click=0;var nlp=0;var Change=0;
 		document.getElementById('NLPask').style.display = 'none';
 		if(localStorage.getItem("NLPChange")=="Search") //恢复记忆NLP栏状态
 		{	
 			Change+=1;
-			document.getElementById("AskBox").action= 'none';  //更换action地址
+			$("#AskBox").attr('onsubmit','return false'); //禁止回车提交
 			document.getElementById("toolask").className="fui-home";  //更换图标（改class）
 			document.getElementById("NLPask").style.width="0px";      //更换框大小
 			document.getElementById("NLPask").style.height="0px";
 			document.getElementById('NLPask').style.display = 'none';  //先把打开的框关掉
+			$("#nlpsubmit").attr("onclick","document.getElementById('NLPask').style.display = 'block';Search_Engine();");
+		}
+		else if(localStorage.getItem("ChatGPTFunc")=="true"){ //chatgpt调用
+			$("#AskBox").attr('onsubmit','return false'); //禁止回车提交
+			document.getElementById("NLPask").style.height="0px"; //iframe隐藏
+			$("#nlpsubmit").attr("onclick","document.getElementById('NLPask').style.display='block';gptrun(document.getElementById('nlp').value,'ChatBox');") //更换onclick动作
 		}
 
 
@@ -132,23 +140,28 @@
 		function NLPChange() /****切换搜索和NLP****/	
 		{
 			Change+=1;
-			if (Change%2===0)
+			if (Change%2===0) //切换NLP对话模式
 			{
-				
+				if(localStorage.getItem("ChatGPTFunc")=="true"){ //chatgpt调用
+					$("#AskBox").attr('onsubmit','return false'); //禁止回车提交
+					$("#nlpsubmit").attr("onclick","document.getElementById('NLPask').style.display = 'block';gptrun(document.getElementById('nlp').value,'ChatBox');");  //更换onclick动作
+					document.getElementById("NLPask").style.height="0px"; //iframe隐藏
+				}
+				else{document.getElementById("NLPask").style.height="70px";
+				document.getElementById("AskBox").removeAttribute("onsubmit");} //使用腾讯NLP时允许回车提交
 				document.getElementById("NLPask").style.width="200px";  //操作方法如else
-				document.getElementById("NLPask").style.height="70px";
 				document.getElementById("toolask").className="fui-ask";
-				document.getElementById("AskBox").action="https://www.zerolite.cn/NLP.php"
-				document.getElementById('NLPask').style.display = 'none';  //先把打开的框关掉
+				document.getElementById('NLPask').style.display='none';  //先把打开的框关掉
 				localStorage.setItem("NLPChange","NLP");
 			}
-			else if (Change%2===1)
+			else if (Change%2===1) //切换搜索模式
 			{
-				document.getElementById("AskBox").action= 'none';  //更换action地址
+				$("#AskBox").attr('onsubmit','return false'); //禁止回车提交
 				document.getElementById("toolask").className="fui-home";  //更换图标（改class）
 				document.getElementById("NLPask").style.width="0px";      //更换框大小
 				document.getElementById("NLPask").style.height="0px";
 				document.getElementById('NLPask').style.display = 'none';  //先把打开的框关掉
+				$("#nlpsubmit").attr("onclick","document.getElementById('NLPask').style.display = 'block';Search_Engine();");
 				localStorage.setItem("NLPChange","Search");
 			}
 		}
@@ -156,8 +169,8 @@
 		function getval(){document.cookie = "status=1"; }
 
 		if(localStorage.getItem('unlimitedDrag') == 'true') //判定是否开启拖拽
-		{document.getElementById('NLP1').style.webkitAppRegion = 'drag';}
-		else {document.getElementById('NLP1').style.webkitAppRegion = 'no-drag';}
+		{document.getElementById('GlobalDragLine').style.display = 'block';}
+		else {document.getElementById('GlobalDragLine').style.display = 'none';}
     </script>
 </body>
 </html>

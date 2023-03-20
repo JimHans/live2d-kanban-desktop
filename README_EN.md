@@ -17,6 +17,7 @@
 ## 🎰Functions available now:
 - Specially designed UI with fake-blur theme and toolbox design for desktop users make it more elegant to use on the desktop.
 - Carry on the past Web version, the app is connected with Tencent NLP API and is able to start conversations timely with texting.
+- New ChatGPT chat mode allows you to chat with GPT-3.5-Turbo using the input box below. 
 - You can conveniently switch the input box at the bottom of the app to web-searching mode and search whatever you want at any time with your customized search engines.
 - Brand NEW calendar schedule reminder included. Kanban can automatically remind you by alerting with sound and visual effects after you input your remind time and context. The alert sounds are from MIUI default ringtone database.
 - New bubble mode allows you to minimize the kanban girl by clicking the "×" button in the toolbox. The app will then minimize to a small bubble on the right-bottom side of your screen.
@@ -52,7 +53,7 @@ Release URL:[Release](https://github.com/JimHans/kanban-desktop/releases)
 - Q:How can I turn off the ringing of the schedule reminder?
 - A:You can turn off the ringing by clicking on the schedule notification poped-up after setting the schedule arrival time.
 * Q:When will supports for moc3 model and native model files be added?
-* A:Good question, the local model loading mode has been basically developed (only works) and has been open for testing in the Prerelease channel, moc3 support may have to wait, I do not know when it can be added.
+* A:Good question, the local model loading mode has been basically developed (it only works) and has been testing openly in the Prerelease channel, moc3 support is now on the schedule and will soon come out in the next version of the software.
 
 <br/>
 
@@ -63,6 +64,7 @@ Release URL:[Release](https://github.com/JimHans/kanban-desktop/releases)
 ## 📝Appendix:
 - 1.If you need to apply for Tencent NLP natural language processing service by yourself, you can refer to the predecessor of this project - the web version of AI Watcher's NLP building tutorial, the link is as follows:[Deploy Tutorial](https://github.com/JimHans/AI-waifu)
 - 2.The new local mode is still unstable and requires the `hit_areas_custom` configuration inside the model configuration manifest Json file in order to read the touch range and thus respond to the touch behavior. Other configurations that need attention I will sort out in the future. The corresponding Json visual configuration feature will also be included in the development plan in the future.
+- 3.To use the ChatGPT Chat mode, you must have a OpenAI Account and the API Key. The software use the official API to get requests.
 
 ---
 ## 🧡Thanks to:
@@ -71,6 +73,7 @@ Release URL:[Release](https://github.com/JimHans/kanban-desktop/releases)
 [live2d-widget / ©xiazeyu / GPL v2.0][2]  
 [live2d_src / ©journey-ad / GPL v2.0][3]    
 [AI-Waifu / ©jimhans / GPL v2.0][4]  
+[ChatGPT-API / ©lxfriday / MIT license][5]  
 
 Live2d Cubism SDK WebGL 2.1 Project & All model authors.
 
@@ -84,3 +87,4 @@ Open sourced under the GPL v3.0 license.
   [2]: https://github.com/xiazeyu/live2d-widget.js
   [3]: https://github.com/journey-ad/live2d_src
   [4]: https://github.com/JimHans/AI-waifu
+  [5]: https://github.com/lxfriday/ChatGPT-API

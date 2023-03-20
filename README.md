@@ -20,6 +20,7 @@
 ## 🎰目前拥有的功能有：
 - 特别为桌面用户优化的伪·高斯模糊UI以及工具箱设计，更方便桌面使用
 - 承接上一代网页版本，接入腾讯NLP，支持文字实时对话，支持自己部署NLP服务
+- 加入ChatGPT-API支持，填入APIKey后即可解锁ChatGPT对话功能
 - 底部输入框一键切换网页搜索，可以方便地随时搜索所需的内容，更可以随时切换自定义搜索引擎
 - 全新的接入原生通知的日程提醒功能，只要输入倒数时间与提醒内容即可到点提醒，同时包括多种取自MIUI的随机通知铃声
 - 全新小窗模式，在需要专心工作/不想暴露自己是个2ch的时候，可以点击叉号进入小窗专注模式，此时，看板娘将最小化为气泡在右下角待命
@@ -56,7 +57,7 @@ Release地址：[Release](https://github.com/JimHans/kanban-desktop/releases)
 - Q:我要如何才能关闭日程提醒的响铃？
 - A:您可以在设定日程到达时间后，点击弹出的日程通知来关闭响铃。
 * Q:什么时候能加入对moc3与本地模型文件的支持？
-* A:好问题，本地模型加载模式目前已经基本开发完成（能用级别）并已经在Prerelease通道内开放测试，moc3支持可能要等等了，我也不知道啥时候能加。
+* A:好问题，本地模型加载模式目前已经基本开发完成并已经在Prerelease通道内开放测试，moc3支持现在已经在进行测试，预计将在下个版本作为测试功能添加，敬请期待。
 
 <br/>
 
@@ -66,7 +67,9 @@ Release地址：[Release](https://github.com/JimHans/kanban-desktop/releases)
 
 ## 📝附录
 - 1.如果你需要自己申请腾讯NLP自然语言处理服务，可以参考本项目的前身-网页版本AI看板娘的NLP搭建教程，链接如下：[搭建教程](https://github.com/JimHans/AI-waifu)
-- 2.新的本地模式目前仍不稳定，其需要在模型配置清单Json文件内加入hit_areas_custom配置才能读取到触摸范围，从而响应触摸行为。其他需要注意的配置我将在未来进行整理。相应的Json可视化配置功能未来也将纳入开发规划中。
+- 2.本地模式需要在模型配置清单Json文件内加入hit_areas_custom配置才能读取到触摸范围，从而响应触摸行为。其他需要注意的配置我将在未来进行整理。相应的Json可视化配置功能未来也将纳入开发规划中。
+- 3.ChatGPT对话功能需要您拥有OpenAI账号与API Key。本软件使用OpenAI官方API进行对话请求。
+- 注意：本软件不提供公有API Key, 使用此功能时请保持在科学网络环境下使用。任何由于使用本软件造成的账户封锁或Key失效等问题，本软件不承担任何责任。
 
 ---
 ## 🧡感谢
@@ -75,6 +78,7 @@ Release地址：[Release](https://github.com/JimHans/kanban-desktop/releases)
 [live2d-widget / ©xiazeyu / GPL v2.0][2]  
 [live2d_src / ©journey-ad / GPL v2.0][3]    
 [AI-Waifu / ©jimhans / GPL v2.0][4]  
+[ChatGPT-API / ©lxfriday / MIT license][5]  
 
 Live2d Cubism SDK WebGL 2.1 Project & All model authors.
 
@@ -88,3 +92,4 @@ Open sourced under the GPL v3.0 license.
   [2]: https://github.com/xiazeyu/live2d-widget.js
   [3]: https://github.com/journey-ad/live2d_src
   [4]: https://github.com/JimHans/AI-waifu
+  [5]: https://github.com/lxfriday/ChatGPT-API
