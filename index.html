@@ -16,6 +16,13 @@
 	<!--<script src="includes/autoload.js"></script>-->
 	<!-- chatgpt 库函数 -->
 	<script src="./includes/gpt.js"></script>
+	<!-- cubism V5.0支持 -->
+	<script src="./cubism_v3/pixi/pixi.min.js"></script>
+	<script src="https://cubism.live2d.com/sdk-web/cubismcore/live2dcubismcore.min.js"></script>
+	<script src="../live2dcubismcore.min.js"></script> <!--本地备份源-->
+	<script src="./cubism_v3/framework/live2dcubismframework.js"></script>
+	<script src="./cubism_v3/framework/live2dcubismpixi.js"></script>
+	<script src="./cubism_v3/loadModel.js"></script>    
 </head>
 <style type="text/css">
 	input::-webkit-input-placeholder {
@@ -32,12 +39,12 @@
 	
     <div id="GlobalDragLine" style="position: absolute;height: 20px;left: 0%;right: 0%;top: 2%;opacity:0;transition: .3s;" onmouseenter="document.getElementById('GlobalDragLine').style.opacity='0.6';window.setTimeout(function(){document.getElementById('GlobalDragLine').style.opacity='0'},3000)">
 		<div class="GlobalDragLine"></div></div>
-	<canvas id="live2d2" class="live2d" style="display: none;"></canvas>
-	<!-- <div id= "PTBox" class="PTBox"></div > -->
+	<!-- <canvas id="live2d2" class="live2d" style="display: none;"></canvas> <div id= "PTBox" class="PTBox"></div > -->
 	
     <div class="waifu" id="NLP0"> <!--核心层-->
         <div class="waifu-tips" id="NLPAnswerBox"></div>
-        <canvas id="live2d" class="live2d"></canvas><!--Live2D 主画布-->
+		<div id="live2ds" style="position: relative;width: 300px;height: 360px;">
+        <canvas id="live2d" class="live2d"></canvas></div><!--Live2D 主画布-->
 		<div id= "NLPInfinite" class="NLPInfinite"> <!--日程设置页面-->
 			<div id="timesetHeader" style="font-size: 13px;text-align: center;"></div>
 			<svg t="1596338443527" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="7582" width="25" height="25" onclick="document.getElementById('NLPInfinite').style.display = 'none';">
@@ -172,5 +179,30 @@
 		{document.getElementById('GlobalDragLine').style.display = 'block';}
 		else {document.getElementById('GlobalDragLine').style.display = 'none';}
     </script>
+	<script>
+		// const BingAI = nodeRequire('@ibaraki-douji/bing-ai').default;
+		// const ai = new BingAI("_U=19u3SZ78fVHyhcDC2ZUOqCEf3kyBmPWhkAKVnU_P9-PAa3DDncNwIlxRAjaunEDjtFZL6nJmFxDlj5Jc5E6Qvf3LyzdlD6IsiuCfue-oEdl3WTiaEXriJWt55bFcE0jZpW_QX2fZOKcrSZLScaIi0urKznm4jBiOx_q1B73Pmla7ln1AK4-S8MXdTpfcdIdjq80ndan4HG7axC-lZXVUDUw;");
+		// ai.createConversation().then((conversation) => {
+		// 	conversation.sendMessage("Hello").then((response) => {
+		// 		// do something with the response
+		// 	})
+		// })
+
+		// const { ChatBot } = nodeRequire('bingai-js');
+		// const { conversation_style } = nodeRequire('bingai-js/src/Utility');
+		// const cookie = "11vnn_kpgAevdE6ZWT3fSHcAa_3PuIzQzz1JKPx77XYNOVTCEJY1-QsG9QvKcj6694E2DgOoNvH_6Qkp-X8mcD_BV7hqGWHNexrnkfBjAxJSi_XyuxPjvyQRgqZOgVP9iW9JqUjb4Z3NzauK2L2yJhxA1QUs53PgoIOcrKt8mEdc8u6Q16WP0V5Ume7T1VMaC8-wpOGqGxKhWlKQI9mZcRA"
+		// const chatdialog = new ChatBot(cookie);
+		// async function test() {
+		// 	await chatdialog.init();
+		// 	/**
+		// 	*   balanced : conversation_style.balanced
+		// 	*   creative : conversation_style.creative
+		// 	*   precise  : conversation_style.precise
+		// 	*/
+		// 	console.log( await chatdialog.ask("你好！" , conversation_style.balanced))
+		// }
+
+		// test()
+	</script>
 </body>
 </html>

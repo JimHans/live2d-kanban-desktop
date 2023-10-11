@@ -1,5 +1,8 @@
 ﻿// In Line 4185 we added Local Model Path Judger System.
 //从701行开始根据渲染画质修改了光标坐标的采样比例以修复触摸交互的坐标位移问题
+//从288行新增了模型Y轴偏移量的设置
+//从4083行开始新增了模型未包含layout数据时的默认值处理,解决了导致模型偏移无法调整问题
+
 !
 function(t) {
 	function i(r) {
@@ -281,10 +284,14 @@ function(t) {
 		this.translateX(t - i)
 	}, a.prototype.centerX = function(t) {
 		var i = this.width * this.getScaleX();
-		this.translateX(t - i / 2)
+		let transformXaxis = 0;
+		if(localStorage.getItem("localModelV3Xaxis")) {transformXaxis = parseInt(localStorage.getItem("localModelV3Xaxis"))/600} //从本地存储中获取X轴偏移量
+		this.translateX(t - i / 2 +transformXaxis)
 	}, a.prototype.centerY = function(t) {
 		var i = this.height * this.getScaleY();
-		this.translateY(t - i / 2)
+		let transformYaxis = 0;
+		if(localStorage.getItem("localModelV3Yaxis")) {transformYaxis = parseInt(localStorage.getItem("localModelV3Yaxis"))/720} //从本地存储中获取Y轴偏移量
+		this.translateY(t - i / 2 -transformYaxis) //修改了这里的Y轴偏移量
 	}, a.prototype.setX = function(t) {
 		this.translateX(t)
 	}, a.prototype.setY = function(t) {
@@ -4073,6 +4080,17 @@ default = o;
 								r.pose.updateParam(r.live2DModel)
 							}) : r.pose = null, null != r.modelSetting.getLayout()) {
 								var n = r.modelSetting.getLayout();
+								// 有layout情况下若没有默认位置，默认值
+								if (n["center_x"] == null){n["center_x"]=0;}
+								if (n["center_y"] == null){n["center_y"]=0;}
+								null != n.width && r.modelMatrix.setWidth(n.width), null != n.height && r.modelMatrix.setHeight(n.height), null != n.x && r.modelMatrix.setX(n.x), null != n.y && r.modelMatrix.setY(n.y), null != n.center_x && r.modelMatrix.centerX(n.center_x), null != n.center_y && r.modelMatrix.centerY(n.center_y), null != n.top && r.modelMatrix.top(n.top), null != n.bottom && r.modelMatrix.bottom(n.bottom), null != n.left && r.modelMatrix.left(n.left), null != n.right && r.modelMatrix.right(n.right)
+							}
+							// 无layout情况下的默认值
+							else if (r.eyeBlink, null != r.modelSetting.getPhysicsFile() ? r.loadPhysics(r.modelHomeDir + r.modelSetting.getPhysicsFile()) : r.physics = null, null != r.modelSetting.getPoseFile() ? r.loadPose(r.modelHomeDir + r.modelSetting.getPoseFile(), function() {
+								r.pose.updateParam(r.live2DModel)
+							}) : r.pose = null, null == r.modelSetting.getLayout()) {
+								var n = {};
+								n["center_x"]=0;n["center_y"]=0;n["width"]=2;n["height"]=4;
 								null != n.width && r.modelMatrix.setWidth(n.width), null != n.height && r.modelMatrix.setHeight(n.height), null != n.x && r.modelMatrix.setX(n.x), null != n.y && r.modelMatrix.setY(n.y), null != n.center_x && r.modelMatrix.centerX(n.center_x), null != n.center_y && r.modelMatrix.centerY(n.center_y), null != n.top && r.modelMatrix.top(n.top), null != n.bottom && r.modelMatrix.bottom(n.bottom), null != n.left && r.modelMatrix.left(n.left), null != n.right && r.modelMatrix.right(n.right)
 							}
 							if (null != r.modelSetting.getHitAreasCustom()) {

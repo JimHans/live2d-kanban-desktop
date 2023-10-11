@@ -1,0 +1,6 @@
+Live2D Cubism Components is under Live2D Open Software License and additional permission.
+For legal details, be sure to check Live2D Open Software License.
+
+Live2D Open Software License
+http://www.live2d.com/eula/live2d-open-software-license-agreement_en.html
+http://www.live2d.com/eula/live2d-open-software-license-agreement_jp.html

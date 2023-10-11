@@ -3,8 +3,11 @@
 const { app, BrowserWindow , Menu , Tray, shell, ipcMain} = require('electron')
 const dialog = require('electron').dialog;
 const path = require('path');
+const fs = require('fs');
 const internal = require('stream');
-let tray = null;/*托盘全局对象*/let settings = null;/*设置全局对象*/let settings_ontop =false;/*设置总在最上-全局flag*/
+let tray = null;/*托盘全局对象*/
+let settings = null;/*设置全局对象*/
+let settings_ontop =false;/*设置总在最上-全局flag*/
 let calcrater = 0; var PoinThrough = '点击穿透';
 var packageGet = require("./package.json");
 
@@ -33,6 +36,8 @@ function createWindow () {
     }
   })
 
+  require("@electron/remote/main").enable(win.webContents);
+  require('@electron/remote/main').initialize();
   // 并且为你的应用加载index.html
   win.loadFile('index.html')
 
@@ -54,7 +59,7 @@ function createWindow () {
     //新建设置窗口
     /*let*/ settings = new BrowserWindow({
       width: parseInt(setwidth/3),
-      height: parseInt((setwidth/3)*(14/16)),
+      height: parseInt((setwidth/3)*(20/16)),
       minWidth: 470,
       minHeight: 320,
       skipTaskbar: false,//显示在任务栏
@@ -90,6 +95,14 @@ function createWindow () {
 
   //系统托盘右键菜单
   var trayMenuTemplate = [
+    {
+      label: 'Kanban Desktop',
+      enabled: false,
+      icon: path.join(__dirname, './assets/Taskbar.png')
+    },
+    {
+      type: 'separator'
+    }, //分隔线
     {
       label: 'Kanban-Desktop 设置',
       click: function () {
@@ -147,6 +160,9 @@ function createWindow () {
       } //打开相应页面
     },
     {
+      type: 'separator'
+    }, //分隔线
+    {
         label: PoinThrough,
         submenu: [
           {
@@ -176,6 +192,9 @@ function createWindow () {
         },
       ],
   },
+  {
+    type: 'separator'
+  }, //分隔线
     {
         label: '退出',
         click: function () {

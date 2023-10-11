@@ -203,7 +203,7 @@ input::-webkit-input-placeholder {
     user-select: none;
 }
 .brickSubtitle{
-    z-index: 0;font-size: 13px;color: #b9b9b9;
+    z-index: 0;font-size: 13px;color: #b9b9b9;top: 3px;position: relative;
 }
 
 /*!页面元素选择开关*/

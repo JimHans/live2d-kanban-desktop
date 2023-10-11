@@ -80,8 +80,8 @@ live2d_settings.waifuDraggable       = 'unlimited';    // 拖拽样式，例如 
 live2d_settings.waifuDraggableRevert = true;         // 松开鼠标还原拖拽位置，可选 true(真), false(假)
 
 // 其他杂项设置
-live2d_settings.l2dVersion           = '2.6.0';                               // 当前版本
-live2d_settings.l2dVerDate           = '2023-03-15';                          // 版本更新日期
+live2d_settings.l2dVersion           = '2.7.0';                               // 当前版本
+live2d_settings.l2dVerDate           = '2023-10-04';                          // 版本更新日期
 live2d_settings.homePageUrl          = 'https://www.zerolite.cn/';            // 主页地址，已弃用
 live2d_settings.aboutPageUrl         = 'https://www.zerolite.cn/';            // 关于页地址
 live2d_settings.screenshotCaptureName= 'kanban.png';                          // 看板娘截图文件名，例如 'live2d.png'
@@ -233,7 +233,7 @@ function initModel(waifuPath, type) {
         window.open(live2d_settings.aboutPageUrl);
     });
     
-    if (typeof(waifuPath) === "object") loadTipsMessage(waifuPath); else {
+    if (typeof(waifuPath) === "object") loadTipsMessage(waifuPath); else { 
         $.ajax({
             cache: true,
             url: waifuPath === '' ? live2d_settings.tipsMessage : (waifuPath.substr(waifuPath.length-15)==='waifu-tips.json'?waifuPath:waifuPath+'waifu-tips.json'),
@@ -269,6 +269,9 @@ function initModel(waifuPath, type) {
 function loadModel(modelId, modelTexturesId=0) {
     if(localStorage.getItem('localModelLoad') == 'true')
     {
+        if (localStorage.getItem('localModelPath').slice(-11) == 'model3.json') 
+        loadModelV3() // ! Cubism 3 模型加载支持 
+        else          // ! Cubism 2 模型加载支持
         loadlive2d('live2d', localStorage.getItem('localModelPath'), (live2d_settings.showF12Status ? console.log('[Status]','live2d',localStorage.getItem('localModelPath'),'本地模型加载完成'):null));
     }
     else
@@ -560,7 +563,7 @@ function loadTipsMessage(result) {
             body: '你所预定的日程时间已经到了，点击此条消息停止响铃',
             // false有声音，true没声音
             silent: false,
-            icon: './assets/notifi.jpg',
+            icon: './assets/alarm.png',
             // 通知的超时持续时间 'default' or 'never'
             timeoutType: 'never',
         })

@@ -12,6 +12,7 @@ win:
   asarUnpack:
     - src/**
     - README.md
+    - includes/waifu-tips.json
 nsis:
   oneClick: false
   allowElevation: true

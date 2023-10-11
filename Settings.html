@@ -70,13 +70,14 @@
             <div class="setpageINNER">
             <!-- <form> -->
                 <h3 style="margin-top:15px;margin-bottom:15px;margin-left:13px;">🧱 模型设置</h3>
+                <div href="javascript:;" class="button" value="保存并应用" onclick="submitB();" style="top: 10px;user-select: none;width:auto" >&nbsp;&nbsp;保存并应用&nbsp;&nbsp;</div>
                 <div class="brickContainer">模型随机切换<label class="switch"><input class="input" type="checkbox" name="checkboxB" value="modelRandSwitch" /><div class="slider"></div></label></div>
                 <div class="brickContainer">材质随机切换<label class="switch"><input class="input" type="checkbox" name="checkboxB" value="textureRandSwitch" /><div class="slider"></div></label></div>
                 <div class="brickContainer">显示一言<label class="switch"><input class="input" type="checkbox" name="checkboxB" value="showHitokoto" /><div class="slider"></div></label></div>
                 <div class="brickContainer">显示欢迎词<label class="switch"><input class="input" type="checkbox" name="checkboxB" value="showWelcome" /><div class="slider"></div></label></div>
                 <div class="brickContainer">自定义模型API<!-- <li style="margin-top:10px;margin-bottom:3px;">自定义模型API</li> --><input class="inputText" type="text" name="checkboxB" placeholder="输入自定义API地址" required></div>
                 
-                <h3 style="margin-top:15px;margin-bottom:15px;margin-left:13px;">🧭 悬浮球设置</h3>
+                <h3 style="margin-top:15px;margin-bottom:15px;margin-left:13px;">🔮 悬浮球设置</h3>
                 <div class="brickContainer" style="height: 100px;">
                     <div id="localBubbleCurrentPath" style="margin:auto 10px;text-align: center;height:80px;width:80px;background-size:cover;border-radius:7px;box-shadow: 0px 0px 5px 0px rgba(45, 45, 45, 0.75);"></div>
                     <div href="javascript:;" class="button">选择文件<input id="localBubbleSelect" type="file" class="inputFile" accept="image/*" onchange="javascript:{document.getElementById('fileInfoBubble').innerHTML = document.getElementById('localBubbleSelect').files[0].path.replaceAll('\\','/')
@@ -87,14 +88,18 @@
                 <h3 style="margin-top:15px;margin-bottom:15px;margin-left:13px;">📚 高级设置<a style="font-size: 13px;"> 自定义更多高级设置项</a></h3>
                 <div class="brickContainer"><div>自定义搜索引擎<br><!--<li style="margin-top:10px;margin-bottom:3px;">自定义搜索引擎</li>--><a class="brickSubtitle">输入搜索引擎URL</a></div>
                 <input class="inputText" type="text" name="checkboxB" placeholder="默认为Google" required></div>
+                <div class="brickContainer"><div>高清晰度渲染<br/><a class="brickSubtitle">使用2x放大后降采样使模型边缘更锐利</a></div><label class="switch"><input class="input" type="checkbox" name="checkboxB" value="highQualityRender" checked="true" disabled><div class="slider"></div></label></div>
+                <div class="brickContainer">
+                    <div>编辑waifu-tips问候语<br><a class="brickSubtitle">编辑悬浮对话泡的问候语与点击响应</a></div>
+                    <div href="javascript:;" class="button" style="width:140px" onclick="">编辑文件</div></div>
 
                 <div class="brickContainer" style="height: 60px;color: #ff4848;"><div>清除数据<br><a class="brickSubtitle" style="font-size: 13px;color: #ff4848;"> 清除所有用户数据（谨慎操作！）</a></div>
                     <button type="button" value="清除数据" onclick="localStorage.clear();" class="button_red" style="width:120px">清除所有数据</button>
                 </div>
                 
-                <div class="box">
+                <!-- <div class="box">
                     <button type="button" value="保存并应用" onclick="submitB();" class="btn">保存并应用</button>
-                </div>
+                </div> -->
                 <!-- <input type="button" value="保存并应用" onclick="submitB()" style="margin-top:7px;"/> -->
             <!-- </form> -->
             </div>
@@ -102,22 +107,42 @@
         <div class="setpage" id="setpageC" style="display: none;">
             <div class="setpageINNER">
             <!-- <form> -->
-                <h3 style="margin-top:15px;margin-bottom:15px;margin-left:13px;">🧪 实验室</h3>
+                <h3 style="margin-top:15px;margin-bottom:15px;margin-left:13px;">🧪 实验功能</h3>
                 <div href="javascript:;" class="button" value="保存并应用" onclick="submitC();" style="top: 10px;user-select: none;width:auto" >&nbsp;&nbsp;保存并应用&nbsp;&nbsp;</div>
                 <div class="brickContainer" style="background-color:#433519"><svg t="1669908006524" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1391" data-darkreader-inline-fill="" width="20" height="20"><path d="M510.032 93.09c-229.9 0-416.94 187.924-416.94 418.91 0 230.986 187.92 418.91 418.908 418.91 230.986 0 418.91-187.924 418.91-418.91 0-230.986-188.804-418.91-420.88-418.91z" fill="#fce100" p-id="1392" style="--darkreader-inline-fill: #fce100;" data-darkreader-inline-fill=""></path><path d="M558.546 723.78h-93.092v-93.09h93.092zM558.546 539.928h-93.092V302.546h93.092z" fill="#000" p-id="1393" style="--darkreader-inline-fill: #181a1b;" data-darkreader-inline-fill=""></path></svg><p style="margin-left:13px;font-size: 15px;font-weight: bold;">这里的设置具有实验性</p></div>
-                <div class="brickContainer">全屏任意拖拽<label class="switch"><input class="input" type="checkbox" name="checkboxC" value="unlimitedDrag"><div class="slider"></div></label></div>
-                <div class="brickContainer">高清晰度渲染<label class="switch"><input class="input" type="checkbox" name="checkboxC" value="highQualityRender" checked="true" disabled><div class="slider"></div></label></div>
-                <div class="brickContainer">开发人员选项<label class="switch"><input class="input" type="checkbox" name="checkboxC" value="developerMode"><div class="slider"></div></label></div>
-                <div class="brickContainer">启用本地模型文件加载<label class="switch"><input class="input" type="checkbox" name="checkboxC" value="localModelLoad"><div class="slider"></div></label></div>
-                <div class="brickContainer">
-                    <div>选择本地模型文件<br><a class="brickSubtitle" style="color: crimson;">*注意，请选择模型的JSON清单文件！</a></div>
+                <!--checkboxC0--><div class="brickContainer">全屏任意拖拽<label class="switch"><input class="input" type="checkbox" name="checkboxC" value="unlimitedDrag"><div class="slider"></div></label></div>
+                <!--checkboxC1--><div class="brickContainer">开发人员选项<label class="switch"><input class="input" type="checkbox" name="checkboxC" value="developerMode"><div class="slider"></div></label></div>
+                <!--checkboxC2--><div class="brickContainer">启用本地模型文件加载<label class="switch"><input class="input" type="checkbox" name="checkboxC" value="localModelLoad"><div class="slider"></div></label></div>
+                <div class="brickContainer" style="background-color:#2b4f6c;height:auto">
+                    <p style="margin-left:13px;font-size: 15px;line-height: 20px;">
+                        根据Live2D Cubism EULA许可，本程序使用官方在线CDN提供的引擎JS加载Live2D V3及以上版本模型。若您需要离线使用，请前往 <a onclick="shell.openExternal('https://cubism.live2d.com/sdk-web/cubismcore/live2dcubismcore.min.js')" style="font-weight: bold;text-decoration: underline;">此链接</a> 下载官方JS引擎文件，并放置在程序根目录\Resource文件夹下。</p>
+                </div>
+                <div class="brickContainer" style="height:65px">
+                    <div>选择本地模型文件<br><a class="brickSubtitle" style="color: crimson;top: 5px;position: relative;">注意，请选择模型的JSON清单文件！<br/>如 model.json(V2); xxx.model3.json(V3+)</a></div>
                     <div href="javascript:;" class="button" style="width:140px">选择模型文件<input id="localModelSelect" type="file" class="inputFile" onchange="javascript:{document.getElementById('localModelCurrentPath').innerHTML = document.getElementById('localModelSelect').value;$('#localModelCurrentPath').scrollLeft( $('#localModelCurrentPath')[0].scrollWidth);}"></div><!--获取本地文件路径 -->
                     <!-- <input id="localModelSelect" type="file" style="opacity: 0;"> 获取本地文件路径 --></div>
                 <div class="brickContainer">当前选定模型<div id="localModelCurrentPath" class="fileInfo" style="border: none;"></div></div>
+                <!--checkboxC3--><div class="brickContainer">模型缩放百分比(适用于moc3+)
+                    <button type='button' value='-' class='button' style='width:30px;right:125px;font-size: 16px;' onclick='$("#localModelV3Scale").val(parseFloat($("#localModelV3Scale").val())-1)'>-</button>
+                    <input id="localModelV3Scale" class="inputText" style="width: 60px;text-align: center;right:55px" type="text" name="checkboxC" placeholder="输入缩放比率，如100即为100%" required>
+                    <button type='button' value='+' class='button' style='width:30px;right:20px;font-size: 16px; ' onclick='$("#localModelV3Scale").val(parseFloat($("#localModelV3Scale").val())+1)'>+</button>
+                </div>
+                <!--checkboxC4--><div class="brickContainer">模型X轴偏移量(适用moc2&3+)
+                    <button type='button' value='-' class='button' style='width:30px;right:125px' onclick='$("#localModelV3Xaxis").val(parseFloat($("#localModelV3Xaxis").val())-1)'>◀</button>
+                    <input id="localModelV3Xaxis" class="inputText" style="width: 60px;text-align: center;right:55px" type="text" name="checkboxC" placeholder="输入X轴偏移，向右为正，填入无需单位" required>
+                    <button type='button' value='+' class='button' style='width:30px;right:20px' onclick='$("#localModelV3Xaxis").val(parseFloat($("#localModelV3Xaxis").val())+1)'>▶</button>
+                </div>
+                <!--checkboxC5--><div class="brickContainer">模型Y轴偏移量(适用moc2&3+)
+                    <button type='button' value='-' class='button' style='width:30px;right:125px' onclick='$("#localModelV3Yaxis").val(parseFloat($("#localModelV3Yaxis").val())-1)'>▲</button>
+                    <input id="localModelV3Yaxis" class="inputText" style="width: 60px;text-align: center;right:55px" type="text" name="checkboxC" placeholder="输入Y轴偏移，向下为正，填入无需单位" required>
+                    <button type='button' value='+' class='button' style='width:30px;right:20px' onclick='$("#localModelV3Yaxis").val(parseFloat($("#localModelV3Yaxis").val())+1)'>▼</button>
+                </div>
 
-                <h3 style="margin-top:15px;margin-bottom:15px;margin-left:13px;">🧪 语言模型设置</h3>
-                <div class="brickContainer">ChatGPT对话支持<label class="switch"><input class="input" type="checkbox" name="checkboxC" value="ChatGPTFunc"><div class="slider"></div></label></div>
-                <div class="brickContainer">ChatGPT API Key<input class="inputText" type="text" name="checkboxC" placeholder="输入API Key" required></div>
+                <h3 style="margin-top:15px;margin-bottom:15px;margin-left:13px;">💬 语言模型设置</h3>
+                <!--checkboxC6--><div class="brickContainer">ChatGPT对话支持<label class="switch"><input class="input" type="checkbox" name="checkboxC" value="ChatGPTFunc"><div class="slider"></div></label></div>
+                <!--checkboxC7--><div class="brickContainer">ChatGPT API Key<input class="inputText" type="text" name="checkboxC" placeholder="输入API Key" required></div>
+                <!--checkboxC8--><div class="brickContainer">Bing Chat对话支持(暂不可用)<label class="switch"><input class="input" type="checkbox" name="checkboxC" value="BingFunc" disabled><div class="slider"></div></label></div>
+                <!--checkboxC9--><div class="brickContainer">Bing Chat Cookies<input class="inputText" type="text" name="checkboxC" placeholder="输入Cookies" required></div>
                 
                 <!-- <div class="box">
                     <button type="button" value="保存并应用" onclick="submitC();" class="btn">保存并应用</button>
@@ -144,6 +169,7 @@
 </body>
 <script>
     const { ipcRenderer,shell } = nodeRequire('electron'); //Electron 依赖调入
+    let exec = nodeRequire('child_process').exec;          //?引用exec用于CMD指令执行
     window.onload = function () { //获取软件版本号
         var package = nodeRequire("./package.json");
         document.getElementById("App_Ver").innerHTML=package.name+" v"+package.version; // Get Version
@@ -194,12 +220,20 @@
 
     //初始化PageC复选框
     var checkboxCInit = document.getElementsByName("checkboxC");
-    if (localStorage.getItem(checkboxCInit[0].value) == 'true') {checkboxCInit[0].checked = true;}
-    if (localStorage.getItem(checkboxCInit[3].value) == 'true') {checkboxCInit[3].checked = true;
+    if (localStorage.getItem(checkboxCInit[0].value) == 'true') {checkboxCInit[0].checked = true;} //全屏任意拖拽
+    if (localStorage.getItem(checkboxCInit[2].value) == 'true') {checkboxCInit[2].checked = true; //本地模型文件加载
         document.getElementById("localModelCurrentPath").innerHTML="当前文件为"+localStorage.getItem('localModelPath');}
-    if (localStorage.getItem(checkboxCInit[4].value) == 'true') {checkboxCInit[4].checked = true;}
-    if ((!localStorage.getItem("ChatgptKey")) || localStorage.getItem("ChatgptKey") == ""){checkboxCInit[5].value="";}
-    else {checkboxCInit[5].value=localStorage.getItem("ChatgptKey");} //自定义API获取
+    
+    if ((!localStorage.getItem("localModelV3Scale")) || localStorage.getItem("localModelV3Scale") == '100'){checkboxCInit[3].value='100';}
+    else {checkboxCInit[3].value=localStorage.getItem("localModelV3Scale");} //自定义模型缩放比率获取
+    if ((!localStorage.getItem("localModelV3Xaxis")) || localStorage.getItem("localModelV3Xaxis") == '0'){checkboxCInit[4].value='0';}
+    else {checkboxCInit[4].value=localStorage.getItem("localModelV3Xaxis");} //自定义模型X轴偏移获取
+    if ((!localStorage.getItem("localModelV3Yaxis")) || localStorage.getItem("localModelV3Yaxis") == '40'){checkboxCInit[5].value='40';}
+    else {checkboxCInit[5].value=localStorage.getItem("localModelV3Yaxis");} //自定义模型Y轴偏移获取
+
+    if (localStorage.getItem(checkboxCInit[6].value) == 'true') {checkboxCInit[6].checked = true;} //ChatGPT对话支持
+    if ((!localStorage.getItem("ChatgptKey")) || localStorage.getItem("ChatgptKey") == ""){checkboxCInit[7].value="";}
+    else {checkboxCInit[7].value=localStorage.getItem("ChatgptKey");} //自定义API获取
     
     // function closeset() {ipcRenderer.send('Settings','Close');} // 关闭
     
@@ -319,12 +353,18 @@
         var checkboxC = document.getElementsByName("checkboxC");
         if (checkboxC[0].checked == true) {localStorage.setItem(checkboxC[0].value,true);}
         else {localStorage.setItem(checkboxC[0].value,false);}
-        if (checkboxC[2].checked == true) {ipcRenderer.send('dev','Open');} //Develop Mode 无记忆
-        if (checkboxC[3].checked == true) {localStorage.setItem(checkboxC[3].value,true);} //本地模式
-        else {localStorage.setItem(checkboxC[3].value,false);}
-        if (checkboxC[4].checked == true) {localStorage.setItem(checkboxC[4].value,true);} //chatgpt开关
-        else {localStorage.setItem(checkboxC[4].value,false);}
-        localStorage.setItem("ChatgptKey",checkboxC[5].value); //保存chatgptKey
+        if (checkboxC[1].checked == true) {ipcRenderer.send('dev','Open');} //Develop Mode 无记忆
+        if (checkboxC[2].checked == true) {localStorage.setItem(checkboxC[2].value,true);} //本地模式
+        else {localStorage.setItem(checkboxC[2].value,false);}
+
+        localStorage.setItem("localModelV3Scale",checkboxC[3].value); //保存localModelV3Scale
+        localStorage.setItem("localModelV3Xaxis",checkboxC[4].value); //保存localModelV3Xaxis
+        localStorage.setItem("localModelV3Yaxis",checkboxC[5].value); //保存localModelV3Yaxis
+
+        if (checkboxC[6].checked == true) {localStorage.setItem(checkboxC[6].value,true);} //chatgpt开关
+        else {localStorage.setItem(checkboxC[6].value,false);}
+
+        localStorage.setItem("ChatgptKey",checkboxC[7].value); //保存chatgptKey
 
         if(document.getElementById('localModelSelect').files[0])
         {
