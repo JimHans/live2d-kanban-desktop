@@ -26,7 +26,7 @@ function createWindow () {
     transparent: true,//底部透明
     frame: false,
     resizable: false,//不可调节大小
-    icon: './assets/app.ico',
+    icon: './assets/applogo.png',
     webPreferences: {
       devTools: true,
       nodeIntegration: true,
@@ -58,8 +58,8 @@ function createWindow () {
     var setheight = screenElectron.getPrimaryDisplay().workAreaSize.height;
     //新建设置窗口
     /*let*/ settings = new BrowserWindow({
-      width: parseInt(setwidth/3),
-      height: parseInt((setwidth/3)*(20/16)),
+      width:  parseInt(setheight*5/8),//parseInt(setwidth/3),
+      height: parseInt(setheight*3/4),//parseInt((setwidth/3)*(20/16)),
       minWidth: 470,
       minHeight: 320,
       skipTaskbar: false,//显示在任务栏
@@ -71,7 +71,7 @@ function createWindow () {
           color: "#202020",
           symbolColor: "white", },
       resizable: true,
-      icon: path.join(__dirname, './assets/app.ico'),
+      icon: path.join(__dirname, './assets/applogo.png'),
       show: true,
       webPreferences: {
         devTools: true,
@@ -123,7 +123,7 @@ function createWindow () {
             //   transparent: true,//底部透明
             //   frame: false,
             //   resizable: true,
-            //   icon: './assets/app.ico',
+            //   icon: './assets/applogo.png',
             //   show: false,
             //   webPreferences: {
             //     devTools: true,
@@ -218,13 +218,14 @@ function createWindow () {
 
   //图标的上下文菜单
   trayIcon = path.join(__dirname, 'assets');//选取目录
-  tray = new Tray(path.join(trayIcon, 'app.ico'));
+  tray = new Tray(path.join(trayIcon, 'applogo256.png'));
   let contextMenu = Menu.buildFromTemplate(trayMenuTemplate);
 
   //设置此托盘图标的悬停提示内容
   tray.setToolTip('Kanban-Desktop');
 
-  app.setAppUserModelId('Kanban-Desktop');
+  app.setAppUserModelId('com.Zerolite.Kanban-Desktop');
+  Menu.setApplicationMenu(null); //去除Linux菜单栏
   //设置此图标的上下文菜单
   tray.setContextMenu(contextMenu);
 
@@ -265,7 +266,7 @@ function createWindow () {
       //       transparent: true,//底部透明
       //       frame: false,
       //       resizable: true,
-      //       icon: './assets/app.ico',
+      //       icon: './assets/applogo.png',
       //       show: false,
       //       webPreferences: {
       //         devTools: true,
@@ -293,6 +294,11 @@ function createWindow () {
   ipcMain.on("dev",(event,data) => {
     console.log(data); 
     if(data == 'Open') {settings.webContents.openDevTools();win.webContents.openDevTools();}
+  });
+
+  //返回是否打包状态
+  ipcMain.handle('get-is-packaged', async (event) => {
+    return app.isPackaged;
   });
 }
 
@@ -352,6 +358,45 @@ ipcMain.on("PTBox",(event,data) => {
   }
 });
 
+if (process.platform == 'win32') {
+  // Depends on SnoreToast version https://github.com/KDE/snoretoast/blob/master/CMakeLists.txt#L5
+  const toastActivatorClsid = "eb1fdd5b-8f70-4b5a-b230-998a2dc19303"; // v0.7.0
+  // const toastActivatorClsid = "849c2549-fe1e-4aa6-bb93-4690993ccb89"; // v0.9.0
 
+  const appID = "com.Zerolite.Kanban-Desktop";
+  const appLocation = process.execPath;
+  const appData = app.getPath("appData");
+
+  // continue if not in dev mode / running portable app
+  if (!appLocation.startsWith(path.join(appData, "..", "Local", "Temp"))) {
+    // shortcutPath can be anywhere inside AppData\Roaming\Microsoft\Windows\Start Menu\Programs\
+    const shortcutPath = path.join(appData, "Microsoft", "Windows", "Start Menu", "Programs", "Kanban-Desktop.lnk");
+    // check if shortcut doesn't exist -> create it, if it exist and invalid -> update it
+    try { 
+      const shortcutDetails = shell.readShortcutLink(shortcutPath); // throws error if it doesn't exist yet
+      // validate shortcutDetails
+      if (
+        shortcutDetails.target !== appLocation ||
+        shortcutDetails.appUserModelId !== appID ||
+        shortcutDetails.toastActivatorClsid !== toastActivatorClsid
+      ) {
+        throw "needUpdate";
+      }
+      // if the execution got to this line, the shortcut exists and is valid
+    } catch (error) { // if not valid -> Register shortcut
+      shell.writeShortcutLink(
+        shortcutPath,
+        error === "needUpdate" ? "update" : "create",
+        {
+          target: appLocation,
+          cwd: path.dirname(appLocation),
+          description: "Kanban Desktop Electron Based",
+          appUserModelId: appID,
+          toastActivatorClsid
+        }
+      );
+    }
+  }
+}
 // 您可以把应用程序其他的流程写在在此文件中
 // 代码也可以拆分成几个文件，然后用 require 导入。

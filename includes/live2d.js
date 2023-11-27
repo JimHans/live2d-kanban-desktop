@@ -4204,9 +4204,11 @@ default = r;
 	var localModelPather = ""; // Get Local Path
 	if(localStorage.getItem('localModelLoad') == 'true') {
 		var URLSlicer = -1; var URLGet = localStorage.getItem('localModelPath');
-		for(URLSlicer = -1;URLSlicer!=URLGet.length;URLSlicer--)
-		{if(URLGet[URLGet.length+URLSlicer]=='\\') break;}
+		var separator = URLGet.includes('\\') ? '\\' : '/';
+		for(URLSlicer = -1;URLSlicer!=URLGet.length*(-1);URLSlicer--)
+		{if(URLGet[URLGet.length+URLSlicer]==separator) break;}
 		localModelPather = localStorage.getItem('localModelPath').slice(0,URLSlicer+1);
+		if (process.platform=="linux"){localModelPather=""} //Linux下不需要此路径
 		r.prototype.loadModelSetting = function(t, i) {
 			var e = this;
 			o.Live2DFramework.getPlatformManager().loadBytes(t, function(t) {

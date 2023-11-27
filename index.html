@@ -117,6 +117,11 @@
 			document.getElementById("NLPask").style.height="0px"; //iframe隐藏
 			$("#nlpsubmit").attr("onclick","document.getElementById('NLPask').style.display='block';gptrun(document.getElementById('nlp').value,'ChatBox');") //更换onclick动作
 		}
+		else if (localStorage.getItem("OpenRouterFunc")=="true") { //OpenRouter调用
+			$("#AskBox").attr('onsubmit','return false'); //禁止回车提交
+			document.getElementById("NLPask").style.height="0px"; //iframe隐藏
+			$("#nlpsubmit").attr("onclick","document.getElementById('NLPask').style.display='block';OpenRouterRun(document.getElementById('nlp').value,'ChatBox');") //更换onclick动作
+		}
 
 
         function toolopen() /****展开工具栏****/	
@@ -139,7 +144,7 @@
 			{
 				console.log("Search!");
 				if (localStorage.getItem("customSearch")) {SearchURL=localStorage.getItem("customSearch");}
-				else {SearchURL="https://www.google.com/search?q=";} //百度:https://www.baidu.com/s?wd=
+				else {SearchURL="https://www.bing.com/search?q=";} //百度:https://www.baidu.com/s?wd=
 				ipcRenderer.send('open-url', SearchURL+document.getElementById("nlp").value);
 			}
 		}
@@ -149,9 +154,14 @@
 			Change+=1;
 			if (Change%2===0) //切换NLP对话模式
 			{
-				if(localStorage.getItem("ChatGPTFunc")=="true"){ //chatgpt调用
+				if(localStorage.getItem("ChatGPTFunc")=="true"){ //ChatGPT调用
 					$("#AskBox").attr('onsubmit','return false'); //禁止回车提交
 					$("#nlpsubmit").attr("onclick","document.getElementById('NLPask').style.display = 'block';gptrun(document.getElementById('nlp').value,'ChatBox');");  //更换onclick动作
+					document.getElementById("NLPask").style.height="0px"; //iframe隐藏
+				}
+				else if (localStorage.getItem("OpenRouterFunc")=="true") { //OpenRouter调用
+					$("#AskBox").attr('onsubmit','return false'); //禁止回车提交
+					$("#nlpsubmit").attr("onclick","document.getElementById('NLPask').style.display = 'block';OpenRouterRun(document.getElementById('nlp').value,'ChatBox');");  //更换onclick动作
 					document.getElementById("NLPask").style.height="0px"; //iframe隐藏
 				}
 				else{document.getElementById("NLPask").style.height="70px";
@@ -180,8 +190,24 @@
 		else {document.getElementById('GlobalDragLine').style.display = 'none';}
     </script>
 	<script>
+		// fetch("https://openrouter.ai/api/v1/chat/completions", {
+		// method: "POST",
+		// headers: {
+		// 	"Authorization": `Bearer`,
+		// 	"HTTP-Referer": `https://github.com/JimHans/live2d-kanban-desktop`, // To identify your app. Can be set to localhost for testing
+		// 	"X-Title": `kanban-desktop`, // Optional. Shows on openrouter.ai
+		// 	"Content-Type": "application/json"
+		// },
+		// body: JSON.stringify({
+		// 	"messages": [
+		// 	{"role": "user", "content": ""}
+		// 	]
+		// })
+		// })  
+		// .then((response) => response.json())
+		// .then((data) => console.log(data.choices[0].message.content));
 		// const BingAI = nodeRequire('@ibaraki-douji/bing-ai').default;
-		// const ai = new BingAI("_U=19u3SZ78fVHyhcDC2ZUOqCEf3kyBmPWhkAKVnU_P9-PAa3DDncNwIlxRAjaunEDjtFZL6nJmFxDlj5Jc5E6Qvf3LyzdlD6IsiuCfue-oEdl3WTiaEXriJWt55bFcE0jZpW_QX2fZOKcrSZLScaIi0urKznm4jBiOx_q1B73Pmla7ln1AK4-S8MXdTpfcdIdjq80ndan4HG7axC-lZXVUDUw;");
+		// const ai = new BingAI("");
 		// ai.createConversation().then((conversation) => {
 		// 	conversation.sendMessage("Hello").then((response) => {
 		// 		// do something with the response
@@ -190,7 +216,7 @@
 
 		// const { ChatBot } = nodeRequire('bingai-js');
 		// const { conversation_style } = nodeRequire('bingai-js/src/Utility');
-		// const cookie = "11vnn_kpgAevdE6ZWT3fSHcAa_3PuIzQzz1JKPx77XYNOVTCEJY1-QsG9QvKcj6694E2DgOoNvH_6Qkp-X8mcD_BV7hqGWHNexrnkfBjAxJSi_XyuxPjvyQRgqZOgVP9iW9JqUjb4Z3NzauK2L2yJhxA1QUs53PgoIOcrKt8mEdc8u6Q16WP0V5Ume7T1VMaC8-wpOGqGxKhWlKQI9mZcRA"
+		// const cookie = ""
 		// const chatdialog = new ChatBot(cookie);
 		// async function test() {
 		// 	await chatdialog.init();
@@ -199,7 +225,7 @@
 		// 	*   creative : conversation_style.creative
 		// 	*   precise  : conversation_style.precise
 		// 	*/
-		// 	console.log( await chatdialog.ask("你好！" , conversation_style.balanced))
+		// 	console.log( await chatdialog.ask("" , conversation_style.balanced))
 		// }
 
 		// test()

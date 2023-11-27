@@ -46,3 +46,42 @@ const response = await axios({
         })
     }
 }
+
+async function OpenRouterRun(sentense,answerDiv) {
+    showMessageLocked('正在请求中...',undefined);
+const response = await axios({
+    method: 'POST',
+    responseType: 'json',
+    url: 'https://openrouter.ai/api/v1/chat/completions',
+    validateStatus(status) {return true},
+    headers: {
+        "Authorization": `Bearer `+localStorage.getItem("OpenRouterKey"),
+        "HTTP-Referer": `https://github.com/JimHans/live2d-kanban-desktop`, // To identify your app. Can be set to localhost for testing
+        "X-Title": `kanban-desktop`, // Optional. Shows on openrouter.ai
+        "Content-Type": "application/json"
+    },
+    data: JSON.stringify({
+        "messages": [
+        {"role": "user", "content": sentense}
+        ],
+        stream: false,
+    }),
+})
+    if (response.status >= 200 && response.status < 300) {
+        showMessageLocked(GptAnswerCross+response.data.choices[0].message.content);
+        console.log('[response]', response.data)
+        // document.getElementById(answerDiv).innerHTML=(response.data.choices[0].message.content);
+    } 
+    else {
+        showMessageLocked(GptAnswerCross+response.data.error.message);
+        // document.getElementById(answerDiv).innerHTML=(response.data.error.message);
+        console.log('[response]', {
+        data: {
+            message: response.data.error.message,
+            type: response.data.error.type,
+            code: response.data.error.code,
+        },
+        status: response.status,
+        })
+    }
+}

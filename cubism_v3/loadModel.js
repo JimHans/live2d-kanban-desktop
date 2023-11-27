@@ -1,10 +1,12 @@
+// var getCursorPosition = nodeRequire('get-cursor-position');
 var LIVE2DCUBISMCORE = Live2DCubismCore
 //如果资源在CDN，一定要写http://或者https://否则会以本域名请求且为相对路径
 //模型的model3.json文件路径
 let GetModelPath = localStorage.getItem('localModelPath')
-let CleanModelPath = GetModelPath.slice((GetModelPath.lastIndexOf("\\")) + 1)
-var baseModelPath = GetModelPath.slice(0,(GetModelPath.lastIndexOf("\\")));//"./models/";
-console.log(baseModelPath)
+let separator = GetModelPath.includes('\\') ? '\\' : '/';
+let CleanModelPath = GetModelPath.slice((GetModelPath.lastIndexOf(separator)) + 1)
+var baseModelPath = GetModelPath.slice(0,(GetModelPath.lastIndexOf(separator)));//"./models/";
+console.log("Live2dV3 PATH:"+baseModelPath)
 var modelNames = [CleanModelPath.slice(0,-12).toString()];
 var modelPath;
 //Application全局变量
@@ -251,7 +253,8 @@ function setMouseTrick(model,app,canvas,motions){
         window.clearTimeout(mouseMove);
         mouse_x = e.pageX - scrollElm.scrollLeft;
         mouse_y = e.pageY - scrollElm.scrollTop;
-        mouseMove =  window.setTimeout(function(){mouse_x = center_x , mouse_y = center_y} , 5000);
+        if(localStorage.getItem('enableAutoalign') == 'false'){;}
+        else{mouseMove =  window.setTimeout(function(){mouse_x = center_x , mouse_y = center_y} , 5000);}
     });
     var timeOut;
     document.body.addEventListener("click", function(e){

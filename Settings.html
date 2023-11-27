@@ -87,11 +87,12 @@
                 
                 <h3 style="margin-top:15px;margin-bottom:15px;margin-left:13px;">📚 高级设置<a style="font-size: 13px;"> 自定义更多高级设置项</a></h3>
                 <div class="brickContainer"><div>自定义搜索引擎<br><!--<li style="margin-top:10px;margin-bottom:3px;">自定义搜索引擎</li>--><a class="brickSubtitle">输入搜索引擎URL</a></div>
-                <input class="inputText" type="text" name="checkboxB" placeholder="默认为Google" required></div>
+                <input class="inputText" type="text" name="checkboxB" placeholder="默认为Bing" required></div>
                 <div class="brickContainer"><div>高清晰度渲染<br/><a class="brickSubtitle">使用2x放大后降采样使模型边缘更锐利</a></div><label class="switch"><input class="input" type="checkbox" name="checkboxB" value="highQualityRender" checked="true" disabled><div class="slider"></div></label></div>
                 <div class="brickContainer">
                     <div>编辑waifu-tips问候语<br><a class="brickSubtitle">编辑悬浮对话泡的问候语与点击响应</a></div>
                     <div href="javascript:;" class="button" style="width:140px" onclick="">编辑文件</div></div>
+                <div class="brickContainer">启用看板娘自动回正<label class="switch"><input class="input" type="checkbox" name="checkboxB" value="enableAutoalign" /><div class="slider"></div></label></div>
 
                 <div class="brickContainer" style="height: 60px;color: #ff4848;"><div>清除数据<br><a class="brickSubtitle" style="font-size: 13px;color: #ff4848;"> 清除所有用户数据（谨慎操作！）</a></div>
                     <button type="button" value="清除数据" onclick="localStorage.clear();" class="button_red" style="width:120px">清除所有数据</button>
@@ -139,10 +140,13 @@
                 </div>
 
                 <h3 style="margin-top:15px;margin-bottom:15px;margin-left:13px;">💬 语言模型设置</h3>
-                <!--checkboxC6--><div class="brickContainer">ChatGPT对话支持<label class="switch"><input class="input" type="checkbox" name="checkboxC" value="ChatGPTFunc"><div class="slider"></div></label></div>
+                <!--checkboxC6--><div class="brickContainer"><div>ChatGPT对话支持<br><a class="brickSubtitle" style="top: 5px;position: relative;">默认代理:127.0.0.1:7890</a></div><label class="switch"><input class="input" type="checkbox" name="checkboxC" value="ChatGPTFunc"><div class="slider"></div></label></div>
                 <!--checkboxC7--><div class="brickContainer">ChatGPT API Key<input class="inputText" type="text" name="checkboxC" placeholder="输入API Key" required></div>
-                <!--checkboxC8--><div class="brickContainer">Bing Chat对话支持(暂不可用)<label class="switch"><input class="input" type="checkbox" name="checkboxC" value="BingFunc" disabled><div class="slider"></div></label></div>
-                <!--checkboxC9--><div class="brickContainer">Bing Chat Cookies<input class="inputText" type="text" name="checkboxC" placeholder="输入Cookies" required></div>
+                <!--checkboxC8--><div class="brickContainer"><div>OpenRouter AI支持<br><a class="brickSubtitle" style="top: 5px;position: relative;">OpenRoute启动将自动关闭ChatGPT支持</a></div><label class="switch"><input class="input" type="checkbox" name="checkboxC" value="OpenRouterFunc"><div class="slider"></div></label></div>
+                <div class="brickContainer">
+                    <div>OpenRouter 控制台<br><a class="brickSubtitle" style="top: 5px;position: relative;">了解并设置你的OpenRouter账户</a></div>
+                    <div class="button" onclick="shell.openExternal('https://openrouter.ai/account');" style="width:80px;right:110px">账号设置</div><div onclick="shell.openExternal('https://github.com/JimHans/live2d-kanban-desktop/wiki')" class="button" style="width:80px">使用指南</div></div>
+                <!--checkboxC9--><div class="brickContainer">OpenRouter API Key<input class="inputText" type="text" name="checkboxC" placeholder="输入API Key" required></div>
                 
                 <!-- <div class="box">
                     <button type="button" value="保存并应用" onclick="submitC();" class="btn">保存并应用</button>
@@ -215,8 +219,14 @@
     document.getElementById("localBubbleCurrentPath").style.backgroundSize="cover";} //自定义气泡背景获取
     if ((!localStorage.getItem("customAPI")) || localStorage.getItem("customAPI") == ""){checkboxBInit[4].value="//waifuapi.zerolite.cn/live2d-api/";}
     else {checkboxBInit[4].value=localStorage.getItem("customAPI");} //自定义API获取
-    if ((!localStorage.getItem("customSearch")) || localStorage.getItem("customSearch") == ""){checkboxBInit[5].value="https://www.google.com/search?q=";}
+    if ((!localStorage.getItem("customSearch")) || localStorage.getItem("customSearch") == ""){checkboxBInit[5].value="https://www.bing.com/search?q=";}
     else {checkboxBInit[5].value=localStorage.getItem("customSearch");} //自定义搜索引擎获取
+
+    if (localStorage.getItem(checkboxBInit[7].value) == 'true') {
+            checkboxBInit[7].checked = true;}
+    else if (localStorage.getItem(checkboxBInit[7].value) == 'false')
+            {checkboxBInit[7].checked = false;}
+    else {checkboxBInit[7].checked = true;} //自动回正数据获取
 
     //初始化PageC复选框
     var checkboxCInit = document.getElementsByName("checkboxC");
@@ -233,7 +243,11 @@
 
     if (localStorage.getItem(checkboxCInit[6].value) == 'true') {checkboxCInit[6].checked = true;} //ChatGPT对话支持
     if ((!localStorage.getItem("ChatgptKey")) || localStorage.getItem("ChatgptKey") == ""){checkboxCInit[7].value="";}
-    else {checkboxCInit[7].value=localStorage.getItem("ChatgptKey");} //自定义API获取
+    else {checkboxCInit[7].value=localStorage.getItem("ChatgptKey");} //ChatGPT APIKey获取
+
+    if (localStorage.getItem(checkboxCInit[8].value) == 'true') {checkboxCInit[8].checked = true;} //OpenRouter支持
+    if ((!localStorage.getItem("OpenRouterKey")) || localStorage.getItem("OpenRouterKey") == ""){checkboxCInit[9].value="";}
+    else {checkboxCInit[9].value=localStorage.getItem("OpenRouterKey");} //OpenRouter APIKey获取
     
     // function closeset() {ipcRenderer.send('Settings','Close');} // 关闭
     
@@ -321,6 +335,9 @@
             if (checkboxB[i].checked == true) {localStorage.setItem(checkboxB[i].value,true);}
             else {localStorage.setItem(checkboxB[i].value,false);}
         }
+        if (checkboxB[7].checked == true) {localStorage.setItem(checkboxB[7].value,true);}
+        else {localStorage.setItem(checkboxB[7].value,false);} //自动回正
+
         localStorage.setItem("customAPI",checkboxB[4].value); //保存自定义API
         localStorage.setItem("customSearch",checkboxB[5].value); //保存自定义搜索引擎
         if(document.getElementById('localBubbleSelect').files[0]) //保存自定义气泡
@@ -365,6 +382,11 @@
         else {localStorage.setItem(checkboxC[6].value,false);}
 
         localStorage.setItem("ChatgptKey",checkboxC[7].value); //保存chatgptKey
+
+        if (checkboxC[8].checked == true) {localStorage.setItem(checkboxC[8].value,true);localStorage.setItem(checkboxC[6].value,false);} //OpenRouter开关
+        else {localStorage.setItem(checkboxC[8].value,false);}
+
+        localStorage.setItem("OpenRouterKey",checkboxC[9].value); //保存OpenRouterKey
 
         if(document.getElementById('localModelSelect').files[0])
         {

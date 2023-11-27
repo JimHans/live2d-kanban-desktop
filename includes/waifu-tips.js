@@ -3,8 +3,8 @@ window.live2d_settings = Array();
     く__,.ヘヽ.　　　　/　,ー､ 〉
     　　　　　＼ ', !-─‐-i　/　/´        ver.    || |
     　　　 　 ／｀ｰ'　　　 L/／｀ヽ､             | | ||         Live2D 看板娘 AI Version 参数设置
-    　　 　 /　 ／,　 /|　 ,　 ,　　　 ',     ||||| |||        Version 2.0.1 (Based on waifu-tips.js V1.0.7)
-    　　　ｲ 　/ /-‐/　ｉ　L_ ﾊ ヽ!　 i      ||   | ||||       Update 2022-02 Modified By JimHan From the FGHRSH Version
+    　　 　 /　 ／,　 /|　 ,　 ,　　　 ',     ||||| |||        Version 2.8.0 (Based on waifu-tips.js V1.0.7)
+    　　　ｲ 　/ /-‐/　ｉ　L_ ﾊ ヽ!　 i      ||   | ||||       Update 2023-11 Modified By JimHan From the FGHRSH Version
     　　　 ﾚ ﾍ 7ｲ｀ﾄ　 ﾚ'ｧ-ﾄ､!ハ|　 |
     　　　　 !,/7 '0'　　 ´0iソ| 　 |
     　　　　 |.从"　　_　　 ,,,, / |./ 　 |                     网页添加 Live2D 看板娘
@@ -23,6 +23,8 @@ delete window.require;
 delete window.exports;
 delete window.module;
 const { ipcRenderer,shell } = nodeRequire('electron'); //Electron 依赖调入
+const notifier = nodeRequire('node-notifier'); //node-notifier 通知模块
+const WindowsToaster = nodeRequire('node-notifier').WindowsToaster; //WindowsToaster 通知
 
 // 后端接口
 live2d_settings.modelAPI             = '//waifuapi.zerolite.cn/live2d-api/';   // 自建 API 修改这里
@@ -40,8 +42,8 @@ var ShowMessageLocker = 0; //对话泡进程锁
 
 
 // 默认模型
-live2d_settings.modelId              = 19;          // 默认模型 ID，可在 F12 控制台找到
-live2d_settings.modelTexturesId      = 1;           // 默认材质 ID，可在 F12 控制台找到
+live2d_settings.modelId              = 3;           // 默认模型 ID，可在 F12 控制台找到
+live2d_settings.modelTexturesId      = 58;          // 默认材质 ID，可在 F12 控制台找到
 
 // 工具栏设置
 live2d_settings.showToolMenu         = true;         // 显示 工具栏 ，可选 true(真), false(假)
@@ -80,8 +82,8 @@ live2d_settings.waifuDraggable       = 'unlimited';    // 拖拽样式，例如 
 live2d_settings.waifuDraggableRevert = true;         // 松开鼠标还原拖拽位置，可选 true(真), false(假)
 
 // 其他杂项设置
-live2d_settings.l2dVersion           = '2.7.0';                               // 当前版本
-live2d_settings.l2dVerDate           = '2023-10-04';                          // 版本更新日期
+live2d_settings.l2dVersion           = '2.8.0';                               // 当前版本
+live2d_settings.l2dVerDate           = '2023-11-26';                          // 版本更新日期
 live2d_settings.homePageUrl          = 'https://www.zerolite.cn/';            // 主页地址，已弃用
 live2d_settings.aboutPageUrl         = 'https://www.zerolite.cn/';            // 关于页地址
 live2d_settings.screenshotCaptureName= 'kanban.png';                          // 看板娘截图文件名，例如 'live2d.png'
@@ -552,27 +554,60 @@ function loadTipsMessage(result) {
     /*************************日程提醒函数*************************/
 	function Schedulefunc()
 	{
+        var audio = new Audio("./Alert Alarms/alert0.mp3"); // 这里的路径为mp3文件在项目中的绝对路径
 		timer = setInterval(function(){
-            showMessage('你所预定的日程'+timercontext+'的提醒时间'+setTime+'已经到了!',5000,true);
-            let myNotification = new Notification(timercontext, {
-             // 通知的标题, 将在通知窗口的顶部显示
-            title: '日程提醒',
-            // 通知的副标题, 显示在标题下面 macOS
-            subtitle: 'Kanban-Desktop',
-            // 通知的正文文本, 将显示在标题或副标题下面
-            body: '你所预定的日程时间已经到了，点击此条消息停止响铃',
-            // false有声音，true没声音
-            silent: false,
-            icon: './assets/alarm.png',
-            // 通知的超时持续时间 'default' or 'never'
-            timeoutType: 'never',
-        })
-        var rand = Math.floor(Math.random()*6);
-		var audio= new Audio("./Alert Alarms/alert"+rand+".mp3"); // 这里的路径为mp3文件在项目中的绝对路径
-        audio.play();//播放
-        myNotification.onclick = () => {
-            audio.pause();//暂停
-            };date = new Date();},setTime*60000);
+            showMessage('你所预定的日程['+timercontext+']的提醒时间['+setTime+']已经到了!',5000,true);
+            var notifyIconPath = "./assets/alarm.png";
+            ipcRenderer.invoke('get-is-packaged').then((isPackaged) => {  //判断是否打包,若打包则使用打包后路径
+                if (isPackaged) {notifyIconPath=__dirname.replaceAll("\\", '/')+"../../app.asar.unpacked/assets/alarm.png"} 
+                notifier.notify(
+                    {
+                        title: '日程[ '+timercontext+' ]提醒',
+                        message: '你所预定的日程[ '+timercontext+' ]的提醒时间['+setTime+']已经到了! 点击消息下方按钮以忽略或关闭提醒。',
+                        icon: notifyIconPath,
+                        actions: ['Dismiss','Cancel'],
+                        wait: true ,
+                        appID: 'com.Zerolite.Kanban-Desktop', 
+                        },
+                        (err, data) => {
+                            // Will also wait until notification is closed.
+                            console.log('Waited');
+                            console.log(JSON.stringify({ err, data }, null, '\t'));
+                        }
+                );
+                //     let myNotification = new Notification(timercontext, {
+                //      // 通知的标题, 将在通知窗口的顶部显示
+                //     title: '日程提醒',
+                //     // 通知的副标题, 显示在标题下面 macOS
+                //     subtitle: 'Kanban-Desktop',
+                //     // 通知的正文文本, 将显示在标题或副标题下面
+                //     body: '你所预定的日程时间已经到了，点击此条消息停止响铃',
+                //     // false有声音，true没声音
+                //     silent: false,
+                //     icon: './assets/alarm.png',
+                //     // 通知的超时持续时间 'default' or 'never'
+                //     timeoutType: 'never',
+                // })
+                var rand = Math.floor(Math.random()*6);
+                audio= new Audio("./Alert Alarms/alert"+rand+".mp3"); // 这里的路径为mp3文件在项目中的绝对路径
+                audio.play();//播放
+                // myNotification.onclick = () => {
+                //     audio.pause();//暂停
+                //     };
+                notifier.on('dismiss', () => {
+                    audio.pause();//暂停
+                });
+                notifier.on('cancel', () => {
+                    audio.pause();//暂停
+                    isTimeSet = false;
+                    setTime = 0;
+                    timer = window.clearInterval(timer);
+                    document.getElementById('TimeDisplay').innerHTML = "没有安排的日程";
+                    showMessage('你所预定的日程[ '+timercontext+' ]已经取消！',5000,true);
+                });
+                date = new Date();
+            }); //判断是否打包,若打包则使用打包后路径
+        },setTime*60000);
 	}
 
 	//工具栏默认隐藏

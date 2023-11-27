@@ -1,13 +1,15 @@
 {
   "name": "kanban-desktop",
   "title": "kanban-desktop",
-  "version": "2.7.0",
+  "version": "2.8.0",
   "description": "Kanban Desktop Electron Based",
-  "buildinf": "Stable Build 2023-10-10",
+  "homepage": "https://github.com/jimhans/live2d-kanban-desktop/",
+  "buildinf": "Stable Build 2023-11-26",
   "main": "index.js",
   "scripts": {
     "start": "electron .",
     "pack": "electron-builder --dir",
+    "pack-linux": "electron-builder --linux",
     "dist": "electron-builder"
   },
   "keywords": [
@@ -35,7 +37,24 @@
       "asarUnpack": [
         "src/**",
         "README.md",
-        "includes/waifu-tips.json"
+        "includes/waifu-tips.json",
+        "assets/alarm.png",
+        "./node_modules/node-notifier/vendor/**"
+      ]
+    },
+    "linux": {
+      "target": [
+        {
+          "target": "AppImage"
+        }
+      ],
+      "icon": "./assets/applogo.png",
+      "asarUnpack": [
+        "src/**",
+        "README.md",
+        "includes/waifu-tips.json",
+        "assets/alarm.png",
+        "./node_modules/node-notifier/vendor/**"
       ]
     },
     "nsis": {
@@ -54,9 +73,12 @@
     "electron": "^22.3.25"
   },
   "dependencies": {
-    "@electron/remote": "^2.0.12",
-    "@ibaraki-douji/bing-ai": "^1.0.2",
-    "axios": "^1.5.1",
-    "bingai-js": "^1.5.0"
+    "@electron/remote": "^2.1.0",
+    "axios": "^1.6.2",
+    "bingai-js": "^1.7.0",
+    "get-cursor-position": "^2.0.0",
+    "node-gyp": "^9.4.1",
+    "node-notifier": "^10.0.1",
+    "semver": "^6.3.1"
   }
 }
