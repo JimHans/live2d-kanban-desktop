@@ -1151,6 +1151,32 @@
         } else {
             checkboxCInit[7].value = localStorage.getItem("ChatgptKey");
         } //ChatGPT APIKey获取
+        if (
+            !localStorage.getItem("openURL") ||
+            localStorage.getItem("openURL") == ""
+        ) {
+            document.getElementsByName("openURL")[0].value=""
+        } else {
+            document.getElementsByName("openURL")[0].value=localStorage.getItem("openURL")
+        } 
+        if (
+            !localStorage.getItem("prompt") ||
+            localStorage.getItem("prompt") == ""
+        ) {
+            document.getElementsByName("prompt")[0].value=""
+        } else {
+            document.getElementsByName("prompt")[0].value=localStorage.getItem("prompt")
+        } 
+        if (
+            !localStorage.getItem("AImodel") ||
+            localStorage.getItem("AImodel") == ""
+        ) {
+            document.getElementsByName("AImodel")[0].value=""
+        } else {
+            document.getElementsByName("AImodel")[0].value=localStorage.getItem("AImodel")
+        } 
+
+        
 
         if (localStorage.getItem(checkboxCInit[8].value) == "true") {
             checkboxCInit[8].checked = true;
