@@ -6,7 +6,8 @@
 <p align="center">
 <img src="https://img.shields.io/badge/Build-passing-green.svg?style=flat-square">
 <img src="https://img.shields.io/github/package-json/v/JimHans/live2d-kanban-desktop?color=red&style=flat-square">
-<img src="https://img.shields.io/badge/Electron-22.0.0-blue.svg?style=flat-square">
+<img src="https://img.shields.io/github/downloads/JimHans/live2d-kanban-desktop/total?color=orange&style=flat-square">
+<img src="https://img.shields.io/badge/Electron-22.3.25-blue.svg?style=flat-square">
 <img src="https://img.shields.io/badge/License-GPL v3.0-purple.svg?style=flat-square">
 </p>
 
@@ -20,7 +21,7 @@
 ## 🎰目前拥有的功能有：
 - 特别为桌面用户优化的伪·高斯模糊UI以及工具箱设计，更方便桌面使用
 - ~~承接上一代网页版本，接入腾讯NLP，支持文字实时对话，支持自己部署NLP服务~~
-- 加入ChatGPT-API支持，填入APIKey后即可解锁ChatGPT对话功能
+- 加入ChatGPT-API支持，填入APIKey后即可解锁ChatGPT对话功能，现已支持自定GPT API
 - 底部输入框一键切换网页搜索，可以方便地随时搜索所需的内容，更可以随时切换自定义搜索引擎
 - 全新的接入原生通知的日程提醒功能，只要输入倒数时间与提醒内容即可到点提醒，同时包括多种取自MIUI的随机通知铃声
 - 全新小窗模式，在需要专心工作/不想暴露自己是个2ch的时候，可以点击叉号进入小窗专注模式，此时，看板娘将最小化为气泡在右下角待命
@@ -92,8 +93,15 @@ This program is subject to the terms of Cubism EULA.
 
 Open sourced under the GPL v3.0 license.
 
+### 感谢以下项目贡献者：
+
+<a href="https://github.com/JimHans/live2d-kanban-desktop/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=JimHans/live2d-kanban-desktop" />
+</a>
+
 ### 🔗注释：
 *: 对Linux的支持暂不完全。
+
 **: 本地模式暂时仅在实验室选项卡内提供可选开关，目前不稳定，仅供测试使用。
 
   [1]: https://github.com/fghrsh/live2d_demo

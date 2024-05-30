@@ -21,7 +21,7 @@ async function gptrun(sentense, answerDiv) {
     const response = await axios({
         method: 'POST',
         responseType: 'json',
-        url: localStorage.getItem("openURL") + '/v1/chat/completions',
+        url: (localStorage.getItem("openURL") ? localStorage.getItem("openURL") : "https://api.openai.com")+ '/v1/chat/completions',
         proxy: { protocol: 'http', host: '127.0.0.1', port: 7890, },
         validateStatus(status) { return true },
         headers: {
@@ -29,7 +29,7 @@ async function gptrun(sentense, answerDiv) {
             Authorization: `Bearer ` + localStorage.getItem("ChatgptKey"),
         },
         data: {
-            model: localStorage.getItem("AImodel"),
+            model: localStorage.getItem("AImodel") ? localStorage.getItem("AImodel") : "gpt-3.5-turbo",
             messages: talkHistory,
             stream: false,
         },

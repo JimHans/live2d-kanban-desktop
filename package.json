@@ -1,10 +1,10 @@
 {
   "name": "kanban-desktop",
   "title": "kanban-desktop",
-  "version": "2.8.0",
+  "version": "2.8.1",
   "description": "Kanban Desktop Electron Based",
   "homepage": "https://github.com/jimhans/live2d-kanban-desktop/",
-  "buildinf": "Stable Build 2023-11-26",
+  "buildinf": "Stable Build 2024-05-30",
   "main": "index.js",
   "scripts": {
     "start": "electron .",

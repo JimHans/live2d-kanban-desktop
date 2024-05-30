@@ -6,7 +6,8 @@
 <p align="center">
 <img src="https://img.shields.io/badge/Build-passing-green.svg?style=flat-square">
 <img src="https://img.shields.io/github/package-json/v/JimHans/live2d-kanban-desktop?color=red&style=flat-square">
-<img src="https://img.shields.io/badge/Electron-22.0.0-blue.svg?style=flat-square">
+<img src="https://img.shields.io/github/downloads/JimHans/live2d-kanban-desktop/total?color=orange&style=flat-square">
+<img src="https://img.shields.io/badge/Electron-22.3.25-blue.svg?style=flat-square">
 <img src="https://img.shields.io/badge/License-GPL v3.0-purple.svg?style=flat-square">
 </p>
 
@@ -74,13 +75,23 @@ Release URL:[Release](https://github.com/JimHans/kanban-desktop/releases)
 [live2d_src / ©journey-ad / GPL v2.0][3]    
 [AI-Waifu / ©jimhans / GPL v2.0][4]  
 [ChatGPT-API / ©lxfriday / MIT license][5]  
+[live2d_on_website / ©Himehane / GPL v2.0][6]  
 
 Live2d Cubism SDK WebGL 2.1 Project & All model authors.
 
+This program is subject to the terms of Cubism EULA.
+
 Open sourced under the GPL v3.0 license.
+
+### Thanks to the following project contributors:
+
+<a href="https://github.com/JimHans/live2d-kanban-desktop/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=JimHans/live2d-kanban-desktop" />
+</a>
 
 ### 🔗Annotation:
 *: The support for Linux now is NOT perfect and have unexpected bugs.
+
 **: Local model loading mode is only available in prerelease channel.
 
   [1]: https://github.com/fghrsh/live2d_demo
@@ -88,3 +99,4 @@ Open sourced under the GPL v3.0 license.
   [3]: https://github.com/journey-ad/live2d_src
   [4]: https://github.com/JimHans/AI-waifu
   [5]: https://github.com/lxfriday/ChatGPT-API
+  [6]: https://github.com/Himehane/live2d_on_website
