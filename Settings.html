@@ -84,6 +84,13 @@
                 document.getElementById('localBubbleCurrentPath').style.background = 'url('+document.getElementById('localBubbleSelect').files[0].path.replaceAll('\\','/')+') no-repeat center';document.getElementById('localBubbleCurrentPath').style.backgroundSize='cover'}"></div>
                 </div> <!-- 获取Bubble本地背景文件路径 -->
                 <div class="brickContainer">当前选定背景<div id="fileInfoBubble" class="fileInfo" style="border: none;">未选定</div></div>
+
+                <h3 style="margin-top:15px;margin-bottom:15px;margin-left:13px;">📢 日程通知设置</h3>
+                <div class="brickContainer">启用自定义通知音<label class="switch"><input class="input" type="checkbox" name="CalendarAlert" value="CalendarAlert" /><div class="slider"></div></label></div>
+                <div class="brickContainer">已选择音频：
+                    <div id="fileInfoAudioPath" class="fileInfo" style="border: none;left: 105px;text-align: left;width:45%"></div>
+                    <div href="javascript:;" class="button">选择音频<input id="localAudioSelect" type="file" class="inputFile" accept="audio/*" onchange="javascript:{document.getElementById('fileInfoAudioPath').innerHTML = document.getElementById('localAudioSelect').files[0].path.replaceAll('\\','/')}"></div>
+                </div> <!-- 获取自定义音频文件路径 -->
                 
                 <h3 style="margin-top:15px;margin-bottom:15px;margin-left:13px;">📚 高级设置<a style="font-size: 13px;"> 自定义更多高级设置项</a></h3>
                 <div class="brickContainer"><div>自定义搜索引擎<br><!--<li style="margin-top:10px;margin-bottom:3px;">自定义搜索引擎</li>--><a class="brickSubtitle">输入搜索引擎URL</a></div>
@@ -123,25 +130,30 @@
                     <div href="javascript:;" class="button" style="width:140px">选择模型文件<input id="localModelSelect" type="file" class="inputFile" onchange="javascript:{document.getElementById('localModelCurrentPath').innerHTML = document.getElementById('localModelSelect').value;$('#localModelCurrentPath').scrollLeft( $('#localModelCurrentPath')[0].scrollWidth);}"></div><!--获取本地文件路径 -->
                     <!-- <input id="localModelSelect" type="file" style="opacity: 0;"> 获取本地文件路径 --></div>
                 <div class="brickContainer">当前选定模型<div id="localModelCurrentPath" class="fileInfo" style="border: none;"></div></div>
-                <!--checkboxC3--><div class="brickContainer">模型缩放百分比(适用于moc3+)
+                <!--checkboxC3--><div class="brickContainer">V3+模型缩放百分比
                     <button type='button' value='-' class='button' style='width:30px;right:125px;font-size: 16px;' onclick='$("#localModelV3Scale").val(parseFloat($("#localModelV3Scale").val())-1)'>-</button>
                     <input id="localModelV3Scale" class="inputText" style="width: 60px;text-align: center;right:55px" type="text" name="checkboxC" placeholder="输入缩放比率，如100即为100%" required>
                     <button type='button' value='+' class='button' style='width:30px;right:20px;font-size: 16px; ' onclick='$("#localModelV3Scale").val(parseFloat($("#localModelV3Scale").val())+1)'>+</button>
                 </div>
-                <!--checkboxC4--><div class="brickContainer">模型X轴偏移量(适用moc2&3+)
+                <!--checkboxC4--><div class="brickContainer">V2模型缩放百分比
+                    <button type='button' value='-' class='button' style='width:30px;right:125px;font-size: 16px;' onclick='$("#localModelV2Scale").val(parseFloat($("#localModelV2Scale").val())-1)'>-</button>
+                    <input id="localModelV2Scale" class="inputText" style="width: 60px;text-align: center;right:55px" type="text" name="checkboxC" placeholder="输入缩放比率，如100即为100%" required>
+                    <button type='button' value='+' class='button' style='width:30px;right:20px;font-size: 16px; ' onclick='$("#localModelV2Scale").val(parseFloat($("#localModelV2Scale").val())+1)'>+</button>
+                </div>
+                <!--checkboxC5--><div class="brickContainer">模型X轴偏移量(适用moc2&3+)
                     <button type='button' value='-' class='button' style='width:30px;right:125px' onclick='$("#localModelV3Xaxis").val(parseFloat($("#localModelV3Xaxis").val())-1)'>◀</button>
                     <input id="localModelV3Xaxis" class="inputText" style="width: 60px;text-align: center;right:55px" type="text" name="checkboxC" placeholder="输入X轴偏移，向右为正，填入无需单位" required>
                     <button type='button' value='+' class='button' style='width:30px;right:20px' onclick='$("#localModelV3Xaxis").val(parseFloat($("#localModelV3Xaxis").val())+1)'>▶</button>
                 </div>
-                <!--checkboxC5--><div class="brickContainer">模型Y轴偏移量(适用moc2&3+)
+                <!--checkboxC6--><div class="brickContainer">模型Y轴偏移量(适用moc2&3+)
                     <button type='button' value='-' class='button' style='width:30px;right:125px' onclick='$("#localModelV3Yaxis").val(parseFloat($("#localModelV3Yaxis").val())-1)'>▲</button>
                     <input id="localModelV3Yaxis" class="inputText" style="width: 60px;text-align: center;right:55px" type="text" name="checkboxC" placeholder="输入Y轴偏移，向下为正，填入无需单位" required>
                     <button type='button' value='+' class='button' style='width:30px;right:20px' onclick='$("#localModelV3Yaxis").val(parseFloat($("#localModelV3Yaxis").val())+1)'>▼</button>
                 </div>
 
                 <h3 style="margin-top:15px;margin-bottom:15px;margin-left:13px;">💬 语言模型设置</h3>
-                <!--checkboxC6--><div class="brickContainer"><div>ChatGPT对话支持<br><a class="brickSubtitle" style="top: 5px;position: relative;">默认代理:127.0.0.1:7890</a></div><label class="switch"><input class="input" type="checkbox" name="checkboxC" value="ChatGPTFunc"><div class="slider"></div></label></div>
-                <!--checkboxC7--><div class="brickContainer">ChatGPT API Key<input class="inputText" type="text" name="checkboxC" placeholder="输入API Key" required></div>
+                <!--checkboxC7--><div class="brickContainer"><div>ChatGPT对话支持<br><a class="brickSubtitle" style="top: 5px;position: relative;">默认代理:127.0.0.1:7890</a></div><label class="switch"><input class="input" type="checkbox" name="checkboxC" value="ChatGPTFunc"><div class="slider"></div></label></div>
+                <!--checkboxC8--><div class="brickContainer">ChatGPT API Key<input class="inputText" type="text" name="checkboxC" placeholder="输入API Key" required></div>
                 <!--checkboxCopenURL-->
                 <div class="brickContainer"><div>ChatGPT API地址<br><a class="brickSubtitle" style="top: 5px;position: relative;">默认API地址为OpenAI</a></div>
                     <input class="inputText" type="text" name="checkboxCopenURL" placeholder="若要自定义API，请输入自定API地址" required/></div>
@@ -157,11 +169,11 @@
                 </div>
                 <!-- checkboxC7
                 <div class="brickContainer"> GPT API Key<input class="inputText" type="text" name="checkboxC" placeholder="输入API提供商的API Key" required/></div> -->
-                <!--checkboxC8--><div class="brickContainer"><div>OpenRouter AI支持<br><a class="brickSubtitle" style="top: 5px;position: relative;">OpenRouter启动将自动关闭ChatGPT支持</a></div><label class="switch"><input class="input" type="checkbox" name="checkboxC" value="OpenRouterFunc"><div class="slider"></div></label></div>
+                <!--checkboxC9--><div class="brickContainer"><div>OpenRouter AI支持<br><a class="brickSubtitle" style="top: 5px;position: relative;">OpenRouter启动将自动关闭ChatGPT支持</a></div><label class="switch"><input class="input" type="checkbox" name="checkboxC" value="OpenRouterFunc"><div class="slider"></div></label></div>
                 <div class="brickContainer">
                     <div>OpenRouter 控制台<br><a class="brickSubtitle" style="top: 5px;position: relative;">了解并设置你的OpenRouter账户</a></div>
                     <div class="button" onclick="shell.openExternal('https://openrouter.ai/account');" style="width:80px;right:110px">账号设置</div><div onclick="shell.openExternal('https://github.com/JimHans/live2d-kanban-desktop/wiki')" class="button" style="width:80px">使用指南</div></div>
-                <!--checkboxC9--><div class="brickContainer">OpenRouter API Key<input class="inputText" type="text" name="checkboxC" placeholder="输入API Key" required></div>
+                <!--checkboxC10--><div class="brickContainer">OpenRouter API Key<input class="inputText" type="text" name="checkboxC" placeholder="输入API Key" required></div>
                 
                 <!-- <div class="box">
                     <button type="button" value="保存并应用" onclick="submitC();" class="btn">保存并应用</button>
@@ -232,6 +244,12 @@
     if ((!localStorage.getItem("localBubblePath")) || localStorage.getItem("localBubblePath") == ""){document.getElementById("localBubbleCurrentPath").style.backgroundImage='url(./assets/box.png)';}
     else {document.getElementById("localBubbleCurrentPath").style.backgroundImage="url("+localStorage.getItem("localBubblePath")+")";
     document.getElementById("localBubbleCurrentPath").style.backgroundSize="cover";} //自定义气泡背景获取
+
+    if (localStorage.getItem("CalendarAlert")=="true")
+    {document.getElementById("fileInfoAudioPath").innerText=localStorage.getItem("fileInfoAudioPath");
+    (document.getElementsByName("CalendarAlert"))[0].checked = true;} //自定义通知音获取
+    else {(document.getElementsByName("CalendarAlert"))[0].checked = false;}
+
     if ((!localStorage.getItem("customAPI")) || localStorage.getItem("customAPI") == ""){checkboxBInit[4].value="//waifuapi.zerolite.cn/live2d-api/";}
     else {checkboxBInit[4].value=localStorage.getItem("customAPI");} //自定义API获取
     if ((!localStorage.getItem("customSearch")) || localStorage.getItem("customSearch") == ""){checkboxBInit[5].value="https://www.bing.com/search?q=";}
@@ -250,15 +268,17 @@
         document.getElementById("localModelCurrentPath").innerHTML="当前文件为"+localStorage.getItem('localModelPath');}
     
     if ((!localStorage.getItem("localModelV3Scale")) || localStorage.getItem("localModelV3Scale") == '100'){checkboxCInit[3].value='100';}
-    else {checkboxCInit[3].value=localStorage.getItem("localModelV3Scale");} //自定义模型缩放比率获取
-    if ((!localStorage.getItem("localModelV3Xaxis")) || localStorage.getItem("localModelV3Xaxis") == '0'){checkboxCInit[4].value='0';}
-    else {checkboxCInit[4].value=localStorage.getItem("localModelV3Xaxis");} //自定义模型X轴偏移获取
-    if ((!localStorage.getItem("localModelV3Yaxis")) || localStorage.getItem("localModelV3Yaxis") == '40'){checkboxCInit[5].value='40';}
-    else {checkboxCInit[5].value=localStorage.getItem("localModelV3Yaxis");} //自定义模型Y轴偏移获取
+    else {checkboxCInit[3].value=localStorage.getItem("localModelV3Scale");} //自定义模型缩放比率获取V3
+    if ((!localStorage.getItem("localModelV2Scale")) || localStorage.getItem("localModelV2Scale") == '100'){checkboxCInit[4].value='100';}
+    else {checkboxCInit[4].value=localStorage.getItem("localModelV2Scale");} //自定义模型缩放比率获取V2
+    if ((!localStorage.getItem("localModelV3Xaxis")) || localStorage.getItem("localModelV3Xaxis") == '0'){checkboxCInit[5].value='0';}
+    else {checkboxCInit[5].value=localStorage.getItem("localModelV3Xaxis");} //自定义模型X轴偏移获取
+    if ((!localStorage.getItem("localModelV3Yaxis")) || localStorage.getItem("localModelV3Yaxis") == '40'){checkboxCInit[6].value='40';}
+    else {checkboxCInit[6].value=localStorage.getItem("localModelV3Yaxis");} //自定义模型Y轴偏移获取
 
-    if (localStorage.getItem(checkboxCInit[6].value) == 'true') {checkboxCInit[6].checked = true;} //ChatGPT对话支持
-    if ((!localStorage.getItem("ChatgptKey")) || localStorage.getItem("ChatgptKey") == ""){checkboxCInit[7].value="";}
-    else {checkboxCInit[7].value=localStorage.getItem("ChatgptKey");} //ChatGPT APIKey获取
+    if (localStorage.getItem(checkboxCInit[7].value) == 'true') {checkboxCInit[7].checked = true;} //ChatGPT对话支持
+    if ((!localStorage.getItem("ChatgptKey")) || localStorage.getItem("ChatgptKey") == ""){checkboxCInit[8].value="";}
+    else {checkboxCInit[8].value=localStorage.getItem("ChatgptKey");} //ChatGPT APIKey获取
 
     if (
             !localStorage.getItem("openURL") ||
@@ -285,9 +305,9 @@
             document.getElementsByName("checkboxCAImodel")[0].value=localStorage.getItem("AImodel")
         } 
 
-    if (localStorage.getItem(checkboxCInit[8].value) == 'true') {checkboxCInit[8].checked = true;} //OpenRouter支持
-    if ((!localStorage.getItem("OpenRouterKey")) || localStorage.getItem("OpenRouterKey") == ""){checkboxCInit[9].value="";}
-    else {checkboxCInit[9].value=localStorage.getItem("OpenRouterKey");} //OpenRouter APIKey获取
+    if (localStorage.getItem(checkboxCInit[9].value) == 'true') {checkboxCInit[9].checked = true;} //OpenRouter支持
+    if ((!localStorage.getItem("OpenRouterKey")) || localStorage.getItem("OpenRouterKey") == ""){checkboxCInit[10].value="";}
+    else {checkboxCInit[10].value=localStorage.getItem("OpenRouterKey");} //OpenRouter APIKey获取
     
     // function closeset() {ipcRenderer.send('Settings','Close');} // 关闭
     
@@ -403,6 +423,21 @@
             // }, 500);//延时等待数据库存入
             console.log(Filename,BubbleUrl);
         }
+        if ((document.getElementsByName("CalendarAlert"))[0].checked == true) //保存自定义通知音
+        {
+            if(document.getElementById('localAudioSelect').files[0]) //保存自定义通知音
+            {
+                //获取读取文件的File对象
+                var selectedAudio = document.getElementById('localAudioSelect').files[0];
+                var AudioUrl = selectedAudio.path;
+                if(!/audio\/\w+/.test(selectedAudio.type))           //判断获取的是否为音频文件
+                {
+                    alert("请确保文件为音频文件"); return false;
+                }
+                localStorage.setItem("fileInfoAudioPath", AudioUrl); //保存Path
+                localStorage.setItem("CalendarAlert",true);
+            }
+        } else {localStorage.setItem("CalendarAlert",false);}//自定义通知音获取
         ipcRenderer.send('Mainpage','Refresh');
     }
 
@@ -415,22 +450,24 @@
         else {localStorage.setItem(checkboxC[2].value,false);}
 
         localStorage.setItem("localModelV3Scale",checkboxC[3].value); //保存localModelV3Scale
-        localStorage.setItem("localModelV3Xaxis",checkboxC[4].value); //保存localModelV3Xaxis
-        localStorage.setItem("localModelV3Yaxis",checkboxC[5].value); //保存localModelV3Yaxis
+        localStorage.setItem("localModelV2Scale",checkboxC[4].value); //保存localModelV2Scale
+        localStorage.setItem("localModelV3Xaxis",checkboxC[5].value); //保存localModelV3Xaxis
+        localStorage.setItem("localModelV3Yaxis",checkboxC[6].value); //保存localModelV3Yaxis
 
-        if (checkboxC[6].checked == true) {localStorage.setItem(checkboxC[6].value,true);} //chatgpt开关
-        else {localStorage.setItem(checkboxC[6].value,false);}
+        if (checkboxC[7].checked == true) {localStorage.setItem(checkboxC[7].value,true);} //chatgpt开关
+        else {localStorage.setItem(checkboxC[7].value,false);}
 
         localStorage.setItem("openURL",document.getElementsByName("checkboxCopenURL")[0].value);
         localStorage.setItem("prompt",document.getElementsByName("checkboxCprompt")[0].value);
         localStorage.setItem("AImodel",document.getElementsByName("checkboxCAImodel")[0].value);
 
-        localStorage.setItem("ChatgptKey",checkboxC[7].value); //保存chatgptKey
+        localStorage.setItem("ChatgptKey",checkboxC[8].value); //保存chatgptKey
 
-        if (checkboxC[8].checked == true) {localStorage.setItem(checkboxC[8].value,true);localStorage.setItem(checkboxC[6].value,false);} //OpenRouter开关
-        else {localStorage.setItem(checkboxC[8].value,false);}
+        if (checkboxC[9].checked == true) {localStorage.setItem(checkboxC[9].value,true);
+            localStorage.setItem(checkboxC[7].value,false);checkboxCInit[7].checked = false;} //OpenRouter开关
+        else {localStorage.setItem(checkboxC[9].value,false);}
 
-        localStorage.setItem("OpenRouterKey",checkboxC[9].value); //保存OpenRouterKey
+        localStorage.setItem("OpenRouterKey",checkboxC[10].value); //保存OpenRouterKey
 
         if(document.getElementById('localModelSelect').files[0])
         {

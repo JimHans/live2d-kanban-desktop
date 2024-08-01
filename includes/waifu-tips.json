@@ -80,7 +80,7 @@
         { "selector": ".kratos-post-meta", "text": ["这里是文章的一些信息哦！"]},
         { "selector": ".github-tip", "text": ["来看看主人有哪些开源项目吧！"]},
         { "selector": ".rss-tip", "text": ["来订阅主人的RSS吧"]}, 
-		{ "selector": ".fui-eyeProtInfo", "text": ["让我提醒你使用时长吧！"]} 
+		{ "selector": ".fui-eyeProtInfo", "text": ["让我提醒你的预定日程吧！"]} 
     ],
     "click": [
         {

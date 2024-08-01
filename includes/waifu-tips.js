@@ -543,27 +543,42 @@ function loadTipsMessage(result) {
 	
     /*日程提醒模块点击*/
 	if(live2d_settings.eyeProtInfo){
-	$('.waifu-tool .fui-eyeProtInfo').click(function (){
+	$('.waifu-tool .fui-eyeProtInfo').click(function (){ScheduleShow();});
+    function ScheduleShow(){
+        let scheduleTime = sessionStorage.getItem('ScheduleTime');
+        let scheduleName = sessionStorage.getItem('ScheduleName');
+        let scheduleDateStr = sessionStorage.getItem('ScheduleDate');
 		document.getElementById('NLPInfinite').style.display = 'block';
         $('#timeset').focus();
-		if(isTimeSet === true && setTime != "" && setTime > 0)
-		{document.getElementById('TimeDisplay').innerHTML = "距定时结束剩余 "+(setTime-(new Date()-date)/60000).toFixed(1)+" 分钟";}
-		else {document.getElementById('TimeDisplay').innerHTML = "没有定时";}
-	});}
+		if(scheduleTime != null && scheduleName != null && scheduleTime > 0)
+		{
+            let date_temp = new Date();
+            let scheduleDate = new Date(scheduleDateStr);
+            document.getElementById('TimeDisplay').innerHTML = "距日程提醒剩余 "+((parseInt(scheduleTime)-date_temp.getTime()+scheduleDate.getTime())/60000).toFixed(1)+" 分钟";
+            document.getElementById('contextset').value=scheduleName;
+            isTimeSet = true;
+            setTime = scheduleTime;
+            timercontext = scheduleName;
+        }
+		// if(isTimeSet === true && setTime != "" && setTime > 0)
+        // {let date_temp = new Date();document.getElementById('TimeDisplay').innerHTML = "距日程提醒剩余 "+((setTime-date_temp.getTime()+date.getTime())/60000).toFixed(1)+" 分钟";}    
+		else {document.getElementById('TimeDisplay').innerHTML = "当前没有安排的日程";}
+        }
+	}
 	
     /*************************日程提醒函数*************************/
 	function Schedulefunc()
 	{
         var audio = new Audio("./Alert Alarms/alert0.mp3"); // 这里的路径为mp3文件在项目中的绝对路径
-		timer = setInterval(function(){
-            showMessage('你所预定的日程['+timercontext+']的提醒时间['+setTime+']已经到了!',5000,true);
+		// timer = setInterval(function(){
+            showMessage('你所预定的日程['+timercontext+']的提醒时间已经到了!',5000,true); //['+setTime+']
             var notifyIconPath = "./assets/alarm.png";
             ipcRenderer.invoke('get-is-packaged').then((isPackaged) => {  //判断是否打包,若打包则使用打包后路径
                 if (isPackaged) {notifyIconPath=__dirname.replaceAll("\\", '/')+"../../app.asar.unpacked/assets/alarm.png"} 
                 notifier.notify(
                     {
                         title: '日程[ '+timercontext+' ]提醒',
-                        message: '你所预定的日程[ '+timercontext+' ]的提醒时间['+setTime+']已经到了! 点击消息下方按钮以忽略或关闭提醒。',
+                        message: '你所预定的日程[ '+timercontext+' ]的提醒时间已经到了! \n点击下方按钮以忽略或关闭提醒。', //['+setTime+']
                         icon: notifyIconPath,
                         actions: ['Dismiss','Cancel'],
                         wait: true ,
@@ -588,9 +603,15 @@ function loadTipsMessage(result) {
                 //     // 通知的超时持续时间 'default' or 'never'
                 //     timeoutType: 'never',
                 // })
-                var rand = Math.floor(Math.random()*6);
-                audio= new Audio("./Alert Alarms/alert"+rand+".mp3"); // 这里的路径为mp3文件在项目中的绝对路径
-                audio.play();//播放
+                if(!localStorage.getItem('CalendarAlert') || localStorage.getItem('CalendarAlert')!="true"){
+                    var rand = Math.floor(Math.random()*6);
+                    audio= new Audio("./Alert Alarms/alert"+rand+".mp3"); // 这里的路径为mp3文件在项目中的绝对路径
+                    audio.play();//播放
+                }
+                else{
+                    audio= new Audio(localStorage.getItem('fileInfoAudioPath')); // 这里的路径为mp3文件在项目中的绝对路径
+                    audio.play();//播放
+                }
                 // myNotification.onclick = () => {
                 //     audio.pause();//暂停
                 //     };
@@ -601,13 +622,18 @@ function loadTipsMessage(result) {
                     audio.pause();//暂停
                     isTimeSet = false;
                     setTime = 0;
-                    timer = window.clearInterval(timer);
+                    // timer = window.clearInterval(timer);
+                    ipcRenderer.send('Schedule',"Clear");
+                    sessionStorage.setItem('ScheduleTime',null);
+                    sessionStorage.setItem('ScheduleName',null);
+                    sessionStorage.setItem('ScheduleDate',null);
                     document.getElementById('TimeDisplay').innerHTML = "没有安排的日程";
                     showMessage('你所预定的日程[ '+timercontext+' ]已经取消！',5000,true);
                 });
                 date = new Date();
+                sessionStorage.setItem('ScheduleDate',date);
             }); //判断是否打包,若打包则使用打包后路径
-        },setTime*60000);
+        // },setTime);
 	}
 
 	//工具栏默认隐藏
@@ -627,34 +653,55 @@ function loadTipsMessage(result) {
     /***********************************日程提醒 设定****************************************/
 	
     $('.timesetButton').click(function(){
-		setTime = document.getElementById('timeset').value; //获取日程时间
+		let setTimeOri = document.getElementById('timeset').value; //获取日程时间
         timercontext = document.getElementById('contextset').value; //获取日程内容
 		isTimeSet = true;
-		if(setTime != "" && setTime > 0 && setTime <= 3000)
-		{ date = new Date();
-		var hours = date.getHours();          //小时 ,返回 Date 对象的小时 (0 ~ 23)
-		var minutes = date.getMinutes()+parseInt(setTime);
-		for(let i =1;i!=500;i++)
-			{if(minutes>=60)
-				{
-					minutes-=60;
-					hours++;
-				}
-			if(hours>=24)
-				{hours-=24;}
-			}
-		document.getElementById('TimeDisplay').innerHTML = "日程将在 "+hours.toString().padStart(2, '0')+":"+minutes.toString().padStart(2, '0')+" 时提醒";
-		Schedulefunc();
+		if(setTimeOri != "")
+		{ 
+            date = new Date();
+            let targetDate = new Date(setTimeOri);
+            // 计算延时：目标时间 - 当前时间（毫秒）
+            setTime = targetDate.getTime() - date.getTime();
+            if(setTime<=0){document.getElementById('TimeDisplay').innerHTML = "请输入有效的时间！";return;}
+            // var hours = date.getHours();          //小时 ,返回 Date 对象的小时 (0 ~ 23)
+            // var minutes = date.getMinutes()+parseInt(setTime);
+            // for(let i =1;i!=500;i++)
+            // 	{if(minutes>=60)
+            // 		{
+            // 			minutes-=60;
+            // 			hours++;
+            // 		}
+            // 	if(hours>=24)
+            // 		{hours-=24;}
+            // 	}
+            let targetDatemonth = (targetDate.getMonth() + 1).toString();
+            let targetDateday = targetDate.getDate().toString().padStart(2, '0');
+            let targetDatehours = targetDate.getHours().toString().padStart(2, '0');
+            let targetDateminutes = targetDate.getMinutes().toString().padStart(2, '0');
+            document.getElementById('TimeDisplay').innerHTML = "日程将在"+targetDatemonth+"月"+targetDateday+"日"+targetDatehours+":"+targetDateminutes+"提醒";
+            ipcRenderer.send('Schedule',[setTime,timercontext,date]);
+            sessionStorage.setItem('ScheduleTime',setTime);
+            sessionStorage.setItem('ScheduleName',timercontext);
+            sessionStorage.setItem('ScheduleDate',date);
+            // Schedulefunc();
 		}
-		else {document.getElementById('TimeDisplay').innerHTML = "请输入有效的时间，单位分钟";}
+		else {document.getElementById('TimeDisplay').innerHTML = "请输入有效的时间！";}
 	});
+    ipcRenderer.on('ScheduleAlarm', (event, message) => {
+        timercontext=message;
+        Schedulefunc();
+    });
 	
     /***********************************日程提醒 重置****************************************/
 	
     $('.timeresetButton').click(function(){
 		isTimeSet = false;
 		setTime = 0;
-		timer = window.clearInterval(timer);
+		// timer = window.clearInterval(timer);
+        ipcRenderer.send('Schedule',"Clear");
+        sessionStorage.setItem('ScheduleTime',null);
+        sessionStorage.setItem('ScheduleName',null);
+        sessionStorage.setItem('ScheduleDate',null);
 		document.getElementById('TimeDisplay').innerHTML = "没有安排的日程";
 	});
 }

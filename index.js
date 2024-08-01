@@ -10,6 +10,7 @@ let settings = null;/*设置全局对象*/
 let settings_ontop =false;/*设置总在最上-全局flag*/
 let calcrater = 0; var PoinThrough = '点击穿透';
 var packageGet = require("./package.json");
+const schedule = require('node-schedule'); //引入定时任务模块
 
 
 function createWindow () {
@@ -299,6 +300,51 @@ function createWindow () {
   //返回是否打包状态
   ipcMain.handle('get-is-packaged', async (event) => {
     return app.isPackaged;
+  });
+
+  // 日程提醒监听线程
+  var job = null;
+  var isTimeSet = false;
+  var ScheduleTime = null;
+  var ScheduleName = null;
+  var ScheduleDate = null;
+  const rule = new schedule.RecurrenceRule();
+  ipcMain.on("Schedule",(event,data) => {
+    if(data == "Clear"){
+      if (job !== null) {
+        isTimeSet = false;
+        ScheduleTime = null;
+        ScheduleName = null;
+        ScheduleDate = null;
+        // job.cancel(); // 停止任务
+        job = clearInterval(job);
+        job = null; // 将job重置为null，避免重复取消已经取消的任务
+        console.log("Cancelled Job");
+      }
+    }
+    else{
+      isTimeSet = true;
+      // 每隔X分钟执行一次
+      // rule.second = new schedule.Range(0, 59, parseInt(parseInt(data[0])/1000));
+      ScheduleTime = data[0];
+      ScheduleName = data[1];
+      ScheduleDate = data[2];
+      console.log("generated job"+parseInt(parseInt(data[0])/1000));
+      if (job !== null) {
+        job = clearInterval(job);
+        job = null; // 将job重置为null，避免重复取消已经取消的任务
+      }
+      job = setInterval(function(){
+        win.webContents.send('ScheduleAlarm', data[1]);
+        ScheduleDate = new Date();
+        console.log("Task Time");
+      },data[0]);
+      // job = schedule.scheduleJob(rule, function(){
+      //   win.webContents.send('ScheduleAlarm', data[1]);
+      //   ScheduleDate = new Date();
+      //   console.log("Task Time");
+      // });
+    }
   });
 }
 

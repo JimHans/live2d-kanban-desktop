@@ -341,6 +341,7 @@ input:checked + .slider:before { /*开关动效*/
     right: 0;
     top: 0;
     opacity: 0;
+    width: 110px;
 }
 .fileInfo{
     position:absolute;
